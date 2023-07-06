@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\CMakeFiles\683be254f930a79cb647ef18405c0572\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cmake\Modules\CocosBuildHelpers.cmake">
+      <Filter>Buildsystem Input Files\cocos2d\cmake\Modules</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cmake\Modules\CocosBuildSet.cmake">
+      <Filter>Buildsystem Input Files\cocos2d\cmake\Modules</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cmake\Modules\CocosConfigDefine.cmake">
+      <Filter>Buildsystem Input Files\cocos2d\cmake\Modules</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cmake\Modules\CocosConfigDepend.cmake">
+      <Filter>Buildsystem Input Files\cocos2d\cmake\Modules</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cocos\2d\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\cocos\2d</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cocos\3d\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\cocos\3d</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cocos\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\cocos</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cocos\audio\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\cocos\audio</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cocos\base\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\cocos\base</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cocos\editor-support\cocostudio\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\cocos\editor-support\cocostudio</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cocos\math\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\cocos\math</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cocos\navmesh\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\cocos\navmesh</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cocos\network\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\cocos\network</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cocos\physics\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\cocos\physics</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cocos\physics3d\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\cocos\physics3d</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cocos\platform\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\cocos\platform</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cocos\renderer\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\cocos\renderer</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cocos\ui\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\cocos\ui</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\extensions\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\extensions</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\Box2D\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\Box2D</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\ConvertUTF\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\ConvertUTF</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\bullet\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\bullet</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\chipmunk\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\chipmunk</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\clipper\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\clipper</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\cmake\CocosExternalConfig.cmake">
+      <Filter>Buildsystem Input Files\cocos2d\external\cmake</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\curl\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\curl</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\edtaa3func\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\edtaa3func</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\freetype2\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\freetype2</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\glfw3\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\glfw3</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\jpeg\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\jpeg</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\md5\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\md5</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\openssl\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\openssl</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\png\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\png</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\poly2tri\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\poly2tri</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\recast\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\recast</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\tinyxml2\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\tinyxml2</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\unzip\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\unzip</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\uv\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\uv</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\webp\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\webp</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\websockets\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\websockets</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\win32-specific\MP3Decoder\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\win32-specific\MP3Decoder</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\win32-specific\OggDecoder\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\win32-specific\OggDecoder</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\win32-specific\OpenalSoft\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\win32-specific\OpenalSoft</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\win32-specific\gles\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\win32-specific\gles</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\win32-specific\icon\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\win32-specific\icon</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\xxhash\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\xxhash</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\xxtea\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\xxtea</Filter>
+    </None>
+    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\zlib\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\cocos2d\external\zlib</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{A273851C-FECF-3D4E-9735-863B15ADC093}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\cmake\Modules">
+      <UniqueIdentifier>{CFE45F93-1DE4-3F07-895B-3FA062E1EB03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\cocos">
+      <UniqueIdentifier>{3A1D6810-8D00-3A0B-9C0A-AABA503A44A2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\cocos\2d">
+      <UniqueIdentifier>{2A6ADB7E-DBAA-36F2-9F05-8FB2052611DD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\cocos\3d">
+      <UniqueIdentifier>{29565AAA-EBDA-3F71-9222-57B0DD722940}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\cocos\audio">
+      <UniqueIdentifier>{417D9568-2AFC-30D4-9BF9-D6FFFE44E217}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\cocos\base">
+      <UniqueIdentifier>{3729DC5F-5C05-3DD9-88CB-D01753B318C7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\cocos\editor-support\cocostudio">
+      <UniqueIdentifier>{E83D9BE4-EB6A-3E38-8763-21520EEBA3D6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\cocos\math">
+      <UniqueIdentifier>{F5B501BB-BC22-3E14-A172-35100738FDB4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\cocos\navmesh">
+      <UniqueIdentifier>{042309D5-C8A0-36F2-A169-43FDFA7610AB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\cocos\network">
+      <UniqueIdentifier>{D0400A4D-1764-3469-9C0B-1069305CF8DC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\cocos\physics">
+      <UniqueIdentifier>{DA8424B6-5F2B-36ED-B071-2D5904E6ADAD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\cocos\physics3d">
+      <UniqueIdentifier>{23AEF76F-E22B-35A5-AC5E-8248EC0E0ADD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\cocos\platform">
+      <UniqueIdentifier>{5657D1C6-89A4-3D38-B309-28E44A0B1E54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\cocos\renderer">
+      <UniqueIdentifier>{800D88B1-9B79-3F5A-9E27-524C2CADCCEF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\cocos\ui">
+      <UniqueIdentifier>{61632AC1-049E-3CA7-B872-B12146CEA5CB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\extensions">
+      <UniqueIdentifier>{162CA794-527A-34E1-84BB-474FAB3ED3E1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external">
+      <UniqueIdentifier>{8B3BD947-8D28-30C6-94DF-AF6181A09758}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\Box2D">
+      <UniqueIdentifier>{6BCA117C-BBB4-3046-AAA5-5094A725858B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\ConvertUTF">
+      <UniqueIdentifier>{39251286-47B5-37BA-A9D6-FEFE41D549E5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\bullet">
+      <UniqueIdentifier>{F12FF5EA-FB97-3E66-9DC8-34DD95A45DD4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\chipmunk">
+      <UniqueIdentifier>{CDEEA9DF-D95E-3296-BB92-CA2D67A63F90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\clipper">
+      <UniqueIdentifier>{6810718F-93C2-358D-98D5-5DAF4C61B518}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\cmake">
+      <UniqueIdentifier>{EC7F3200-60AC-31EF-8153-8355AACC8222}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\curl">
+      <UniqueIdentifier>{587E13D2-D46F-3B17-8854-4DE1DC2DB3DA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\edtaa3func">
+      <UniqueIdentifier>{376F08DC-C27A-397C-907B-09E98335E36D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\freetype2">
+      <UniqueIdentifier>{491A1FE0-A4E8-341E-9A37-B461C31D79CD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\glfw3">
+      <UniqueIdentifier>{8F901F0C-3C55-3A35-B151-4902F00F2595}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\jpeg">
+      <UniqueIdentifier>{B38632F7-BB86-386C-AEBE-9AF51AA086EF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\md5">
+      <UniqueIdentifier>{F8805CA6-B83F-330E-A756-5AAF71D49275}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\openssl">
+      <UniqueIdentifier>{F62E6116-E989-31E6-9BA6-594A5085CFE0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\png">
+      <UniqueIdentifier>{BE927FA8-AFF1-39D5-93EF-57E1FD4D046E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\poly2tri">
+      <UniqueIdentifier>{F2274C93-8B06-3653-9C31-6E9D1DF3FE44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\recast">
+      <UniqueIdentifier>{FE93E580-E9AC-39EB-9CDD-DFEFAAA77028}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\tinyxml2">
+      <UniqueIdentifier>{D9AE65DC-B6AF-3C47-8304-E3439BAFF4FE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\unzip">
+      <UniqueIdentifier>{8BC8464E-2D7D-3CEA-A494-222EEF5914E9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\uv">
+      <UniqueIdentifier>{D6895A61-87B7-30BB-A3FC-65ADEB30428C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\webp">
+      <UniqueIdentifier>{6AF96A6D-F3A8-3BBC-84CD-FB8314D0B7EB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\websockets">
+      <UniqueIdentifier>{809E2A02-521E-3C4A-9626-26F4E6496CDC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\win32-specific\MP3Decoder">
+      <UniqueIdentifier>{4E32CB80-BEA5-3FA0-9494-25A55B642300}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\win32-specific\OggDecoder">
+      <UniqueIdentifier>{86798B71-1FF5-3657-9CEC-E6B3826EA599}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\win32-specific\OpenalSoft">
+      <UniqueIdentifier>{8DBF4167-4269-3F44-9276-A29A0E60837E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\win32-specific\gles">
+      <UniqueIdentifier>{D8EB1BC7-81FF-36A8-9749-D3DC1AEFA7C5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\win32-specific\icon">
+      <UniqueIdentifier>{D591014B-0AC7-384B-A74D-72EF61B57977}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\xxhash">
+      <UniqueIdentifier>{EAB82A8F-952E-32FC-94D8-7EE9B6D2484B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\xxtea">
+      <UniqueIdentifier>{11721F1F-A306-3BF4-AC07-DE1D8BDC6EE2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buildsystem Input Files\cocos2d\external\zlib">
+      <UniqueIdentifier>{40CAE27C-9CC9-37F7-BA89-C36FC3389F88}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
