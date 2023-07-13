@@ -4,6 +4,9 @@
     <ClCompile Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\AppDelegate.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\Assignment2.cpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\HelloWorldScene.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
@@ -13,12 +16,15 @@
     <ClCompile Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cocos\precheader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WallBouncer.cpp">
+    <ClCompile Include="..\Classes\KeyboardScene.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\AppDelegate.h">
+      <Filter>Source Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\Assignment2.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\HelloWorldScene.h">
@@ -47,6 +53,9 @@
     </ClInclude>
     <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Resources\res\.gitkeep">
       <Filter>Resources\res</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\KeyboardScene.h">
+      <Filter>Source Files\Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

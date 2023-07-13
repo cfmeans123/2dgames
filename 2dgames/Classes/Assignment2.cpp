@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,13 +22,14 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "HelloWorldScene.h"
+#include "Assignment2.h"
+#include "KeyboardScene.h"
 
 USING_NS_CC;
 
-Scene* HelloWorld::createScene()
+Scene* Assignment2::createScene()
 {
-    return HelloWorld::create();
+    return Assignment2::create();
 }
 
 // Print useful error message instead of segfaulting when files are not there.
@@ -39,27 +40,27 @@ static void problemLoading(const char* filename)
 }
 
 // on "init" you need to initialize your instance
-bool HelloWorld::init()
+bool Assignment2::init()
 {
     //////////////////////////////
     // 1. super init first
-    if ( !Scene::init() )
+    if (!Scene::init())
     {
         return false;
     }
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
+    sprite = Sprite::create("Sprites/pikachu.png");
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
     //    you may modify it.
 
     // add a "close" icon to exit the progress. it's an autorelease object
     auto closeItem = MenuItemImage::create(
-                                           "CloseNormal.png",
-                                           "CloseSelected.png",
-                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
+        "CloseNormal.png",
+        "CloseSelected.png",
+        CC_CALLBACK_1(Assignment2::menuCloseCallback, this));
 
     if (closeItem == nullptr ||
         closeItem->getContentSize().width <= 0 ||
@@ -69,9 +70,9 @@ bool HelloWorld::init()
     }
     else
     {
-        float x = origin.x + visibleSize.width - closeItem->getContentSize().width/2;
-        float y = origin.y + closeItem->getContentSize().height/2;
-        closeItem->setPosition(Vec2(x,y));
+        float x = origin.x + visibleSize.width - closeItem->getContentSize().width / 2;
+        float y = origin.y + closeItem->getContentSize().height / 2;
+        closeItem->setPosition(Vec2(x, y));
     }
 
     // create menu, it's an autorelease object
@@ -93,16 +94,14 @@ bool HelloWorld::init()
     else
     {
         // position the label on the center of the screen
-        label->setPosition(Vec2(origin.x + visibleSize.width/2,
-                                origin.y + visibleSize.height - label->getContentSize().height));
+        label->setPosition(Vec2(origin.x + visibleSize.width / 2,
+            origin.y + visibleSize.height - label->getContentSize().height));
 
         // add the label as a child to this layer
         this->addChild(label, 1);
     }
 
     // add "HelloWorld" splash screen"
-    
-    sprite = Sprite::create("Sprites/pikachu.png");
 
     if (sprite == nullptr)
     {
@@ -111,23 +110,55 @@ bool HelloWorld::init()
     else
     {
         // position the sprite on the center of the screen
-        sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+        sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 
         // add the sprite as a child to this layer
         this->addChild(sprite, 0);
     }
+
+    auto keyboardListener = EventListenerKeyboard::create();
+    auto listener = EventListenerKeyboard::create();
+    keyboardListener->onKeyPressed = [=](EventKeyboard::KeyCode keyCode, Event* event)
+    {
+
+    };
+    //listener->onKeyPressed = CC_CALLBACK_2(Assignment2::onKeyPressed, this);
+    //use lambdas OR use signature / definition
+    keyboardListener->onKeyReleased = [=](EventKeyboard::KeyCode keyCode, Event* event)
+    {
+
+    };
+    //listener->onKeyReleased = CC_CALLBACK_2(Assignment2::onKeyReleased, this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
+    // Implementation of the keyboard event callback function prototype
+    
+
+
     return true;
 }
-void HelloWorld::Update(float dt)
+
+void Assignment2::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 {
-    /*if (sprite != nullptr)
+    if (keyCode == EventKeyboard::KeyCode::KEY_W)
     {
-        if (sprite->position.x > )
-        sprite->
-    }*/
+
+    }
+};
+
+void Assignment2::Update(float dt)
+{
+    if (sprite != nullptr)
+    {
+        auto position = sprite->getPosition();
+       /* if (Input.EventType.K)
+        {
+
+        }*/
+    }
 }
 
-void HelloWorld::menuCloseCallback(Ref* pSender)
+void Assignment2::menuCloseCallback(Ref* pSender)
 {
     //Close the cocos2d-x game scene and quit the application
     Director::getInstance()->end();
