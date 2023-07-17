@@ -138,13 +138,13 @@ bool Assignment2::init()
     return true;
 }
 
-void Assignment2::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
-{
-    if (keyCode == EventKeyboard::KeyCode::KEY_W)
-    {
-
-    }
-};
+//void Assignment2::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
+//{
+//    if (keyCode == EventKeyboard::KeyCode::KEY_W)
+//    {
+//
+//    }
+//};
 
 void Assignment2::Update(float dt)
 {
