@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
   </PropertyGroup>
@@ -25,9 +25,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{A7A29A83-7534-3F40-A80F-952CF8FF8F69}</ProjectGuid>
+    <ProjectGuid>{11450097-83ED-3C24-89E8-1D77DE631BB7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
     <Platform>Win32</Platform>
     <ProjectName>ALL_BUILD</ProjectName>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
@@ -36,22 +36,22 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -108,11 +108,11 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\cocos2d\external\CMakeLists.txt">
+    <CustomBuild Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\external\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/cocos2d/external/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames/cocos2d/external/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames -BC:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/proj.win32 --check-stamp-file C:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/proj.win32/engine/external/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames -BC:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames/proj.win32 --check-stamp-file C:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames/proj.win32/engine/external/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -121,11 +121,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/cocos2d/external/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames/cocos2d/external/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames -BC:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/proj.win32 --check-stamp-file C:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/proj.win32/engine/external/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames -BC:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames/proj.win32 --check-stamp-file C:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames/proj.win32/engine/external/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -134,11 +134,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/cocos2d/external/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames/cocos2d/external/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames -BC:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/proj.win32 --check-stamp-file C:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/proj.win32/engine/external/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames -BC:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames/proj.win32 --check-stamp-file C:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames/proj.win32/engine/external/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -147,11 +147,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/cocos2d/external/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames/cocos2d/external/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames -BC:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/proj.win32 --check-stamp-file C:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/proj.win32/engine/external/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames -BC:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames/proj.win32 --check-stamp-file C:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames/proj.win32/engine/external/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -160,61 +160,61 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\ZERO_CHECK.vcxproj">
-      <Project>{07A182B8-4CD1-3F58-984D-544CBC8D39DE}</Project>
+    <ProjectReference Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\ZERO_CHECK.vcxproj">
+      <Project>{581E4C1D-3526-31D9-8CC3-EEA59BB11D21}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\clipper\ext_clipper.vcxproj">
-      <Project>{52FE0235-5A9A-3DCA-821A-D3D135D662B8}</Project>
+    <ProjectReference Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\clipper\ext_clipper.vcxproj">
+      <Project>{576C918E-6DF3-301F-9182-2DCA79917920}</Project>
       <Name>ext_clipper</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\ConvertUTF\ext_convertUTF.vcxproj">
-      <Project>{98959B1F-6367-3A13-ACBD-08DC7ECF2785}</Project>
+    <ProjectReference Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\ConvertUTF\ext_convertUTF.vcxproj">
+      <Project>{325CA909-92B2-35A8-9040-26D899B3C73F}</Project>
       <Name>ext_convertUTF</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\edtaa3func\ext_edtaa3func.vcxproj">
-      <Project>{A67D7839-A3BE-3A9A-8004-91CA1DCE5068}</Project>
+    <ProjectReference Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\edtaa3func\ext_edtaa3func.vcxproj">
+      <Project>{1F8C969A-1F56-33EC-ABB9-0370989649E1}</Project>
       <Name>ext_edtaa3func</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\md5\ext_md5.vcxproj">
-      <Project>{F7A3BFA2-0F37-323A-B4DF-894EE2AEAFB9}</Project>
+    <ProjectReference Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\md5\ext_md5.vcxproj">
+      <Project>{2EA1802B-09CD-3FEA-B98D-763C5C182116}</Project>
       <Name>ext_md5</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\poly2tri\ext_poly2tri.vcxproj">
-      <Project>{5CED64B0-657D-37CA-8D60-1FAC1E994417}</Project>
+    <ProjectReference Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\poly2tri\ext_poly2tri.vcxproj">
+      <Project>{A71BF70E-1179-3664-98C6-1B312159428B}</Project>
       <Name>ext_poly2tri</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\recast\ext_recast.vcxproj">
-      <Project>{B92AB8AD-CCE5-3AAC-9FD0-FB3BC2D3D8BC}</Project>
+    <ProjectReference Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\recast\ext_recast.vcxproj">
+      <Project>{305564CF-9605-3BF2-A592-A74055358329}</Project>
       <Name>ext_recast</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\tinyxml2\ext_tinyxml2.vcxproj">
-      <Project>{40ECFED4-A5F3-3FEE-AF85-4B990893F2AC}</Project>
+    <ProjectReference Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\tinyxml2\ext_tinyxml2.vcxproj">
+      <Project>{20C8E128-FF4B-377A-943D-A6B04C530416}</Project>
       <Name>ext_tinyxml2</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\unzip\ext_unzip.vcxproj">
-      <Project>{EEAFE0EB-546A-3BEA-BA38-ECCE81C13C27}</Project>
+    <ProjectReference Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\unzip\ext_unzip.vcxproj">
+      <Project>{2504AED3-4FA7-37F2-BBC0-AEF0B2F02480}</Project>
       <Name>ext_unzip</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\xxhash\ext_xxhash.vcxproj">
-      <Project>{2A4F6D46-92F2-3D5A-B342-BEB73F34B528}</Project>
+    <ProjectReference Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\xxhash\ext_xxhash.vcxproj">
+      <Project>{54108813-2101-3421-AF20-61122B66EF8B}</Project>
       <Name>ext_xxhash</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\xxtea\ext_xxtea.vcxproj">
-      <Project>{2DDF6D6C-793A-3231-8CE1-ACBDC0865B1A}</Project>
+    <ProjectReference Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\xxtea\ext_xxtea.vcxproj">
+      <Project>{5A686E81-1449-3A40-8CF7-F3C1099E2C24}</Project>
       <Name>ext_xxtea</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\external.vcxproj">
-      <Project>{BDD35CF9-3823-3213-B795-F760B072A482}</Project>
+    <ProjectReference Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\engine\external\external.vcxproj">
+      <Project>{8479E88F-0608-3C51-8BDA-7CC93CA1B737}</Project>
       <Name>external</Name>
     </ProjectReference>
   </ItemGroup>

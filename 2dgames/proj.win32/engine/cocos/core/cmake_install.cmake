@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/cocos2d/cocos
+# Install script for directory: C:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames/cocos2d/cocos
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,7 +34,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/proj.win32/engine/external/cmake_install.cmake")
+  include("C:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames/proj.win32/engine/external/cmake_install.cmake")
 
 endif()
 

@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/cocos2d/external/win32-specific/MP3Decoder
+# Install script for directory: C:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames/cocos2d/external/win32-specific/MP3Decoder
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

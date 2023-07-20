@@ -118,9 +118,28 @@ bool Assignment2::init()
 
     auto keyboardListener = EventListenerKeyboard::create();
     auto listener = EventListenerKeyboard::create();
+//FIX THE setPosition DIRECTIONS!!!
     keyboardListener->onKeyPressed = [=](EventKeyboard::KeyCode keyCode, Event* event)
     {
-
+        switch (keyCode)
+        {
+        case EventKeyboard::KeyCode::KEY_W:
+            sprite->setPosition(Vec2(sprite->getPositionX(), sprite->getPositionY() - 100));
+            sprite->setRotation(0);
+            break;
+        case EventKeyboard::KeyCode::KEY_A:
+            sprite->setPosition(Vec2(sprite->getPositionX() - 100, sprite->getPositionY()));
+            sprite->setRotation(-90);
+            break;
+        case EventKeyboard::KeyCode::KEY_S:
+            sprite->setPosition(Vec2(sprite->getPositionX(), sprite->getPositionY() + 100));
+            sprite->setRotation(180);
+            break;
+        case EventKeyboard::KeyCode::KEY_D:
+            sprite->setPosition(Vec2(sprite->getPositionX() + 100, sprite->getPositionY()));
+            sprite->setRotation(90);
+            break;
+        }
     };
     //listener->onKeyPressed = CC_CALLBACK_2(Assignment2::onKeyPressed, this);
     //use lambdas OR use signature / definition
