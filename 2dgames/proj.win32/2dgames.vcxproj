@@ -117,7 +117,8 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>												</Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/cocos2d/external/openssl/prebuilt/win32/libssl-1_1.dll C:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/proj.win32/bin/2dgames/Debug/libssl-1_1.dll
 if %errorlevel% neq 0 goto :cmEnd
@@ -283,7 +284,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>												</Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/cocos2d/external/openssl/prebuilt/win32/libssl-1_1.dll C:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/proj.win32/bin/2dgames/Release/libssl-1_1.dll
 if %errorlevel% neq 0 goto :cmEnd
@@ -449,7 +451,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>												</Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/cocos2d/external/openssl/prebuilt/win32/libssl-1_1.dll C:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/proj.win32/bin/2dgames/MinSizeRel/libssl-1_1.dll
 if %errorlevel% neq 0 goto :cmEnd
@@ -614,7 +617,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>												</Message>
+      <Message>
+      </Message>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/cocos2d/external/openssl/prebuilt/win32/libssl-1_1.dll C:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/proj.win32/bin/2dgames/RelWithDebInfo/libssl-1_1.dll
 if %errorlevel% neq 0 goto :cmEnd
@@ -805,12 +809,19 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Classes\Bullet.h" />
+    <ClInclude Include="..\Classes\BulletPool.h" />
+    <ClInclude Include="..\Classes\CollisionComponent.h" />
+    <ClInclude Include="..\Classes\CollisionTestScene.h" />
     <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\AppDelegate.h" />
     <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\Assignment2.h" />
     <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\HelloWorldScene.h" />
     <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\KeyboardScene.h" />
     <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\main.h" />
     <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\resource.h" />
+    <ClCompile Include="..\Classes\Bullet.cpp" />
+    <ClCompile Include="..\Classes\BulletPool.cpp" />
+    <ClCompile Include="..\Classes\CollisionTestScene.cpp" />
     <ClCompile Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\AppDelegate.cpp" />
     <ClCompile Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\Assignment2.cpp" />
     <ClCompile Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\HelloWorldScene.cpp" />
