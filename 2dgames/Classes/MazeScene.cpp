@@ -83,7 +83,7 @@ void MazeScene::initialize(Sprite* spr, TMXLayer* layer, std::pair<int, int>& po
         {
             if (layer->getTileAt(Vec2(i, j)) != NULL)
             {
-                setPosition(spr, std::make_pair(i, j), position, draw);
+                setPosition(spr, FlipY(std::make_pair(i, j)), position, draw);
             }
         }
     }
@@ -98,7 +98,6 @@ std::pair<int, int> MazeScene::FlipY(std::pair<int, int> position)
 void MazeScene::setPosition(Sprite* spr, std::pair<int, int> newPosition, std::pair<int, int>& oldPosition, bool draw)
 {
     oldPosition = newPosition;
-
     auto x = tileSize->width * newPosition.first + tileSize->width/2;
     //newPosition = FlipY(newPosition);
     auto y = tileSize->height * newPosition.second + tileSize->height/2;
