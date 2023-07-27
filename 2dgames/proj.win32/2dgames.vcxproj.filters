@@ -22,6 +22,9 @@
     <ClCompile Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cocos\precheader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\MazeScene.cpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\AppDelegate.h">
@@ -65,6 +68,9 @@
     </ClInclude>
     <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Resources\res\.gitkeep">
       <Filter>Resources\res</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MazeScene.h">
+      <Filter>Source Files\Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
