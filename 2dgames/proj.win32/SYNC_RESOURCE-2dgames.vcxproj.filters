@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\CMakeFiles\683be254f930a79cb647ef18405c0572\SYNC_RESOURCE-2dgames.rule">
+    <CustomBuild Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\CMakeFiles\edd4fd2aa7bc360881c822d5771f5a21\SYNC_RESOURCE-2dgames.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
-    <CustomBuild Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\CMakeFiles\SYNC_RESOURCE-2dgames" />
+    <None Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\CMakeFiles\SYNC_RESOURCE-2dgames" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{A273851C-FECF-3D4E-9735-863B15ADC093}</UniqueIdentifier>
+      <UniqueIdentifier>{C35C7E32-DF8C-3690-BE51-5C415F8BF604}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

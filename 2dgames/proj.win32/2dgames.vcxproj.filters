@@ -1,104 +1,683 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\AppDelegate.cpp">
+    <ClCompile Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\AppDelegate.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\Assignment2.cpp">
+    <ClCompile Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\Assignment2.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\CollisionTestScene.cpp">
+    <ClCompile Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\CollisionTestScene.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\HelloWorldScene.cpp">
+    <ClCompile Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\HelloWorldScene.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\KeyboardScene.cpp">
+    <ClCompile Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\KeyboardScene.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\main.cpp">
+    <ClCompile Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\MazeScene.cpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\main.cpp">
       <Filter>Source Files\proj.win32</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\cocos2d\cocos\precheader.cpp">
+    <ClCompile Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\cocos2d\cocos\precheader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\MazeScene.cpp">
+    <ClCompile Include="Midterm.cpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Bullet.cpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BulletPool.cpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Player.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\AppDelegate.h">
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\AppDelegate.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\Assignment2.h">
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\Assignment2.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\CollisionComponent.h">
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\CollisionComponent.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\CollisionTestScene.h">
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\CollisionTestScene.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\HelloWorldScene.h">
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\HelloWorldScene.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\KeyboardScene.h">
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\KeyboardScene.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\main.h">
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\MazeScene.h">
+      <Filter>Source Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\main.h">
       <Filter>Source Files\proj.win32</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\resource.h">
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\resource.h">
       <Filter>Source Files\proj.win32</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Resources\CloseNormal.png">
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\Cheese.png">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Resources\CloseSelected.png">
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\CloseNormal.png">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Resources\HelloWorld.png">
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\CloseSelected.png">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Resources\fonts\Marker Felt.ttf">
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\HelloWorld.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\bar_empty.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\bar_red.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\black.jpg">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\blood_effect.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\bloodsplats.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\blue.jpg">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\bullet1.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\bullet2.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\bullet_bill.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\button_off.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\button_on.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_01.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_02.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_03.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_04.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_05.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_06.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_07.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_08.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_09.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_10.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_11.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_12.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_13.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_14.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_15.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_16.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_17.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_18.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_19.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_20.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_21.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_22.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_23.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_24.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_25.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_26.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_27.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_28.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_29.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_30.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_31.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrier_32.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\carrot.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\crosshair.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\cyan.jpg">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\explosion.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\explosion_anim.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\fighter.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\flare_handgun.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\flare_rifle.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\flare_shotgun.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\flower.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\flower_2.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\fonts\Marker Felt.ttf">
       <Filter>Resources\fonts</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Resources\fonts\arial.ttf">
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\fonts\arial.ttf">
       <Filter>Resources\fonts</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Resources\res\.gitkeep">
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\grass.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\grass_2.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\green.jpg">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\hummer.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_01.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_02.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_03.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_04.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_05.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_06.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_07.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_08.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_09.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_10.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_11.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_12.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_13.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_14.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_15.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_16.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_17.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_18.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_19.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_20.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_21.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_22.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_23.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_24.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_25.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_26.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_27.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_28.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_29.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_30.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_31.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\interceptor_32.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\jeep.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\lamborghini.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\map.jpg">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\marinez.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\mario.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\mario_fall_01.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\mario_idle_01.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\mario_idle_02.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\mario_jump_01.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\mario_walk_01.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\mario_walk_02.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\minerals.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\mouse-0.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\mouse-1.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\mouse-10.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\mouse-11.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\mouse-2.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\mouse-3.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\mouse-4.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\mouse-5.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\mouse-6.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\mouse-7.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\mouse-8.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\mouse-9.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\mushroom.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\muzzle_flare.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\pikachu.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\pix.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\pix_about.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\purple.jpg">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\qmark.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\red.jpg">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\red_car.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\refinery_01.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\refinery_02.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\refinery_03.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\refinery_04.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\refinery_05.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\res\.gitkeep">
       <Filter>Resources\res</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\MazeScene.h">
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\scv_01.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\scv_02.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\scv_03.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\scv_04.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\scv_05.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\scv_06.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\scv_07.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\scv_08.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\scv_09.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\scv_10.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\scv_11.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\scv_12.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\scv_13.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\scv_14.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\scv_15.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\scv_16.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\seamless_grass.jpg">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\space.jpg">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\splashscreen.bmp">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\spritesheet.json">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\spritesheet.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\starcraft_buildings.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\stone.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\survivor_handgun.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\survivor_rifle.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\survivor_shotgun.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\sword.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\terranscv.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\tesla.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\tmx\desert.tmx">
+      <Filter>Resources\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\tmx\tmw_desert_spacing.png">
+      <Filter>Resources\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\tmx\tmw_desert_spacing.tsx">
+      <Filter>Resources\tmx</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\track_01.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\track_02.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\track_03.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\track_04.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\track_05.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\track_06.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\track_07.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\track_08.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\track_09.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\track_10.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\tree0.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\tree0_2.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\tree1.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\tree1_2.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\tree2.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\tree2_2.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\tree3.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\tree3_2.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\white.jpg">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\yellow.jpg">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\zelda.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\zombie_dead.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\zombie_idle.png">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Midterm.h">
+      <Filter>Source Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Bullet.h">
+      <Filter>Source Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BulletPool.h">
+      <Filter>Source Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Player.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\game.rc">
+    <ResourceCompile Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\game.rc">
       <Filter>Source Files\proj.win32</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resources">
-      <UniqueIdentifier>{9F35787F-7DCB-3FB3-9E55-90A36CC705AE}</UniqueIdentifier>
+      <UniqueIdentifier>{F150FED9-A82A-32FC-AA84-CDB40AA6BB7A}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resources\fonts">
-      <UniqueIdentifier>{3E5E2207-F5BF-32D8-9904-0394B6B42BF5}</UniqueIdentifier>
+      <UniqueIdentifier>{F03BD0F1-2485-39CD-9504-4E9A59B12B93}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resources\res">
-      <UniqueIdentifier>{2B42B1C8-E8C7-3FFF-974B-241728B6521B}</UniqueIdentifier>
+      <UniqueIdentifier>{06E16FDD-E59C-3E18-BA1D-64AC687F4286}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\tmx">
+      <UniqueIdentifier>{C65F4B18-526E-3C63-86C1-499BB1D66D60}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{31E7F2C5-8DAB-36EE-8166-ADE67D015858}</UniqueIdentifier>
+      <UniqueIdentifier>{C05891F3-4E68-3292-8CE9-C810FF557BF1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Classes">
-      <UniqueIdentifier>{ECC0B25F-2DAC-33C3-9034-E61177CF7FA9}</UniqueIdentifier>
+      <UniqueIdentifier>{B8263BDF-91A6-3141-8AB7-72E04E719FB9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\proj.win32">
-      <UniqueIdentifier>{09D56430-C4ED-39E8-B11C-B751C40582B4}</UniqueIdentifier>
+      <UniqueIdentifier>{559C5086-7F24-3F03-82AE-0CDCC3B923C5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

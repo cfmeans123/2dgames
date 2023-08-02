@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames/cocos2d/external/tinyxml2
+# Install script for directory: C:/Users/chand/OneDrive/Documents/GitHub/2dgames/2dgames/cocos2d/external/tinyxml2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
