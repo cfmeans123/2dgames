@@ -27,6 +27,7 @@
 #include "CollisionTestScene.h"
 #include "CollisionComponent.h"
 #include "MazeScene.h"
+#include "MazeScene2.h"
 
  // #define USE_AUDIO_ENGINE 1
 
@@ -111,7 +112,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = MazeScene::create();
+    auto scene = MazeScene2::create();
     //scene->scheduleUpdate();
     // run
     director->runWithScene(scene);

@@ -810,6 +810,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\MazeScene.h" />
+    <ClInclude Include="..\Classes\MazeScene2.h" />
     <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\AppDelegate.h" />
     <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\Assignment2.h" />
     <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\CollisionComponent.h" />
@@ -819,6 +820,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\main.h" />
     <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\proj.win32\resource.h" />
     <ClCompile Include="..\Classes\MazeScene.cpp" />
+    <ClCompile Include="..\Classes\MazeScene2.cpp" />
     <ClCompile Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\AppDelegate.cpp" />
     <ClCompile Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\Assignment2.cpp" />
     <ClCompile Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\CollisionTestScene.cpp" />

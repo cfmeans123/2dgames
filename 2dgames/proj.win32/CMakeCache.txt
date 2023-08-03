@@ -196,7 +196,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=2dgames
+CMAKE_PROJECT_NAME:STATIC=vgp230
 
 //RC compiler
 CMAKE_RC_COMPILER:FILEPATH=rc
@@ -511,6 +511,15 @@ uv_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 uv_SOURCE_DIR:STATIC=C:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames/cocos2d/external/uv
+
+//Value Computed by CMake
+vgp230_BINARY_DIR:STATIC=C:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames/proj.win32
+
+//Value Computed by CMake
+vgp230_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+vgp230_SOURCE_DIR:STATIC=C:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames
 
 //Value Computed by CMake
 webp_BINARY_DIR:STATIC=C:/Users/lcv0278187/Documents/GitHub/2dgames/2dgames/proj.win32/engine/external/webp

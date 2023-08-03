@@ -25,6 +25,9 @@
     <ClCompile Include="..\Classes\MazeScene.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\MazeScene2.cpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\lcv0278187\Documents\GitHub\2dgames\2dgames\Classes\AppDelegate.h">
@@ -70,6 +73,9 @@
       <Filter>Resources\res</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\MazeScene.h">
+      <Filter>Source Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MazeScene2.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
   </ItemGroup>
