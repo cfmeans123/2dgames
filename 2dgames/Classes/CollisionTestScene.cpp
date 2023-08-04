@@ -250,10 +250,13 @@ void CollisionTestScene::update(float dt)
          }
        
 
+        
+
         player->x += player->dx * dt;
         player->y += player->dy * dt;   
         player->setPosition(player->x, player->y);
         player->setRotation(player->rotAngle);
+        FlipY(player);
     myHealth->emptyBar->setPosition(active->getPositionX(), active->getPositionY() + 50);
     myHealth->fillBar->setPosition(active->getPositionX(), active->getPositionY() + 50);
     if (bulletPool != nullptr)
