@@ -4,7 +4,6 @@ bool MazeScene::init()
 {
     auto map = TMXTiledMap::create("tmx/desert.tmx");
     path = map->getLayer("Path");
-    collision = map->getLayer("Collision");
     auto playerStartLayer = map->getLayer("Player");
     auto playerEndLayer = map->getLayer("Player End");
 
