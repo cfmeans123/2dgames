@@ -16,16 +16,18 @@ bool CollisionTestScene::init()
 
 
 
-    active = stone = Sprite::create("fighter.png");
+    //active = stone = Sprite::create("fighter.png");
     
     player = Player::create();
     addChild(player);
-    stone->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
-    stone->addComponent(CollisionComponent::createBox(stone->getContentSize().width, stone->getContentSize().height));
+    active = player;
+    //stone->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
+    //stone->addComponent(CollisionComponent::createBox(stone->getContentSize().width, stone->getContentSize().height));
 
     //player->setPosition(Director::getInstance()->getVisibleSize().width / 2.0f + 20, Director::getInstance()->getVisibleSize().height / 2.0f);
     player->x = Director::getInstance()->getVisibleSize().width / 2.0f + 20;
     player->y = Director::getInstance()->getVisibleSize().height / 2.0f;
+    FlipY(player);
 
     bulletPool = new BulletPool();
 
@@ -58,7 +60,7 @@ bool CollisionTestScene::init()
     label->setString("Arrow keys to move\n\nm: Mushroom\nb: Bullet\ns: Stone\nh: Hummer\nc: Circle\nd: Debug draw");
     label->setPosition(Vec2(label->getContentSize().width / 2.0f + 10, visibleSize.height - label->getContentSize().height / 2.0f - 10));
 
-    this->addChild(stone, 0);
+    //this->addChild(stone, 0);
     //this->addChild(mushroom, 0);
     this->addChild(bullet2, 0);
     //this->addChild(hummer, 0);
@@ -144,11 +146,11 @@ bool CollisionTestScene::init()
 void CollisionTestScene::fireBullet()
 {
     Bullet* bullet = bulletPool->getOrCreateBullet();
-    bullet->setRotation(active->getRotation() + 45);
+    bullet->setRotation(player->getRotation() + 45);
     bullet->isActive = true;
-    bullet->setPosition(active->getPosition());
-    bullet->moveDirection.x = movedirX;
-    bullet->moveDirection.y = movedirY;
+    bullet->setPosition(player->getPosition());
+    bullet->moveDirection.x = -cos(player->rotAngle * (pi / 180)) * 35.0f;
+    bullet->moveDirection.y = sin(player->rotAngle * (pi / 180)) * 35.0f;
     if (bullet->getParent() == nullptr)
     {
         addChild(bullet);
@@ -245,8 +247,8 @@ void CollisionTestScene::update(float dt)
         }
         if (down) 
         {
-            player->dx += sin((player->rotAngle * pi) / 180) * 35.0f * dt;
-            player->dy += -cos((player->rotAngle * pi) / 180) * 35.0f * dt;
+            player->dy += sin(player->rotAngle * (pi / 180)) * 35.0f * dt;
+            player->dx += -cos(player->rotAngle * (pi / 180)) * 35.0f * dt;
          }
        
 
@@ -255,8 +257,8 @@ void CollisionTestScene::update(float dt)
         player->x += player->dx * dt;
         player->y += player->dy * dt;   
         player->setPosition(player->x, player->y);
-        player->setRotation(player->rotAngle);
-        FlipY(player);
+        player->setRotation(player->rotAngle - 90);
+        
     myHealth->emptyBar->setPosition(active->getPositionX(), active->getPositionY() + 50);
     myHealth->fillBar->setPosition(active->getPositionX(), active->getPositionY() + 50);
     if (bulletPool != nullptr)
