@@ -11,61 +11,48 @@ USING_NS_CC;
 bool CollisionTestScene::init()
 {
 
+    //rand init
+    srand(time(0));
+    waveTimer = 6.0f;
+    waveIncrement = 2.0f;
+    enemiesDefeated = 0;
+
     visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
+   
 
-
-
-    //active = stone = Sprite::create("fighter.png");
-    
+    //player init
     player = Player::create();
     addChild(player);
     active = player;
-    //stone->setPosition(Vec2(visibleSize.width / 2.0f, visibleSize.height / 2.0f));
-    //stone->addComponent(CollisionComponent::createBox(stone->getContentSize().width, stone->getContentSize().height));
-
-    //player->setPosition(Director::getInstance()->getVisibleSize().width / 2.0f + 20, Director::getInstance()->getVisibleSize().height / 2.0f);
     player->x = Director::getInstance()->getVisibleSize().width / 2.0f + 20;
     player->y = Director::getInstance()->getVisibleSize().height / 2.0f;
+    player->addComponent(CollisionComponent::createCircle(player->getBoundingBox().size.width / 3.0f));
     FlipY(player);
+    myHealth = new HealthBar();
+
+
 
     bulletPool = new BulletPool();
+    enemyPool = new EnemyPool();
 
-    myHealth = new HealthBar();
     this->addChild(myHealth->emptyBar, 1);
     this->addChild(myHealth->fillBar, 1);
 
-    //mushroom = Sprite::create("mushroom.png");
-    //mushroom->setPosition(Vec2(visibleSize.width / 4.0f, visibleSize.height / 4.0f));
-    //mushroom->setScale(3.0f);
-    /// TODO: ADD CODE Here -- Requires CollisionComponent
-    //mushroom->addComponent(CollisionComponent::createBox(mushroom->getBoundingBox().size.width, mushroom->getBoundingBox().size.height));
-    //mushroom->addComponent(CollisionComponent::createCircle(mushroom->getBoundingBox().size.width / 2.0f));
+    
 
     bullet2 = Sprite::create("bullet2.png");
     bullet2->setPosition(Vec2(visibleSize.width / 8.0f, visibleSize.height / 4.0f));
     /// TODO: ADD CODE Here -- Requires CollisionComponent
     bullet2->addComponent(CollisionComponent::createCircle(bullet2->getBoundingBox().size.width / 2.0f));
 
-    //hummer = Sprite::create("hummer.png");
-    //hummer->setPosition(Vec2(7.0f * visibleSize.width / 8.0f, visibleSize.height / 4.0f));
-    /// TODO: ADD CODE Here -- Requires CollisionComponent
-    //hummer->addComponent(CollisionComponent::createBox(hummer->getBoundingBox().size.width, hummer->getBoundingBox().size.height / 2));
-
-    //circle = Sprite::create("crosshair.png");
-    //circle->setPosition(20, 20);
-    //circle->addComponent(CollisionComponent::createDot());
+ 
 
     auto label = Label::create();
     label->setString("Arrow keys to move\n\nm: Mushroom\nb: Bullet\ns: Stone\nh: Hummer\nc: Circle\nd: Debug draw");
     label->setPosition(Vec2(label->getContentSize().width / 2.0f + 10, visibleSize.height - label->getContentSize().height / 2.0f - 10));
 
-    //this->addChild(stone, 0);
-    //this->addChild(mushroom, 0);
     this->addChild(bullet2, 0);
-    //this->addChild(hummer, 0);
-    //this->addChild(circle, 0);
-    //this->addChild(label, 0);
 
     debug = DrawNode::create(5);
     this->addChild(debug, 1);
@@ -91,12 +78,12 @@ bool CollisionTestScene::init()
         case EventKeyboard::KeyCode::KEY_B:
             active = bullet2;
             break;
-        /*case EventKeyboard::KeyCode::KEY_H:
-            active = hummer;
+        case EventKeyboard::KeyCode::KEY_H:
+            createEnemy();
             break;
         case EventKeyboard::KeyCode::KEY_C:
             active = circle;
-            break;*/
+            break;
         case EventKeyboard::KeyCode::KEY_D:
             debugDrawEnabled = !debugDrawEnabled;
             break;
@@ -142,30 +129,74 @@ bool CollisionTestScene::init()
     return true;
 }
 
+void CollisionTestScene::createEnemy()
+{
+    Enemy* enemy = enemyPool->getOrCreateEnemy();
+    enemy->isActive = true;
+    
+    enemy->setPosition(Vec2(rand() % static_cast<int>(visibleSize.width * 0.2), rand() % static_cast<int>(visibleSize.height * 0.2)));
+    enemy->moveDirection.x = -cos((rand() % 360) * (pi / 180)) * 25.0f;
+    enemy->moveDirection.y = sin((rand() % 360) * (pi / 180)) * 25.0f;
+    enemy->setRotation((atan(
+        ((enemy->getPositionX() + enemy->moveDirection.x) - enemy->getPositionX())
+        /
+        ((enemy->getPositionY() + enemy->moveDirection.y) - enemy->getPositionY())
+    ) * 180/pi));
+
+   
+
+    if (enemy->getParent() == nullptr)
+    {
+        addChild(enemy);
+        FlipY(enemy);
+    }
+    else
+    {
+        enemy->isActive = true;
+        FlipY(enemy);
+    }
+}
 
 void CollisionTestScene::fireBullet()
 {
     Bullet* bullet = bulletPool->getOrCreateBullet();
     bullet->setRotation(player->getRotation() + 45);
     bullet->isActive = true;
-    bullet->setPosition(player->getPosition());
-    bullet->moveDirection.x = -cos(player->rotAngle * (pi / 180)) * 35.0f;
-    bullet->moveDirection.y = sin(player->rotAngle * (pi / 180)) * 35.0f;
+    bullet->moveDirection.x = -cos(player->rotAngle * (pi / 180)) * 60.0f;
+    bullet->moveDirection.y = sin(player->rotAngle * (pi / 180)) * 60.0f;
+    
+    bullet->setPosition(player->getPosition() + bullet->moveDirection);
     if (bullet->getParent() == nullptr)
     {
         addChild(bullet);
     }
     else
     {
-        //bulletPool->returnBulletToPool(bullet);
         bullet->isActive = true;
     }
-
 };
+
+void CollisionTestScene::spawnWave(int count)
+{
+    for (int i = 0; i < count; ++i)
+    {
+        createEnemy();
+    }
+}
 
 void CollisionTestScene::update(float dt)
 {
-        auto p = active->getPosition();
+    waveTimer -= dt;
+    if (waveTimer <= 0.0f)
+    {
+        waveTimer += waveIncrement;
+        waveIncrement += 2.0f;
+        spawnWave(waveIncrement);
+        myHealth->currentHealth = 100;
+    }
+
+
+    auto p = active->getPosition();
 
     if (active != NULL && (left || right || up || down))
     {
@@ -236,31 +267,68 @@ void CollisionTestScene::update(float dt)
             active->setRotation(0.0f);
         }*/
     }
-        if (left)
-        {
-            player->rotAngle -= 55.0f * dt;
+    if (left)
+    {
+        player->rotAngle -= 205.0f * dt;
             
+    }
+    if (right)
+    {
+        player->rotAngle += 205.0f * dt;
+    }
+    if (down) 
+    {
+        player->dy += sin(player->rotAngle * (pi / 180)) * 400.0f * dt;
+        player->dx += -cos(player->rotAngle * (pi / 180)) * 400.0f * dt;
         }
-        if (right)
-        {
-            player->rotAngle += 55.0f * dt;
-        }
-        if (down) 
-        {
-            player->dy += sin(player->rotAngle * (pi / 180)) * 35.0f * dt;
-            player->dx += -cos(player->rotAngle * (pi / 180)) * 35.0f * dt;
-         }
        
+    //speed cap
+    if (player->dy >= 200.0f)
+    {
+        player->dy = 200.0f;
+    }
+    if (player->dy <= -200.0f)
+    {
+        player->dy = -200.0f;
+    }
+    if (player->dx >= 200.0f)
+    {
+        player->dx = 200.0f;
+    }
+    if (player->dx <= -200.0f)
+    {
+        player->dx = -200.0f;
+    }
 
-        
+    //modify player pos
+    player->x += player->dx * dt;
+    player->y += player->dy * dt;   
+    player->setPosition(player->x, player->y);
+    player->setRotation(player->rotAngle - 90);
 
-        player->x += player->dx * dt;
-        player->y += player->dy * dt;   
-        player->setPosition(player->x, player->y);
-        player->setRotation(player->rotAngle - 90);
+    //screen wrap
+    if (player->x > visibleSize.width)
+    {
+        player->x -= visibleSize.width;
+    }
+    if (player->x < 0)
+    {
+        player->x += visibleSize.width;
+    }
+    if (player->y > visibleSize.height)
+    {
+        player->y -= visibleSize.height;
+    }
+    if (player->y < 0)
+    {
+        player->y += visibleSize.height;
+    }
+    
         
     myHealth->emptyBar->setPosition(active->getPositionX(), active->getPositionY() + 50);
-    myHealth->fillBar->setPosition(active->getPositionX(), active->getPositionY() + 50);
+    myHealth->fillBar->setScaleX((myHealth->currentHealth / myHealth->maxHealth));
+    myHealth->fillBar->setPosition(active->getPositionX() - (myHealth->emptyBar->getContentSize().width/2 - (myHealth->emptyBar->getContentSize().width / 2) * myHealth->currentHealth / myHealth->maxHealth), active->getPositionY() + 50);
+    
     if (bulletPool != nullptr)
     {
         for (Bullet* bullet : bulletPool->bulletPool) {
@@ -276,18 +344,98 @@ void CollisionTestScene::update(float dt)
                         bullet->addComponent(CollisionComponent::createCircle(bullet->getBoundingBox().size.width / 2.0f));
                     }
                     bullet->update(dt);
-                    if ((pos.y + bullet->spriteHeight) > visibleSize.height || (pos.y < visibleSize.height - visibleSize.height))
+                   
+                    
+
+                    if ((pos.y + bullet->spriteHeight) > visibleSize.height || (pos.y < 0))
                     {
                         bullet->removeComponent("CollisionComponent");
                         removeChild(bullet);
                         bulletPool->returnBulletToPool(bullet);
                     }
-                    if ((pos.x + bullet->spriteWidth) > visibleSize.width || (pos.x < visibleSize.width - visibleSize.width))
+                    if ((pos.x + bullet->spriteWidth) > visibleSize.width || (pos.x < 0))
                     {
                         bullet->removeComponent("CollisionComponent");
                         removeChild(bullet);
                         bulletPool->returnBulletToPool(bullet);
                     }
+                    // chech for bullet collisions and handle bullet despawn here
+                }
+            }
+        }
+    }
+
+    if (enemyPool != nullptr && bulletPool != nullptr && player != nullptr)
+    {
+
+        
+        for (Enemy* enemy : enemyPool->enemyPool) {
+            if (enemy != nullptr)
+            {
+                auto pos = enemy->getPosition();
+
+                if (enemy->isActive)
+                {
+
+                    if (enemy->getComponent("CollisionComponent") == NULL)
+                    {
+                        enemy->addComponent(CollisionComponent::createBox(enemy->getContentSize().width, enemy->getContentSize().height));
+                        
+                    }
+                    enemy->update(dt);
+
+                    if (pos.y > visibleSize.height)
+                    {
+                        enemy->setPositionY(enemy->getPositionY() - visibleSize.height);
+                    }
+                    if (pos.y < 0)
+                    {
+                        enemy->setPositionY(enemy->getPositionY() + visibleSize.height);
+                    }
+                    if (pos.x > visibleSize.width)
+                    {
+                        enemy->setPositionX(enemy->getPositionX() - visibleSize.width);
+                    }
+                    if (pos.x < 0)
+                    {
+                        enemy->setPositionX(enemy->getPositionX() + visibleSize.width);
+
+                    }
+
+                    auto collisionEnemy = dynamic_cast<CollisionComponent*>((enemy)->getComponent("CollisionComponent"));
+                    auto collisionPlayer = dynamic_cast<CollisionComponent*>((player)->getComponent("CollisionComponent"));
+
+                    for (Bullet* bullet : bulletPool->bulletPool)
+                    {
+                        if (bullet != nullptr && bullet->isActive)
+                        {
+                            auto collisionBullet = dynamic_cast<CollisionComponent*>((bullet)->getComponent("CollisionComponent"));
+
+                            
+                            if (collisionEnemy && collisionBullet && collisionBullet->IsColliding(collisionEnemy))
+                            {
+                                enemy->removeComponent("CollisionComponent");
+                                removeChild(enemy);
+                                enemyPool->returnEnemyToPool(enemy);
+                                ++enemiesDefeated;
+
+                                bullet->removeComponent("CollisionComponent");
+                                removeChild(bullet);
+                                bulletPool->returnBulletToPool(bullet);
+                                break;
+                            }
+
+                        }
+                    }
+                    if (enemy->isActive && collisionEnemy && collisionEnemy->IsColliding(collisionPlayer))
+                    {
+                        enemy->removeComponent("CollisionComponent");
+                        removeChild(enemy);
+                        enemyPool->returnEnemyToPool(enemy);
+                        myHealth->currentHealth -= 10;
+                        ++enemiesDefeated;
+                    }
+
                     // chech for bullet collisions and handle bullet despawn here
                 }
             }

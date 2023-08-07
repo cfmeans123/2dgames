@@ -25,9 +25,6 @@
     <ClCompile Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\cocos2d\cocos\precheader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Midterm.cpp">
-      <Filter>Source Files\Classes</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Bullet.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
@@ -35,6 +32,12 @@
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Player.cpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Enemy.cpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EnemyPool.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -636,9 +639,6 @@
     <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\zombie_idle.png">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="Midterm.h">
-      <Filter>Source Files\Classes</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Bullet.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
@@ -646,6 +646,12 @@
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Player.h">
+      <Filter>Source Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enemy.h">
+      <Filter>Source Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EnemyPool.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
   </ItemGroup>

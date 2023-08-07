@@ -11,15 +11,12 @@ Bullet* BulletPool::getOrCreateBullet() {
 	Bullet* newBullet = Bullet::create();
 	newBullet->isActive = true;
 	bulletPool.pushBack(newBullet);	
-	// Add the bullet to the scene or an appropriate layer
 	return newBullet;
 }
 
 void BulletPool::returnBulletToPool(Bullet* bullet) {
-	// Reset bullet properties to default and mark it as inactive
 	bullet->stopAllActions();
 	bullet->setPosition(Vec2::ZERO);
 	bullet->moveDirection = Vec2::ZERO;
-	//bullet->movementSpeed = 0.0f;
 	bullet->isActive = false;
 }

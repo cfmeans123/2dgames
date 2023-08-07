@@ -811,10 +811,13 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <ClCompile Include="..\Classes\Bullet.cpp" />
     <ClCompile Include="..\Classes\BulletPool.cpp" />
+    <ClCompile Include="..\Classes\Enemy.cpp" />
+    <ClCompile Include="..\Classes\EnemyPool.cpp" />
     <ClCompile Include="..\Classes\Player.cpp" />
-    <ClCompile Include="Midterm.cpp" />
     <ClInclude Include="..\Classes\Bullet.h" />
     <ClInclude Include="..\Classes\BulletPool.h" />
+    <ClInclude Include="..\Classes\Enemy.h" />
+    <ClInclude Include="..\Classes\EnemyPool.h" />
     <ClInclude Include="..\Classes\Player.h" />
     <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\AppDelegate.h" />
     <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\Assignment2.h" />
@@ -832,7 +835,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\KeyboardScene.cpp" />
     <ClCompile Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Classes\MazeScene.cpp" />
     <ClCompile Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\main.cpp" />
-    <ClInclude Include="Midterm.h" />
     <ResourceCompile Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\proj.win32\game.rc" />
     <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\Cheese.png" />
     <ClInclude Include="C:\Users\chand\OneDrive\Documents\GitHub\2dgames\2dgames\Resources\CloseNormal.png" />

@@ -1,8 +1,13 @@
 #pragma once
 
+#include <stdlib.h>
 #include "cocos2d.h"
 #include "BulletPool.h"
 #include "Player.h"
+#include "EnemyPool.h"
+#include "Enemy.h"
+#include "time.h"
+
 
 USING_NS_CC;
 
@@ -13,31 +18,47 @@ public:
 
 	virtual void update(float dt);
 
+	
+
 	BulletPool* bulletPool;
+	EnemyPool* enemyPool;
 	void fireBullet();
+	void createEnemy();
 
 	CREATE_FUNC(CollisionTestScene)
 
-		struct HealthBar
+	struct HealthBar
 	{
 	public:
 		Sprite* fillBar;
 		Sprite* emptyBar;
 
-
 		HealthBar()
 		{
 			fillBar = Sprite::create("bar_red.png");
 			emptyBar = Sprite::create("bar_empty.png");
+			maxHealth = 100.0f;
+			currentHealth = 100.0f;
 		}
-	private:
 		float maxHealth;
-		float currentHealth;
+		float currentHealth;		
+
+
 	};
+
 
 	HealthBar* myHealth;
 
+
+
 	Size visibleSize;
+	float waveTimer;
+	float waveIncrement;
+	int enemiesDefeated;
+
+
+	void spawnWave(int count);
+
 
 private:
 	Node* active;
@@ -47,6 +68,7 @@ private:
 	Sprite* hummer;
 	Sprite* circle;
 	Player* player;
+
 
 	DrawNode* debug;
 
