@@ -46,11 +46,11 @@ bool CollisionTestScene::init()
 
 
     //Background sprite draw
-   /* Sprite* background = Sprite::create("space.jpg");
+    Sprite* background = Sprite::create("space.jpg");
     background->setPosition(Director::getInstance()->getVisibleSize().width / 2.0f, Director::getInstance()->getVisibleSize().height / 2.0f);
     background->setStretchEnabled(true);
     background->setContentSize(Size(Director::getInstance()->getVisibleSize().width, Director::getInstance()->getVisibleSize().height));
-    addChild(background, 0);*/
+    addChild(background, 0);
 
     auto label = Label::create();
     label->setString("Arrow keys to move\n\nm: Mushroom\nb: Bullet\ns: Stone\nh: Hummer\nc: Circle\nd: Debug draw");

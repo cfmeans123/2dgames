@@ -25,7 +25,7 @@
 
 cmake_minimum_required(VERSION 3.6)
 
-set(APP_NAME vgp230)
+set(APP_NAME 2dgames)
 
 project(${APP_NAME})
 
