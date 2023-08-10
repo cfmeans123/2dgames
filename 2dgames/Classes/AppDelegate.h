@@ -26,6 +26,9 @@
 #define  _APP_DELEGATE_H_
 
 #include "cocos2d.h"
+#include "CollisionTestScene.h"
+#include "Assignment2.h"
+
 USING_NS_CC;
 /**
 @brief    The cocos2d Application.
@@ -58,6 +61,12 @@ public:
     @param  the pointer of the application
     */
     virtual void applicationWillEnterForeground();
+    int currentScene = -1;
+    std::vector<Scene* (*)()> scenes
+    {
+        CollisionTestScene::createScene,
+        Assignment2::createScene
+    };
 };
 
 #endif // _APP_DELEGATE_H_

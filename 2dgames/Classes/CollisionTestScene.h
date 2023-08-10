@@ -24,6 +24,8 @@ public:
 
 	virtual void update(float dt);
 
+	static Scene* createScene();
+
 	GameState curGameState;
 	Vector<SpriteFrame*> getAnimation(const char* format, int count);
 

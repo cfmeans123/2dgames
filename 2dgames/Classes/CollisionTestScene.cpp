@@ -4,6 +4,8 @@
 
 
 
+
+
 USING_NS_CC;
 
 
@@ -128,6 +130,11 @@ bool CollisionTestScene::init()
     _eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener, this);
 
     return true;
+}
+
+Scene* CollisionTestScene::createScene()
+{
+    return CollisionTestScene::create();
 }
 
 void CollisionTestScene::createEnemy()

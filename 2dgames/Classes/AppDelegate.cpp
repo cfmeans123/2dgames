@@ -83,6 +83,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
 #endif
         director->setOpenGLView(glview);
     }
+   
+
 
     // turn on display FPS
     director->setDisplayStats(true);
@@ -113,9 +115,34 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // create a scene. it's an autorelease object
     auto scene = CollisionTestScene::create();
+
+    auto keyboardListener = EventListenerKeyboard::create();
+    keyboardListener->onKeyPressed = [=](EventKeyboard::KeyCode keyCode, Event* event)
+    {
+        switch (keyCode)
+        {
+        case EventKeyboard::KeyCode::KEY_W:
+        {
+
+            auto scene = scenes[0]();
+            director->getInstance()->replaceScene(scene);
+            break;
+        }
+        case EventKeyboard::KeyCode::KEY_E:
+        {
+            auto scene = scenes[1]();
+            director->getInstance()->replaceScene(scene);
+            break;
+        }
+        };
+    };
+    director->getEventDispatcher()->addEventListenerWithFixedPriority(keyboardListener, 1);
+
+
+    director->getInstance()->replaceScene(scene);
+
     //scene->scheduleUpdate();
     // run
-    director->runWithScene(scene);
 
     return true;
 }
