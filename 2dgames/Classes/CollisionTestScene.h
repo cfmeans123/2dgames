@@ -8,6 +8,12 @@
 #include "Enemy.h"
 #include "time.h"
 
+enum GameState
+{
+	Menu,
+	Gameloop,
+	Pause
+};
 
 USING_NS_CC;
 
@@ -18,7 +24,8 @@ public:
 
 	virtual void update(float dt);
 
-	
+	GameState curGameState;
+	Vector<SpriteFrame*> getAnimation(const char* format, int count);
 
 	BulletPool* bulletPool;
 	EnemyPool* enemyPool;
@@ -46,6 +53,12 @@ public:
 
 	};
 
+
+	void RunAnimOnce(Sprite* sprite);
+
+	//anim
+	
+	
 
 	HealthBar* myHealth;
 
@@ -77,6 +90,7 @@ private:
 	bool right;
 	bool up;
 	bool down;
+	bool r;
 	bool debugDrawEnabled = true;
 
 

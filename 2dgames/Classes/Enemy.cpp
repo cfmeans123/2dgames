@@ -10,6 +10,7 @@ Enemy* Enemy::create() {
         enemy->isActive = false;
         enemy->spriteHeight = enemy->getContentSize().height;
         enemy->spriteWidth = enemy->getContentSize().width;
+        
         return enemy;
     }
     CC_SAFE_DELETE(enemy);
@@ -17,9 +18,21 @@ Enemy* Enemy::create() {
 }
 
 void Enemy::update(float dt) {
-    if (isActive) {
+    if (isActive && isAlive) {
         this->setPositionX(this->getPositionX() + (moveDirection.x * (movementSpeed * dt)));
         this->setPositionY(this->getPositionY() + (moveDirection.y * (movementSpeed * dt)));
+    }
+    if (!isAlive)
+    {
+        if (isDying)
+        {
+
+            isDying = false;
+        }
+        if (deathTimer > 0.0f)
+        {
+            deathTimer -= dt;
+        }
     }
 }
 

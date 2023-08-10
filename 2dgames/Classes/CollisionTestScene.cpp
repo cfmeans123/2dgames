@@ -10,49 +10,53 @@ USING_NS_CC;
 
 bool CollisionTestScene::init()
 {
+    //anim   
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("SD/explosion_anim_frames.plist");
 
     //rand init
     srand(time(0));
     waveTimer = 6.0f;
     waveIncrement = 2.0f;
     enemiesDefeated = 0;
+    curGameState = GameState::Menu;
 
     visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-   
 
     //player init
     player = Player::create();
-    addChild(player);
+    addChild(player, 1);
     active = player;
     player->x = Director::getInstance()->getVisibleSize().width / 2.0f + 20;
     player->y = Director::getInstance()->getVisibleSize().height / 2.0f;
     player->addComponent(CollisionComponent::createCircle(player->getBoundingBox().size.width / 3.0f));
     FlipY(player);
     myHealth = new HealthBar();
-
-
-
+    
     bulletPool = new BulletPool();
     enemyPool = new EnemyPool();
 
     this->addChild(myHealth->emptyBar, 1);
     this->addChild(myHealth->fillBar, 1);
 
-    
 
     bullet2 = Sprite::create("bullet2.png");
     bullet2->setPosition(Vec2(visibleSize.width / 8.0f, visibleSize.height / 4.0f));
-    /// TODO: ADD CODE Here -- Requires CollisionComponent
     bullet2->addComponent(CollisionComponent::createCircle(bullet2->getBoundingBox().size.width / 2.0f));
 
- 
+
+    //Background sprite draw
+   /* Sprite* background = Sprite::create("space.jpg");
+    background->setPosition(Director::getInstance()->getVisibleSize().width / 2.0f, Director::getInstance()->getVisibleSize().height / 2.0f);
+    background->setStretchEnabled(true);
+    background->setContentSize(Size(Director::getInstance()->getVisibleSize().width, Director::getInstance()->getVisibleSize().height));
+    addChild(background, 0);*/
 
     auto label = Label::create();
     label->setString("Arrow keys to move\n\nm: Mushroom\nb: Bullet\ns: Stone\nh: Hummer\nc: Circle\nd: Debug draw");
     label->setPosition(Vec2(label->getContentSize().width / 2.0f + 10, visibleSize.height - label->getContentSize().height / 2.0f - 10));
 
-    this->addChild(bullet2, 0);
+    //this->addChild(bullet2, 1);
 
     debug = DrawNode::create(5);
     this->addChild(debug, 1);
@@ -69,20 +73,11 @@ bool CollisionTestScene::init()
         case EventKeyboard::KeyCode::KEY_SPACE:
             fireBullet();
             break;
-        case EventKeyboard::KeyCode::KEY_S:
-            active = stone;
-            break;
-        /*case EventKeyboard::KeyCode::KEY_M:
-            active = mushroom;
-            break;*/
-        case EventKeyboard::KeyCode::KEY_B:
-            active = bullet2;
+        case EventKeyboard::KeyCode::KEY_F:
+            fire = true;
             break;
         case EventKeyboard::KeyCode::KEY_H:
             createEnemy();
-            break;
-        case EventKeyboard::KeyCode::KEY_C:
-            active = circle;
             break;
         case EventKeyboard::KeyCode::KEY_D:
             debugDrawEnabled = !debugDrawEnabled;
@@ -98,6 +93,12 @@ bool CollisionTestScene::init()
             break;
         case EventKeyboard::KeyCode::KEY_UP_ARROW:
             down = true;
+            break;
+        case EventKeyboard::KeyCode::KEY_R:
+            r = true;
+            break;
+        case EventKeyboard::KeyCode::KEY_T:
+            myHealth -= 100;
             break;
         };
     };
@@ -160,7 +161,7 @@ void CollisionTestScene::createEnemy()
 void CollisionTestScene::fireBullet()
 {
     Bullet* bullet = bulletPool->getOrCreateBullet();
-    bullet->setRotation(player->getRotation() + 45);
+    bullet->setRotation(player->getRotation());
     bullet->isActive = true;
     bullet->moveDirection.x = -cos(player->rotAngle * (pi / 180)) * 60.0f;
     bullet->moveDirection.y = sin(player->rotAngle * (pi / 180)) * 60.0f;
@@ -168,7 +169,7 @@ void CollisionTestScene::fireBullet()
     bullet->setPosition(player->getPosition() + bullet->moveDirection);
     if (bullet->getParent() == nullptr)
     {
-        addChild(bullet);
+        addChild(bullet, 1);
     }
     else
     {
@@ -186,297 +187,361 @@ void CollisionTestScene::spawnWave(int count)
 
 void CollisionTestScene::update(float dt)
 {
-    waveTimer -= dt;
-    if (waveTimer <= 0.0f)
+    if (curGameState == GameState::Menu)
     {
-        waveTimer += waveIncrement;
-        waveIncrement += 2.0f;
-        spawnWave(waveIncrement);
-        myHealth->currentHealth = 100;
-    }
-
-
-    auto p = active->getPosition();
-
-    if (active != NULL && (left || right || up || down))
-    {
-        //old movement
-       /* if (right && up)
+        if (myHealth->currentHealth <= 0)
         {
-            p.x += 200 * dt;
-            p.y -= 200 * dt;
-            movedirX = 200;
-            movedirY = -200;
-            active->setRotation(135.0f);
-
-
-        }
-        else if (right && down)
-        {
-            p.x += 200 * dt;
-            p.y += 200 * dt;
-            movedirX = 200;
-            movedirY = 200;
-            active->setRotation(45.0f);
-        }
-        else if (left && up)
-        {
-            p.x -= 200 * dt;
-            p.y -= 200 * dt;
-
-            movedirX = -200;
-            movedirY = -200;
-            active->setRotation(225.0f);
-        }
-        else if (left && down)
-        {
-            p.x -= 200 * dt;
-            p.y += 200 * dt;
-            movedirX = -200;
-            movedirY = 200;
-            active->setRotation(315.0f);
-        }
-        else if (left)
-        {
-            p.x -= 200 * dt;
-            movedirX = -200.0f;
-            movedirY = 0.0f;
-            active->setRotation(270.0f);
-        }
-        else if (right)
-        {
-            p.x += 200 * dt;
-            movedirX = 200;
-            movedirY = 0;
-            active->setRotation(90.0f);
+            //Handle cleanup before restarting level
+            curGameState = GameState::Pause;
         }
 
-        else if (up)
+        if (fire)
         {
-            p.y -= 200 * dt;
-            movedirX = 0;
-            movedirY = -200;
-            active->setRotation(180.0f);
+            fireBullet();
+        }
+        waveTimer -= dt;
+        if (waveTimer <= 0.0f)
+        {
+            waveTimer += waveIncrement;
+            waveIncrement += 2.0f;
+            spawnWave(waveIncrement);
+            myHealth->currentHealth = 100;
         }
 
-        else if (down)
+
+        auto p = active->getPosition();
+
+        if (active != NULL && (left || right || up || down))
         {
-            p.y += 200 * dt;
-            movedirX = 0;
-            movedirY = 200;
-            active->setRotation(0.0f);
-        }*/
-    }
-    if (left)
-    {
-        player->rotAngle -= 205.0f * dt;
-            
-    }
-    if (right)
-    {
-        player->rotAngle += 205.0f * dt;
-    }
-    if (down) 
-    {
-        player->dy += sin(player->rotAngle * (pi / 180)) * 400.0f * dt;
-        player->dx += -cos(player->rotAngle * (pi / 180)) * 400.0f * dt;
-        }
-       
-    //speed cap
-    if (player->dy >= 200.0f)
-    {
-        player->dy = 200.0f;
-    }
-    if (player->dy <= -200.0f)
-    {
-        player->dy = -200.0f;
-    }
-    if (player->dx >= 200.0f)
-    {
-        player->dx = 200.0f;
-    }
-    if (player->dx <= -200.0f)
-    {
-        player->dx = -200.0f;
-    }
-
-    //modify player pos
-    player->x += player->dx * dt;
-    player->y += player->dy * dt;   
-    player->setPosition(player->x, player->y);
-    player->setRotation(player->rotAngle - 90);
-
-    //screen wrap
-    if (player->x > visibleSize.width)
-    {
-        player->x -= visibleSize.width;
-    }
-    if (player->x < 0)
-    {
-        player->x += visibleSize.width;
-    }
-    if (player->y > visibleSize.height)
-    {
-        player->y -= visibleSize.height;
-    }
-    if (player->y < 0)
-    {
-        player->y += visibleSize.height;
-    }
-    
-        
-    myHealth->emptyBar->setPosition(active->getPositionX(), active->getPositionY() + 50);
-    myHealth->fillBar->setScaleX((myHealth->currentHealth / myHealth->maxHealth));
-    myHealth->fillBar->setPosition(active->getPositionX() - (myHealth->emptyBar->getContentSize().width/2 - (myHealth->emptyBar->getContentSize().width / 2) * myHealth->currentHealth / myHealth->maxHealth), active->getPositionY() + 50);
-    
-    if (bulletPool != nullptr)
-    {
-        for (Bullet* bullet : bulletPool->bulletPool) {
-            if (bullet != nullptr)
+            //old movement
+           /* if (right && up)
             {
-                auto pos = bullet->getPosition();
-                
-                if (bullet->isActive) 
+                p.x += 200 * dt;
+                p.y -= 200 * dt;
+                movedirX = 200;
+                movedirY = -200;
+                active->setRotation(135.0f);
+
+
+            }
+            else if (right && down)
+            {
+                p.x += 200 * dt;
+                p.y += 200 * dt;
+                movedirX = 200;
+                movedirY = 200;
+                active->setRotation(45.0f);
+            }
+            else if (left && up)
+            {
+                p.x -= 200 * dt;
+                p.y -= 200 * dt;
+
+                movedirX = -200;
+                movedirY = -200;
+                active->setRotation(225.0f);
+            }
+            else if (left && down)
+            {
+                p.x -= 200 * dt;
+                p.y += 200 * dt;
+                movedirX = -200;
+                movedirY = 200;
+                active->setRotation(315.0f);
+            }
+            else if (left)
+            {
+                p.x -= 200 * dt;
+                movedirX = -200.0f;
+                movedirY = 0.0f;
+                active->setRotation(270.0f);
+            }
+            else if (right)
+            {
+                p.x += 200 * dt;
+                movedirX = 200;
+                movedirY = 0;
+                active->setRotation(90.0f);
+            }
+
+            else if (up)
+            {
+                p.y -= 200 * dt;
+                movedirX = 0;
+                movedirY = -200;
+                active->setRotation(180.0f);
+            }
+
+            else if (down)
+            {
+                p.y += 200 * dt;
+                movedirX = 0;
+                movedirY = 200;
+                active->setRotation(0.0f);
+            }*/
+        }
+        if (left)
+        {
+            player->rotAngle -= 205.0f * dt;
+
+        }
+        if (right)
+        {
+            player->rotAngle += 205.0f * dt;
+        }
+        if (down)
+        {
+            player->dy += sin(player->rotAngle * (pi / 180)) * 400.0f * dt;
+            player->dx += -cos(player->rotAngle * (pi / 180)) * 400.0f * dt;
+        }
+
+        //cap player speed before updating, else accel will infinitely affect velocity
+        if (player->dy >= 200.0f)
+        {
+            player->dy = 200.0f;
+        }
+        if (player->dy <= -200.0f)
+        {
+            player->dy = -200.0f;
+        }
+        if (player->dx >= 200.0f)
+        {
+            player->dx = 200.0f;
+        }
+        if (player->dx <= -200.0f)
+        {
+            player->dx = -200.0f;
+        }
+
+        //modify player pos
+        player->x += player->dx * dt;
+        player->y += player->dy * dt;
+        player->setPosition(player->x, player->y);
+        player->setRotation(player->rotAngle - 90);
+
+        //screen wrap
+        if (player->x > visibleSize.width)
+        {
+            player->x -= visibleSize.width;
+        }
+        if (player->x < 0)
+        {
+            player->x += visibleSize.width;
+        }
+        if (player->y > visibleSize.height)
+        {
+            player->y -= visibleSize.height;
+        }
+        if (player->y < 0)
+        {
+            player->y += visibleSize.height;
+        }
+
+        if (myHealth != nullptr)
+        {
+            myHealth->emptyBar->setPosition(active->getPositionX(), active->getPositionY() + 50);
+            myHealth->fillBar->setScaleX((myHealth->currentHealth / myHealth->maxHealth));
+            myHealth->fillBar->setPosition(active->getPositionX() - (myHealth->emptyBar->getContentSize().width / 2 - (myHealth->emptyBar->getContentSize().width / 2) * myHealth->currentHealth / myHealth->maxHealth), active->getPositionY() + 50);
+        }
+
+        if (bulletPool != nullptr)
+        {
+            for (Bullet* bullet : bulletPool->bulletPool) {
+                if (bullet != nullptr)
                 {
+                    auto pos = bullet->getPosition();
 
-                    if (bullet->getComponent("CollisionComponent") == NULL)
+                    if (bullet->isActive)
                     {
-                        bullet->addComponent(CollisionComponent::createCircle(bullet->getBoundingBox().size.width / 2.0f));
-                    }
-                    bullet->update(dt);
-                   
-                    
 
-                    if ((pos.y + bullet->spriteHeight) > visibleSize.height || (pos.y < 0))
-                    {
-                        bullet->removeComponent("CollisionComponent");
-                        removeChild(bullet);
-                        bulletPool->returnBulletToPool(bullet);
+                        if (bullet->getComponent("CollisionComponent") == NULL)
+                        {
+                            bullet->addComponent(CollisionComponent::createCircle(bullet->getBoundingBox().size.width / 2.0f));
+                        }
+                        bullet->update(dt);
+
+
+
+                        if ((pos.y + bullet->spriteHeight) > visibleSize.height || (pos.y < 0))
+                        {
+                            bullet->removeComponent("CollisionComponent");
+                            removeChild(bullet);
+                            bulletPool->returnBulletToPool(bullet);
+                        }
+                        if ((pos.x + bullet->spriteWidth) > visibleSize.width || (pos.x < 0))
+                        {
+                            bullet->removeComponent("CollisionComponent");
+                            removeChild(bullet);
+                            bulletPool->returnBulletToPool(bullet);
+                        }
+                        // chech for bullet collisions and handle bullet despawn here
                     }
-                    if ((pos.x + bullet->spriteWidth) > visibleSize.width || (pos.x < 0))
-                    {
-                        bullet->removeComponent("CollisionComponent");
-                        removeChild(bullet);
-                        bulletPool->returnBulletToPool(bullet);
-                    }
-                    // chech for bullet collisions and handle bullet despawn here
                 }
             }
         }
-    }
 
-    if (enemyPool != nullptr && bulletPool != nullptr && player != nullptr)
-    {
+        if (enemyPool != nullptr && bulletPool != nullptr && player != nullptr)
+        {
 
-        
-        for (Enemy* enemy : enemyPool->enemyPool) {
-            if (enemy != nullptr)
-            {
-                auto pos = enemy->getPosition();
 
-                if (enemy->isActive)
+            for (Enemy* enemy : enemyPool->enemyPool) {
+                if (enemy != nullptr)
                 {
+                    auto pos = enemy->getPosition();
 
-                    if (enemy->getComponent("CollisionComponent") == NULL)
+                    if (enemy->isActive)
                     {
-                        enemy->addComponent(CollisionComponent::createBox(enemy->getContentSize().width, enemy->getContentSize().height));
-                        
-                    }
-                    enemy->update(dt);
 
-                    if (pos.y > visibleSize.height)
-                    {
-                        enemy->setPositionY(enemy->getPositionY() - visibleSize.height);
-                    }
-                    if (pos.y < 0)
-                    {
-                        enemy->setPositionY(enemy->getPositionY() + visibleSize.height);
-                    }
-                    if (pos.x > visibleSize.width)
-                    {
-                        enemy->setPositionX(enemy->getPositionX() - visibleSize.width);
-                    }
-                    if (pos.x < 0)
-                    {
-                        enemy->setPositionX(enemy->getPositionX() + visibleSize.width);
-
-                    }
-
-                    auto collisionEnemy = dynamic_cast<CollisionComponent*>((enemy)->getComponent("CollisionComponent"));
-                    auto collisionPlayer = dynamic_cast<CollisionComponent*>((player)->getComponent("CollisionComponent"));
-
-                    for (Bullet* bullet : bulletPool->bulletPool)
-                    {
-                        if (bullet != nullptr && bullet->isActive)
+                        if (enemy->getComponent("CollisionComponent") == NULL)
                         {
-                            auto collisionBullet = dynamic_cast<CollisionComponent*>((bullet)->getComponent("CollisionComponent"));
+                            enemy->addComponent(CollisionComponent::createBox(enemy->getContentSize().width, enemy->getContentSize().height));
 
-                            
-                            if (collisionEnemy && collisionBullet && collisionBullet->IsColliding(collisionEnemy))
+                        }
+                        enemy->update(dt);
+
+                        if (pos.y > visibleSize.height)
+                        {
+                            enemy->setPositionY(enemy->getPositionY() - visibleSize.height);
+                        }
+                        if (pos.y < 0)
+                        {
+                            enemy->setPositionY(enemy->getPositionY() + visibleSize.height);
+                        }
+                        if (pos.x > visibleSize.width)
+                        {
+                            enemy->setPositionX(enemy->getPositionX() - visibleSize.width);
+                        }
+                        if (pos.x < 0)
+                        {
+                            enemy->setPositionX(enemy->getPositionX() + visibleSize.width);
+
+                        }
+
+                        auto collisionEnemy = dynamic_cast<CollisionComponent*>((enemy)->getComponent("CollisionComponent"));
+                        auto collisionPlayer = dynamic_cast<CollisionComponent*>((player)->getComponent("CollisionComponent"));
+
+                        for (Bullet* bullet : bulletPool->bulletPool)
+                        {
+                            if (bullet != nullptr && bullet->isActive)
                             {
-                                enemy->removeComponent("CollisionComponent");
-                                removeChild(enemy);
-                                enemyPool->returnEnemyToPool(enemy);
-                                ++enemiesDefeated;
+                                auto collisionBullet = dynamic_cast<CollisionComponent*>((bullet)->getComponent("CollisionComponent"));
 
-                                bullet->removeComponent("CollisionComponent");
-                                removeChild(bullet);
-                                bulletPool->returnBulletToPool(bullet);
-                                break;
+
+                                if (collisionEnemy && collisionBullet && collisionBullet->IsColliding(collisionEnemy))
+                                {
+                                    //Abomination code to get explosion animation to play without runAction asserting _referenceCount > 0
+                                    Vector<SpriteFrame*> animFrames = getAnimation("tile%01d.png", 71);
+
+                                    Animation* animation = Animation::createWithSpriteFrames(animFrames, 0.01f);
+                                    Animate* animate = Animate::create(animation);
+                                    Sprite* sprite = Sprite::create();
+                                    sprite->setPosition(enemy->getPositionX(), enemy->getPositionY());
+                                    sprite->runAction(animate);
+                                    addChild(sprite);
+                                    
+                                    //remove enemy from active group, return to available pool
+                                    enemy->removeComponent("CollisionComponent");
+                                    removeChild(enemy);
+                                    enemyPool->returnEnemyToPool(enemy);
+                                    ++enemiesDefeated;
+                                    
+                                    bullet->removeComponent("CollisionComponent");
+                                    removeChild(bullet);
+                                    bulletPool->returnBulletToPool(bullet);
+                                    break;
+                                }
+
                             }
 
                         }
-                    }
-                    if (enemy->isActive && collisionEnemy && collisionEnemy->IsColliding(collisionPlayer))
-                    {
-                        enemy->removeComponent("CollisionComponent");
-                        removeChild(enemy);
-                        enemyPool->returnEnemyToPool(enemy);
-                        myHealth->currentHealth -= 10;
-                        ++enemiesDefeated;
-                    }
+                        if (enemy->isActive && collisionEnemy && collisionEnemy->IsColliding(collisionPlayer))
+                        {
+                            Vector<SpriteFrame*> animFrames = getAnimation("tile%01d.png", 71);
+                           
+                            Animation* animation = Animation::createWithSpriteFrames(animFrames, 0.01f);
+                            Animate* animate = Animate::create(animation);
+                            Sprite* sprite = Sprite::create();
+                            sprite->setPosition(enemy->getPositionX(), enemy->getPositionY());
+                            sprite->runAction(animate);
+                            addChild(sprite);
 
-                    // chech for bullet collisions and handle bullet despawn here
+                            enemy->removeComponent("CollisionComponent");
+                            removeChild(enemy);
+                            enemyPool->returnEnemyToPool(enemy);
+                            myHealth->currentHealth -= 10;
+                            ++enemiesDefeated;
+
+                        }
+                    }
                 }
             }
         }
-    }
 
+        debug->clear();
+        debug->setLineWidth(5);
 
-
-    debug->clear();
-    debug->setLineWidth(5);
-
-    /// Reset all collision
-    for (auto it : this->getChildren())
-    {
-        if (auto collision = dynamic_cast<CollisionComponent*>(it->getComponent("CollisionComponent")))
+        /// Reset all collision
+        for (auto it : this->getChildren())
         {
-            collision->SetColliding(false);
-        }
-    }
-
-    auto& children = this->getChildren();
-
-    //remember that this iterates over EVERY OBJECT IN THE SCENE**Not efficient for collision checks at all
-    for (auto it = children.begin(); it != children.end(); ++it)
-    {
-        for (auto it2 = it + 1; it2 != children.end(); ++it2)
-        {
-            auto collision = dynamic_cast<CollisionComponent*>((*it)->getComponent("CollisionComponent"));
-            auto collision2 = dynamic_cast<CollisionComponent*>((*it2)->getComponent("CollisionComponent"));
-            if (collision && collision2 && collision->IsColliding(collision2))
+            if (auto collision = dynamic_cast<CollisionComponent*>(it->getComponent("CollisionComponent")))
             {
-                collision->SetColliding(true);
-                collision2->SetColliding(true);
+                collision->SetColliding(false);
             }
         }
+
+        auto& children = this->getChildren();
+
+        //remember that this iterates over EVERY OBJECT IN THE SCENE**Not efficient for collision checks at all
+        for (auto it = children.begin(); it != children.end(); ++it)
+        {
+            for (auto it2 = it + 1; it2 != children.end(); ++it2)
+            {
+                auto collision = dynamic_cast<CollisionComponent*>((*it)->getComponent("CollisionComponent"));
+                auto collision2 = dynamic_cast<CollisionComponent*>((*it2)->getComponent("CollisionComponent"));
+                if (collision && collision2 && collision->IsColliding(collision2))
+                {
+                    collision->SetColliding(true);
+                    collision2->SetColliding(true);
+                }
+            }
+        }
+        
     }
-    /// Determine all colliding objects
-    /// TODO: ADD CODE Here
+    if (curGameState == GameState::Pause)
+    {
+        if (r)
+        {
+            player->removeFromParent();
+            player = nullptr;
+            delete(player);
+            debugDrawEnabled = false;
+            for (Bullet* bullet : bulletPool->bulletPool)
+            {
+                bullet->removeFromParent();
+                bullet = nullptr;
+                delete(bullet);
+            }
+            bulletPool = nullptr;
+            delete(bulletPool);
+            for (Enemy* enemy: enemyPool->enemyPool)
+            {
+                enemy->removeFromParent();
+                enemy = nullptr;
+                delete(enemy);
+            }
+            enemyPool = nullptr;
+            delete(enemyPool);
+            myHealth->emptyBar->removeFromParent();
+            myHealth->fillBar->removeFromParent();
+            myHealth = nullptr;
+            delete(myHealth);
+            
 
-    ///
+            init();
+            curGameState = GameState::Menu;
+        }
 
+    }
     if (debugDrawEnabled)
     {
         for (auto it : this->getChildren())
@@ -511,6 +576,13 @@ void CollisionTestScene::update(float dt)
             }
         }
     }
+}
+
+void CollisionTestScene::RunAnimOnce(Sprite* sprite)
+{
+    sprite->setPosition(sprite->getPositionX(), sprite->getPositionY());
+    //this causes the assert _referenceCount > 0 if called from update with enemy* as param
+    //sprite->runAction(animate);
 }
 
 /// Point to AABB
@@ -601,4 +673,17 @@ float CollisionComponent::TriangleArea(Vec2 const& a, Vec2 const& b, Vec2 const&
     Vec2 ac = Vec2(c.x - a.x, c.y - a.y);
 
     return abs(ab.cross(ac)) / 2.0f;
+}
+
+Vector<SpriteFrame*> CollisionTestScene::getAnimation(const char* format, int count)
+{
+    auto spritecache = SpriteFrameCache::getInstance();
+    Vector<SpriteFrame*> animFrames;
+    char str[100];
+    for (int i = 1; i <= count; i++)
+    {
+        sprintf(str, format, i);
+        animFrames.pushBack(spritecache->getSpriteFrameByName(str));
+    }
+    return animFrames;
 }

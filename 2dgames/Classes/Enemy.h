@@ -11,8 +11,12 @@ public:
     void setDirection(const cocos2d::Vec2& direction);
     Vec2 moveDirection;
     float movementSpeed = 5.0f;
-
+    bool isAlive = true;
+    float deathTimer = 1.5f;
+    bool isDying = false;
     float spriteHeight;
     float spriteWidth;
+
+    
 
 };

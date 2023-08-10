@@ -11,6 +11,8 @@ public:
     void setDirection(const cocos2d::Vec2& direction);
     Vec2 moveDirection;
     float movementSpeed = 10.0f;
+  
+
 
     float spriteHeight;
     float spriteWidth;

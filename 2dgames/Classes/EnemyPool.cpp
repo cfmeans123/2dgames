@@ -19,4 +19,7 @@ void EnemyPool::returnEnemyToPool(Enemy* enemy) {
 	enemy->setPosition(Vec2::ZERO);
 	enemy->moveDirection = Vec2::ZERO;
 	enemy->isActive = false;
+	enemy->isAlive = true;
+	enemy->deathTimer = 1.5f;
+	enemy->setTexture("interceptor_01.png");
 }

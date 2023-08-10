@@ -6,7 +6,7 @@ Bullet* Bullet::create() {
     Bullet* bullet = new Bullet();
     if (bullet) {
         bullet->autorelease();
-        bullet->initWithFile("carrot.png");
+        bullet->initWithFile("bullet1.png");
         bullet->isActive = false;
         bullet->spriteHeight = bullet->getContentSize().height;
         bullet->spriteWidth = bullet->getContentSize().width;
@@ -21,6 +21,7 @@ void Bullet::update(float dt) {
         this->setPositionX(this->getPositionX() + (moveDirection.x * (movementSpeed * dt)));
         this->setPositionY(this->getPositionY() + (moveDirection.y * (movementSpeed * dt)));
     }
+   
 }
 
 void Bullet::setDirection(const Vec2& direction) {
