@@ -28,6 +28,7 @@
 #include "cocos2d.h"
 #include "CollisionTestScene.h"
 #include "Assignment2.h"
+#include "Week7_HelloMario.h"
 
 USING_NS_CC;
 /**
@@ -65,7 +66,7 @@ public:
     std::vector<Scene* (*)()> scenes
     {
         CollisionTestScene::createScene,
-        Assignment2::createScene
+        HelloMario::createScene
     };
 };
 
