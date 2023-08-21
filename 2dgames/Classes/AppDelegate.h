@@ -29,6 +29,8 @@
 #include "CollisionTestScene.h"
 #include "Assignment2.h"
 #include "Week7_HelloMario.h"
+#include "MazeScene.h"
+#include "MazeScene2.h"
 
 USING_NS_CC;
 /**
@@ -62,9 +64,10 @@ public:
     @param  the pointer of the application
     */
     virtual void applicationWillEnterForeground();
-    int currentScene = -1;
+    int currentScene = 0;
     std::vector<Scene* (*)()> scenes
     {
+        MazeScene2::createScene,
         CollisionTestScene::createScene,
         HelloMario::createScene
     };

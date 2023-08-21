@@ -1,4 +1,5 @@
 #include "MazeScene.h"
+#include "MazeScene2.h"
 
 bool MazeScene::init()
 {
@@ -6,6 +7,7 @@ bool MazeScene::init()
     path = map->getLayer("Path");
     auto playerStartLayer = map->getLayer("Player");
     auto playerEndLayer = map->getLayer("Player End");
+    auto enemySpawnLayer = map->getLayer("Enemy Spawn");
 
     mapSize = &path->getLayerSize();
     tileSize = &path->getMapTileSize();
@@ -22,6 +24,16 @@ bool MazeScene::init()
     ratLeft = Sprite::create("mouse-9.png");   //9, 10, 11
     ratLeft->setVisible(false);
 
+    enemyRatUp = Sprite::create("mouse-0.png");     //0, 1, 2
+    enemyRatUp->setVisible(false);
+    enemyRatRight = Sprite::create("mouse-3.png");  //3, 4, 5
+    enemyRatDown = Sprite::create("mouse-6.png");   //6, 7, 8
+    enemyRatDown->setVisible(false);
+    enemyRatLeft = Sprite::create("mouse-9.png");   //9, 10, 11
+    enemyRatLeft->setVisible(true);
+
+
+
     cheese = Sprite::create("Cheese.png");
 
     drawNode = DrawNode::create();
@@ -33,7 +45,15 @@ bool MazeScene::init()
     map->addChild(drawNode, 4);
     map->addChild(cheese, 4);
 
+
+    map->addChild(enemyRatUp, 4);
+    map->addChild(enemyRatRight, 4);
+    map->addChild(enemyRatDown, 4);
+    map->addChild(enemyRatLeft, 4);
+
+
     active = ratRight;
+    enemy = enemyRatLeft;
 
     auto keyboardListener = EventListenerKeyboard::create();
     keyboardListener->onKeyPressed = [=](EventKeyboard::KeyCode keyCode, Event* event)
@@ -59,11 +79,13 @@ bool MazeScene::init()
 
     this->scheduleUpdate();
 
-    initialize(active, playerStartLayer, playerPosition);
+    initialize(active, playerStartLayer, playerPosition, true);
+    initialize(enemy, enemySpawnLayer, enemyPosition, true);
     initialize(cheese, playerEndLayer, endPosition, false);
 
     playerStartLayer->setVisible(false);
     playerEndLayer->setVisible(false);
+    enemySpawnLayer->setVisible(false);
 
     gameState = Running;
 
@@ -110,6 +132,14 @@ void MazeScene::setPosition(Sprite* spr, std::pair<int, int> newPosition, std::p
     {
         /// TODO: Add drawing of rectangle around "spr"
     }
+}
+
+std::pair<int, int> MazeScene::getPosition(Sprite* spr)
+{
+    auto x = spr->getPosition().x / tileSize->width;
+    auto y = spr->getPosition().y / tileSize->height;
+    return std::make_pair(x, y);
+
 }
 
 bool MazeScene::canSetPosition(std::pair<int, int> p)
@@ -179,6 +209,10 @@ void MazeScene::update(float dt)
                 setPosition(active, p, playerPosition);
             }
         }
+        
+
+
+
         if (playerPosition == endPosition)
         {
             gameState = FoundCheese;

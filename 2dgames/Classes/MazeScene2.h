@@ -67,20 +67,36 @@ public:
     virtual bool init();
 
     virtual void update(float dt);
-
     CREATE_FUNC(MazeScene2)
+    static Scene* createScene();
+    bool isValid(const std::pair<int, int>& pos);
+
+    Vector<SpriteFrame*> getAnimation(const char* format, int count);
+
+    bool r;
+    bool t;
+    float time;
+
 private:
-    int dfs(std::pair<int, int> current, std::pair<int, int>const& target, int depth);
+    int dfs(const std::pair<int, int>& current, const std::pair<int, int>& target, int depth);
+
+    int moveEnemyWithDFS(const std::pair<int, int>& current, const std::pair<int, int>& target, int depth);
 
     std::vector<std::vector<bool>> dfsVisited;
+    std::vector<std::vector<bool>> enemydfsVisited;
     std::vector<std::pair<int, int>> dfsPath;
+    std::vector<std::pair<int, int>> enemydfsPath;
+
+    int moveit;
 
     bool bfs(std::pair<int, int> current, std::pair<int, int>const& target);
+
+
     bool bfsVisitChild(std::pair<int, int> const& parent, std::pair<int, int> const& c, std::pair<int, int> const& t, std::vector<std::pair<int, int>>& children);
 
     void bfsBacktrack();
 
-    std::vector<std::vector<std::pair<int, int>>> bfsVisited;
+    std::vector<std::vector<bool>> bfsVisited;
     std::vector<std::pair<int, int>> bfsPath;
 
     auto toScreenSpace(std::pair<int, int>const& position)

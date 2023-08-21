@@ -23,12 +23,7 @@
  ****************************************************************************/
 
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
-#include "CollisionTestScene.h"
-#include "CollisionComponent.h"
-#include "MazeScene.h"
-#include "Assignment2.h"
-#include "Week7_HelloMario.h"
+
 
  // #define USE_AUDIO_ENGINE 1
 
@@ -115,23 +110,29 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = HelloMario::createScene();
+    auto scene = MazeScene2::createScene();
 
     auto keyboardListener = EventListenerKeyboard::create();
     keyboardListener->onKeyPressed = [=](EventKeyboard::KeyCode keyCode, Event* event)
     {
         switch (keyCode)
         {
-        case EventKeyboard::KeyCode::KEY_W:
+        case EventKeyboard::KeyCode::KEY_1:
         {
 
             auto scene = scenes[0]();
             director->getInstance()->replaceScene(scene);
             break;
         }
-        case EventKeyboard::KeyCode::KEY_E:
+        case EventKeyboard::KeyCode::KEY_2:
         {
             auto scene = scenes[1]();
+            director->getInstance()->replaceScene(scene);
+            break;
+        }
+        case EventKeyboard::KeyCode::KEY_3:
+        {
+            auto scene = scenes[2]();
             director->getInstance()->replaceScene(scene);
             break;
         }

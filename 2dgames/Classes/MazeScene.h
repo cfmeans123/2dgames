@@ -30,9 +30,19 @@ protected:
 
     std::pair<int, int> playerPosition;
     std::pair<int, int> endPosition;
+    std::pair<int, int> enemyPosition;
+    std::pair<int, int> getPosition(Sprite* spr);
 
     TMXLayer* path = NULL;
     DrawNode * drawNode = NULL;
+
+    bool down = false;
+    bool left = false;
+    bool up = false;
+    bool right = false;
+
+    Sprite* enemy;
+    Sprite* active;
 
 private:
     enum GameState
@@ -45,11 +55,19 @@ private:
 
     
 
-    Sprite* active;
     Sprite* ratDown;
     Sprite* ratLeft;
     Sprite* ratUp;
     Sprite* ratRight;
+    
+
+    Sprite* enemyActive;
+    Sprite* enemyRatDown;
+    Sprite* enemyRatLeft;
+    Sprite* enemyRatUp;
+    Sprite* enemyRatRight;
+    Sprite* enemyRnemy;
+
     Sprite* cheese;
 
 
@@ -57,8 +75,5 @@ private:
 
     void ResetInput();
 
-    bool down = false;
-    bool left = false;
-    bool up = false;
-    bool right = false;
+   
 };
