@@ -70,11 +70,14 @@ public:
     CREATE_FUNC(MazeScene2)
     static Scene* createScene();
     bool isValid(const std::pair<int, int>& pos);
+    bool isValidBFS(const std::pair<int, int>& pos);
 
     Vector<SpriteFrame*> getAnimation(const char* format, int count);
 
     bool r;
     bool t;
+    bool d;
+    bool c;
     float time;
 
 private:
@@ -90,6 +93,8 @@ private:
     int moveit;
 
     bool bfs(std::pair<int, int> current, std::pair<int, int>const& target);
+    
+    std::vector<std::vector<std::pair<int, int>>> bfsParent;
 
 
     bool bfsVisitChild(std::pair<int, int> const& parent, std::pair<int, int> const& c, std::pair<int, int> const& t, std::vector<std::pair<int, int>>& children);

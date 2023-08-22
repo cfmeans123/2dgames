@@ -13,6 +13,12 @@ bool MazeScene2::isValid(const std::pair<int, int>& pos)
     int y = pos.second;
     return x >= 0 && x < dfsVisited.size() && y >= 0 && y < dfsVisited[0].size() && !dfsVisited[x][y];
 }
+bool MazeScene2::isValidBFS(const std::pair<int, int>& pos)
+{
+    int x = pos.first;
+    int y = pos.second;
+    return x >= 0 && x < bfsVisited.size() && y >= 0 && y < bfsVisited[0].size() && !bfsVisited[x][y];
+}
 
 bool MazeScene2::init()
 {
@@ -38,12 +44,15 @@ bool MazeScene2::init()
     enemydfsPath.reserve((int)mapSize->width * (int)mapSize->height);
 
     bfsVisited.resize((int)mapSize->width);
+    bfsParent.resize((int)mapSize->width);
    
     for (int i = 0; i < (int)mapSize->width; ++i)
     {
        bfsVisited[i].resize((int)mapSize->height);
+       bfsParent[i].resize((int)mapSize->height);
     }
     bfsPath.reserve((int)mapSize->width * (int)mapSize->height);
+    //bfsParent.reserve((int)mapSize->width * (int)mapSize->height);
 
 
 
@@ -60,6 +69,9 @@ bool MazeScene2::init()
         case EventKeyboard::KeyCode::KEY_T:
             t = !t;
             break;
+        case EventKeyboard::KeyCode::KEY_D:
+            d = !d;
+            break;
         }
     };
 
@@ -68,7 +80,7 @@ bool MazeScene2::init()
     this->scheduleUpdate();
     
     r = true;
-
+    d = false;
     return true;
 }
 
@@ -76,6 +88,7 @@ bool MazeScene2::init()
 void MazeScene2::update(float dt)
 {
     time += dt;
+    drawNode->clear();
     MazeScene::update(dt);
 
     Vec2 size = { tileSize->width, tileSize->height };
@@ -87,6 +100,7 @@ void MazeScene2::update(float dt)
             time = 0.0f;
            if (int j = moveEnemyWithDFS(FlipY(enemyPosition), FlipY(playerPosition), 0); j != -1)
             {
+               
                 
                 if (moveit < enemydfsPath.size())
                 {
@@ -107,35 +121,46 @@ void MazeScene2::update(float dt)
                     sprite->runAction(animate);
                     addChild(sprite, 4);
                 }
-                drawVisited(enemydfsVisited, Color4F::BLUE, { 0.0f,0.0f }, size, false);
-                drawPath(enemydfsPath, { 1.0f, 0.0f }, Color4F::GREEN);
+                if (d)
+                {
+                    drawVisited(enemydfsVisited, Color4F::BLUE, { 0.0f,0.0f }, size, false);
+                    drawPath(enemydfsPath, { 1.0f, 0.0f }, Color4F::GREEN);
+                }
             }
             else
             {
                 setPosition(enemy, enemydfsPath[0], enemyPosition);
-                drawPath(enemydfsPath, { 1.0f, 0.0f }, Color4F::GREEN);
-                drawVisited(enemydfsVisited, Color4F::BLUE, { 0.0f,0.0f }, size, false);
+                if (d)
+                {
+                    drawPath(enemydfsPath, { 1.0f, 0.0f }, Color4F::GREEN);
+                    drawVisited(enemydfsVisited, Color4F::BLUE, { 0.0f,0.0f }, size, false);
+                }
             }
             reset(enemydfsVisited, enemydfsPath, false);
+
         }
     }
 
 
     if (t)
     {
-        auto bfsOffset = std::pair{ 0.0f, 0.0f };
+        auto bfsOffset = std::pair{ 5.0f, 5.0f };
 
         if (bfs(FlipY(playerPosition), FlipY(endPosition)))
         {
             drawVisited(bfsVisited, Color4F::GREEN, bfsOffset, size, false);
-            drawPath(bfsPath, bfsOffset, Color4F::BLUE);
+            drawPath(bfsPath, bfsOffset, Color4F::RED);
         }
         else
         {
             drawVisited(bfsVisited, Color4F::GREEN, bfsOffset, size, false);
+            drawPath(bfsPath, bfsOffset, Color4F::ORANGE);
         }
         reset(bfsVisited, bfsPath, false);
     }
+   
+       
+
 }
 
 
@@ -231,19 +256,28 @@ void MazeScene2::bfsBacktrack()
 bool MazeScene2::bfs(std::pair<int, int> current, const std::pair<int, int>& target) 
 {
     std::queue<std::pair<std::pair<int, int>, int>> q; // pair<position, depth>
-   
     q.push({ current, 0 });
+    //bfsPath.emplace(bfsPath.begin(), current);
+    std::pair<int, int> currentBegin = q.front().first;
     bfsVisited[current.first][current.second] = true;
-
+    bool found = false;
     while (!q.empty()) 
     {
-        std::pair<int, int> current = q.front().first;
+        current = q.front().first;
         int depth = q.front().second;
         q.pop();
+        //bfsPath.pop_back();
 
         if (current == target) 
         {
-            bfsPath.push_back(current);
+            do
+            {   
+                current = bfsParent[current.first][current.second];
+                bfsPath.push_back(current);
+                
+            } while (current != currentBegin);
+            //bfsPath.push_back(playerPosition);
+            //reverse(bfsPath.begin(), bfsPath.end());
             return true;
         }
 
@@ -254,15 +288,17 @@ bool MazeScene2::bfs(std::pair<int, int> current, const std::pair<int, int>& tar
             {current.first, current.second + 1},
             {current.first, current.second - 1}
         };
-
+        
         for (const std::pair<int, int>& neighbor : neighbors) 
         {
-            if (!isValid(neighbor) || bfsVisited[current.first][current.second])
+            auto p = FlipY(neighbor);
+            if (!isValidBFS(neighbor) || !path->getTileAt(Vec2(neighbor.first, neighbor.second)))
             {
                 continue;
             }
             q.push({ neighbor, depth + 1 });
             bfsVisited[neighbor.first][neighbor.second] = true;
+            bfsParent[neighbor.first][neighbor.second] = current;
         }
     }
 
