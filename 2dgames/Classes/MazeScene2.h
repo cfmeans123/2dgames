@@ -74,10 +74,11 @@ public:
 
     Vector<SpriteFrame*> getAnimation(const char* format, int count);
 
+
+    //debug draw variables
     bool r;
     bool t;
     bool d;
-    bool c;
     float time;
 
 private:
