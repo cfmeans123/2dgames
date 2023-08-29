@@ -139,9 +139,6 @@ void MazeScene2::update(float dt)
                     drawVisited(enemydfsVisited, Color4F::BLUE, { 0.0f,0.0f }, size, false);
                 }
             }
-            
-            
-
         }
     }
 
@@ -163,9 +160,6 @@ void MazeScene2::update(float dt)
         }
         reset(bfsVisited, bfsPath, false);
     }
-   
-       
-
 }
 
 
