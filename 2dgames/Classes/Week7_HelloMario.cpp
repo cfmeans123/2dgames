@@ -33,16 +33,19 @@ bool HelloMario::init()
 
   this->addChild(level);
 
-  SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Mario/mario.plist");
-  walkingFrames = getAnimation("mario_walk_%02d", 3);
-  idleFrames = getAnimation("mario_idle_%02d", 2);
-  fallingFrames = getAnimation("mario_fall_%02d", 1);
-  jumpingFrames = getAnimation("mario_jump_%02d", 1);
+  SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Hero/Hero_Walk/Hero_Walk.plist");
+  walkingFrames = getAnimation("BlueKnight_entity_000_walk_%03d.png", 9);
+  SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Hero/Hero_Idle/Hero_Idle.plist");
+  idleFrames = getAnimation("BlueKnight_entity_000_Idle_%03d.png", 9);
+  SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Hero/Hero_Jump/Hero_Jump.plist");
+  fallingFrames = getAnimation("BlueKnight_entity_000_jump_004.png", 1);
+  jumpingFrames = getAnimation("BlueKnight_entity_000_jump_%03d.png", 1);
 
+  
   mario = Sprite::createWithSpriteFrame(idleFrames.front());
   addChild(mario);
   mario->setPosition(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2);
-  mario->setScale(2);
+  mario->setScale(0.3);
 
   animation = Animation::createWithSpriteFrames(idleFrames, 1.0f);
   animationWalk = Animation::createWithSpriteFrames(walkingFrames, 1.0f);
@@ -86,7 +89,7 @@ void HelloMario::InitPhysics(TMXTiledMap* level)
   marioPhysicsBody->setContactTestBitmask(2);
   mario->setPhysicsBody(marioPhysicsBody);
 
-  contacts.reserve(5);
+  contacts.reserve(4);
 
   auto collisionLayer = level->getLayer("Collision");
   for (int row = 0; row < level->getMapSize().height; ++row)
@@ -146,6 +149,7 @@ void HelloMario::update(float dt)
 {
   auto contact = contacts.size() > 0;
 
+ 
   if (contact) /// mario is on the ground
   {
     if (controller->IsRPressed())
@@ -163,7 +167,7 @@ void HelloMario::update(float dt)
     if (controller->IsLeftPressed())
     {
         marioPhysicsBody->setVelocity(Vec2(-256, 0));
-        mario->setFlippedX(true);
+        mario->setFlippedX(false);
       /// TODO:
       /// Move mario left with some velocity
       /// Set Position, and Flip X scale to negative
@@ -173,7 +177,7 @@ void HelloMario::update(float dt)
     else if (controller->IsRightPressed())
     {
         marioPhysicsBody->setVelocity(Vec2(256, 0));
-        mario->setFlippedX(false);
+        mario->setFlippedX(true);
       /// TODO:
       /// Move mario right with some velocity
       /// Set Position, and Flip X scale to positive
@@ -209,7 +213,7 @@ void HelloMario::update(float dt)
     if (controller->IsLeftPressed())
     {
         marioPhysicsBody->setVelocity(Vec2(-256, marioPhysicsBody->getVelocity().y));
-        mario->setFlippedX(true);
+        mario->setFlippedX(false);
       /// TODO:
       /// Move mario left with some velocity
       /// Set Position, and Flip X scale to negative
@@ -217,7 +221,7 @@ void HelloMario::update(float dt)
     else if (controller->IsRightPressed())
     {
         marioPhysicsBody->setVelocity(Vec2(256, marioPhysicsBody->getVelocity().y));
-        mario->setFlippedX(false);
+        mario->setFlippedX(true);
       /// TODO:
       /// Move mario right with some velocity
       /// Set Position, and Flip X scale to positive
@@ -245,7 +249,7 @@ void HelloMario::update(float dt)
         /// TODO:
         animationState = Walking;
         mario->stopAllActions();
-        mario->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(walkingFrames, 1.0f))));
+        //mario->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(walkingFrames, 10.0f))));
         /// change animation to falling animation
     }
     if (animationState != Jumping && mario->getPhysicsBody()->getVelocity().y > 0)

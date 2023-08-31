@@ -20,7 +20,7 @@ private:
   {
     auto spritecache = SpriteFrameCache::getInstance();
     Vector<SpriteFrame*> animFrames;
-    char str[100];
+    char str[1000];
     for (int i = 1; i <= count; i++)
     {
       snprintf(str, sizeof(str), format, i);

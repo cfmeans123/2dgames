@@ -331,7 +331,7 @@ public:
     /** Adds a new element at the end of the Vector. */
     void pushBack(T object)
     {
-        CCASSERT(object != nullptr, "The object should not be nullptr");
+         CCASSERT(object != nullptr, "The object should not be nullptr");
         _data.push_back( object );
         object->retain();
     }
