@@ -117,25 +117,13 @@ bool AppDelegate::applicationDidFinishLaunching() {
     {
         switch (keyCode)
         {
-        case EventKeyboard::KeyCode::KEY_1:
-        {
+            case EventKeyboard::KeyCode::KEY_1:
+            {
 
-            auto scene = scenes[0]();
-            director->getInstance()->replaceScene(scene);
-            break;
-        }
-        case EventKeyboard::KeyCode::KEY_2:
-        {
-            auto scene = scenes[1]();
-            director->getInstance()->replaceScene(scene);
-            break;
-        }
-        case EventKeyboard::KeyCode::KEY_3:
-        {
-            auto scene = scenes[2]();
-            director->getInstance()->replaceScene(scene);
-            break;
-        }
+                auto scene = scenes[0]();
+                director->getInstance()->replaceScene(scene);
+                break;
+            }
         };
     };
     director->getEventDispatcher()->addEventListenerWithFixedPriority(keyboardListener, 1);

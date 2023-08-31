@@ -26,11 +26,8 @@
 #define  _APP_DELEGATE_H_
 
 #include "cocos2d.h"
-#include "CollisionTestScene.h"
-#include "Assignment2.h"
 #include "Week7_HelloMario.h"
-#include "MazeScene.h"
-#include "MazeScene2.h"
+
 
 USING_NS_CC;
 /**
@@ -67,8 +64,6 @@ public:
     int currentScene = 0;
     std::vector<Scene* (*)()> scenes
     {
-        MazeScene2::createScene,
-        CollisionTestScene::createScene,
         HelloMario::createScene
     };
 };

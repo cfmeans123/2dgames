@@ -35,11 +35,12 @@ bool HelloMario::init()
 
   SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Hero/Hero_Walk/Hero_Walk.plist");
   walkingFrames = getAnimation("BlueKnight_entity_000_walk_%03d.png", 9);
-  SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Hero/Hero_Idle/Hero_Idle.plist");
-  idleFrames = getAnimation("BlueKnight_entity_000_Idle_%03d.png", 9);
+
+  //SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Hero/Hero_Idle/Hero_Idle.plist");
+  idleFrames = getAnimation("BlueKnight_entity_000_walk_001.png", 9);
   SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Hero/Hero_Jump/Hero_Jump.plist");
-  fallingFrames = getAnimation("BlueKnight_entity_000_jump_004.png", 1);
-  jumpingFrames = getAnimation("BlueKnight_entity_000_jump_%03d.png", 1);
+  fallingFrames = getAnimation("BlueKnight_entity_000_jump_006.png", 1);
+  jumpingFrames = getAnimation("BlueKnight_entity_000_jump_%03d.png", 9);
 
   
   mario = Sprite::createWithSpriteFrame(idleFrames.front());
@@ -47,10 +48,10 @@ bool HelloMario::init()
   mario->setPosition(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2);
   mario->setScale(0.3);
 
-  animation = Animation::createWithSpriteFrames(idleFrames, 1.0f);
-  animationWalk = Animation::createWithSpriteFrames(walkingFrames, 1.0f);
-  animationFall = Animation::createWithSpriteFrames(fallingFrames, 1.0f);
-  animationJump = Animation::createWithSpriteFrames(jumpingFrames, 1.0f);
+  animation = Animation::createWithSpriteFrames(idleFrames, 0.1f);
+  animationWalk = Animation::createWithSpriteFrames(walkingFrames, 0.1f);
+  animationFall = Animation::createWithSpriteFrames(fallingFrames, 0.1f);
+  animationJump = Animation::createWithSpriteFrames(jumpingFrames, 0.1f);
   
   mario->runAction(RepeatForever::create(Animate::create(animation)));
 
@@ -72,10 +73,6 @@ void HelloMario::InitPhysics(TMXTiledMap* level)
   physicsWorld->setGravity(cocos2d::Vec2(0, -980));
 
   ///TODO: make code below toggleable (aka can turn on and off debug draw) 
-
-
- 
-
   marioPhysicsBody = cocos2d::PhysicsBody::createBox(mario->getContentSize(), PHYSICSSHAPE_MATERIAL_DEFAULT);
   ///TODO: Disallow mario's rotation to be effected by physics
   ///TODO: Set mario to be dynamic (physics is applied to it)
@@ -105,7 +102,6 @@ void HelloMario::InitPhysics(TMXTiledMap* level)
         physicsBody->setCategoryBitmask(2);
         physicsBody->setCollisionBitmask(1);
         physicsBody->setContactTestBitmask(1);
-
       }
     }
   }
@@ -184,7 +180,12 @@ void HelloMario::update(float dt)
 
       /// check if not walking + switch to walking
     }
-    
+    if (animationState != Walking && mario->getPhysicsBody()->getVelocity().x != 0)
+    {
+        animationState = Walking;
+        mario->stopAllActions();
+        mario->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(walkingFrames, 0.1))));
+    }
     if (controller->IsDownPressed())
     {
 
@@ -205,6 +206,9 @@ void HelloMario::update(float dt)
     {
       /// TODO:
       /// switch to idle animation
+        animationState = Idle;
+        mario->stopAllActions();
+        mario->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(idleFrames, 0.1))));
         mario->getPhysicsBody()->setVelocity(Vec2::ZERO);
     }
   }
@@ -233,24 +237,8 @@ void HelloMario::update(float dt)
       /// change animation to falling animation
       animationState = Falling;
       mario->stopAllActions();
-      mario->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(fallingFrames, 1.0f))));
+      mario->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(fallingFrames, 0.1 ))));
       
-    }
-    if (animationState != Idle && mario->getPhysicsBody()->getVelocity() == Vec2::ZERO)
-    {
-        /// TODO:
-        animationState = Idle;
-        mario->stopAllActions();
-        mario->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(idleFrames, 1.0f))));
-        /// change animation to falling animation
-    }
-    if (animationState != Walking && mario->getPhysicsBody()->getVelocity().x != 0)
-    {
-        /// TODO:
-        animationState = Walking;
-        mario->stopAllActions();
-        //mario->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(walkingFrames, 10.0f))));
-        /// change animation to falling animation
     }
     if (animationState != Jumping && mario->getPhysicsBody()->getVelocity().y > 0)
     {
@@ -258,7 +246,23 @@ void HelloMario::update(float dt)
         /// change animation to falling animation
         animationState = Jumping;
         mario->stopAllActions();
-        mario->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(jumpingFrames, 1.0f))));
+        mario->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(jumpingFrames, 0.1))));
+    }
+    if (animationState != Idle && mario->getPhysicsBody()->getVelocity() == Vec2::ZERO)
+    {
+        /// TODO:
+        animationState = Idle;
+        mario->stopAllActions();
+        mario->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(idleFrames, 0.1))));
+        /// change animation to falling animation
+    }
+    if (animationState != Walking && mario->getPhysicsBody()->getVelocity().y == 0 && mario->getPhysicsBody()->getVelocity().x != 0)
+    {
+        /// TODO:
+        animationState = Walking;
+        mario->stopAllActions();
+        mario->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(walkingFrames, 0.1))));
+        /// change animation to falling animation
     }
   }
 
