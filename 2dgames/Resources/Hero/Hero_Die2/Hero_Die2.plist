@@ -9,135 +9,189 @@
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{0,0}</string>
+                <string>{-127,35.5}</string>
                 <key>spriteSize</key>
-                <string>{567,520}</string>
+                <string>{428,529}</string>
                 <key>spriteSourceSize</key>
-                <string>{567,520}</string>
+                <string>{800,600}</string>
                 <key>textureRect</key>
-                <string>{{0,0},{567,520}}</string>
+                <string>{{1,1},{428,529}}</string>
                 <key>textureRotated</key>
                 <false/>
+                <key>triangles</key>
+                <string>29 30 31 0 28 29 21 25 26 22 24 25 22 23 24 21 22 25 18 19 20 17 18 20 17 20 21 17 21 26 4 17 26 16 10 13 15 13 14 26 3 4 15 16 13 12 13 10 12 10 11 16 4 10 10 8 9 10 7 8 2 3 27 5 6 7 4 5 7 10 4 7 4 16 17 26 27 3 2 27 28 1 2 28 0 1 28 0 29 31</string>
+                <key>vertices</key>
+                <string>423 19 487 225 474 261 440 278 376 346 407 375 459 397 367 458 338 487 273 499 260 488 217 529 197 520 189 469 111 488 99 458 165 408 156 350 59 152 109 151 145 210 166 218 183 147 290 75 354 120 372 199 371 261 397 240 415 199 367 13 387 0 394 0</string>
+                <key>verticesUV</key>
+                <string>365 20 429 226 416 262 382 279 318 347 349 376 401 398 309 459 280 488 215 500 202 489 159 530 139 521 131 470 53 489 41 459 107 409 98 351 1 153 51 152 87 211 108 219 125 148 232 76 296 121 314 200 313 262 339 241 357 200 309 14 329 1 336 1</string>
             </dict>
             <key>BlueKnight_entity_000_die backward_001.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{0,0}</string>
+                <string>{-91,26}</string>
                 <key>spriteSize</key>
-                <string>{567,520}</string>
+                <string>{418,512}</string>
                 <key>spriteSourceSize</key>
-                <string>{567,520}</string>
+                <string>{800,600}</string>
                 <key>textureRect</key>
-                <string>{{567,0},{567,520}}</string>
+                <string>{{430,1},{418,512}}</string>
                 <key>textureRotated</key>
                 <false/>
+                <key>triangles</key>
+                <string>26 1 2 21 24 25 21 23 24 21 22 23 20 21 25 17 19 20 17 18 19 16 17 20 16 20 25 3 16 25 3 25 26 11 14 15 15 7 10 12 13 14 12 14 11 10 11 15 10 7 8 8 9 10 15 3 7 7 5 6 3 4 5 7 3 5 3 15 16 2 3 26 26 27 1 0 1 27 0 27 28</string>
+                <key>vertices</key>
+                <string>518 50 499 185 499 269 379 366 433 425 344 454 303 476 266 471 201 530 177 516 190 477 146 467 118 481 100 470 101 440 171 400 163 340 121 149 143 127 168 152 182 194 242 136 339 92 390 143 402 222 390 265 432 247 469 32 497 18</string>
+                <key>verticesUV</key>
+                <string>848 33 829 168 829 252 709 349 763 408 674 437 633 459 596 454 531 513 507 499 520 460 476 450 448 464 430 453 431 423 501 383 493 323 451 132 473 110 498 135 512 177 572 119 669 75 720 126 732 205 720 248 762 230 799 15 827 1</string>
             </dict>
             <key>BlueKnight_entity_000_die backward_002.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{0,0}</string>
+                <string>{-54,-1.5}</string>
                 <key>spriteSize</key>
-                <string>{567,520}</string>
+                <string>{516,445}</string>
                 <key>spriteSourceSize</key>
-                <string>{567,520}</string>
+                <string>{800,600}</string>
                 <key>textureRect</key>
-                <string>{{1134,0},{567,520}}</string>
+                <string>{{849,1},{516,445}}</string>
                 <key>textureRotated</key>
                 <false/>
+                <key>triangles</key>
+                <string>0 23 24 22 0 1 18 20 21 18 19 20 17 18 21 15 16 17 14 15 17 3 17 21 3 14 17 13 9 10 12 10 11 12 13 10 13 14 9 9 14 6 7 8 9 9 6 7 5 6 14 1 21 22 3 4 5 3 5 14 21 1 2 21 2 3 22 23 0</string>
+                <key>vertices</key>
+                <string>604 123 528 246 509 303 373 396 413 454 330 447 263 466 205 524 163 523 167 466 154 454 116 476 88 448 147 407 173 372 180 118 228 138 223 182 278 147 373 117 429 155 427 285 498 185 565 85 601 79</string>
+                <key>verticesUV</key>
+                <string>1365 45 1289 168 1270 225 1134 318 1174 376 1091 369 1024 388 966 446 924 445 928 388 915 376 877 398 849 370 908 329 934 294 941 40 989 60 984 104 1039 69 1134 39 1190 77 1188 207 1259 107 1326 7 1362 1</string>
             </dict>
             <key>BlueKnight_entity_000_die backward_003.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{0,0}</string>
+                <string>{-12,-20.5}</string>
                 <key>spriteSize</key>
-                <string>{567,520}</string>
+                <string>{590,409}</string>
                 <key>spriteSourceSize</key>
-                <string>{567,520}</string>
+                <string>{800,600}</string>
                 <key>textureRect</key>
-                <string>{{0,520},{567,520}}</string>
+                <string>{{1366,1},{590,409}}</string>
                 <key>textureRotated</key>
                 <false/>
+                <key>triangles</key>
+                <string>20 23 24 21 22 23 20 21 23 15 16 24 17 19 20 20 24 16 17 18 19 20 16 17 11 15 24 12 14 15 12 13 14 11 12 15 0 11 24 10 4 5 9 6 8 9 5 6 8 6 7 10 5 9 4 10 11 0 4 11 1 3 4 1 2 3 0 1 4 0 24 25</string>
+                <key>vertices</key>
+                <string>302 167 354 150 429 148 458 207 451 300 490 262 642 165 683 171 664 215 558 284 514 338 379 411 362 433 382 472 342 463 306 445 274 446 225 493 158 525 150 500 162 459 105 468 93 440 133 404 172 383 240 116</string>
+                <key>verticesUV</key>
+                <string>1575 52 1627 35 1702 33 1731 92 1724 185 1763 147 1915 50 1956 56 1937 100 1831 169 1787 223 1652 296 1635 318 1655 357 1615 348 1579 330 1547 331 1498 378 1431 410 1423 385 1435 344 1378 353 1366 325 1406 289 1445 268 1513 1</string>
             </dict>
             <key>BlueKnight_entity_000_die backward_004.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{0,0}</string>
+                <string>{7,-28}</string>
                 <key>spriteSize</key>
-                <string>{567,520}</string>
+                <string>{630,372}</string>
                 <key>spriteSourceSize</key>
-                <string>{567,520}</string>
+                <string>{800,600}</string>
                 <key>textureRect</key>
-                <string>{{567,520},{567,520}}</string>
+                <string>{{1,531},{630,372}}</string>
                 <key>textureRotated</key>
                 <false/>
+                <key>triangles</key>
+                <string>17 19 20 17 18 19 0 9 20 16 17 20 14 15 16 16 20 12 13 14 16 16 12 13 11 12 20 9 10 11 9 11 20 9 0 3 3 7 8 4 5 6 4 6 7 3 4 7 9 3 8 0 2 3 0 1 2 0 20 21</string>
+                <key>vertices</key>
+                <string>359 180 459 179 477 223 485 297 695 268 722 291 692 321 532 353 521 368 349 449 335 484 264 450 226 475 214 497 145 514 132 489 159 464 150 455 105 459 92 438 174 361 298 142</string>
+                <key>verticesUV</key>
+                <string>268 569 368 568 386 612 394 686 604 657 631 680 601 710 441 742 430 757 258 838 244 873 173 839 135 864 123 886 54 903 41 878 68 853 59 844 14 848 1 827 83 750 207 531</string>
             </dict>
             <key>BlueKnight_entity_000_die backward_005.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{0,0}</string>
+                <string>{7.5,-43}</string>
                 <key>spriteSize</key>
-                <string>{567,520}</string>
+                <string>{641,328}</string>
                 <key>spriteSourceSize</key>
-                <string>{567,520}</string>
+                <string>{800,600}</string>
                 <key>textureRect</key>
-                <string>{{1134,520},{567,520}}</string>
+                <string>{{632,531},{641,328}}</string>
                 <key>textureRotated</key>
                 <false/>
+                <key>triangles</key>
+                <string>18 19 20 13 18 20 16 17 18 0 8 20 16 13 14 14 15 16 13 16 18 12 13 20 9 12 20 11 12 9 11 9 10 8 9 20 0 7 8 3 4 5 6 2 3 3 5 6 2 6 7 0 2 7 0 1 2 0 20 21</string>
+                <key>vertices</key>
+                <string>437 211 493 217 513 329 710 320 728 344 700 372 616 378 465 416 386 451 310 453 300 494 276 480 263 460 234 460 201 493 114 507 128 458 87 436 172 356 165 332 224 312 348 179</string>
+                <key>verticesUV</key>
+                <string>982 563 1038 569 1058 681 1255 672 1273 696 1245 724 1161 730 1010 768 931 803 855 805 845 846 821 832 808 812 779 812 746 845 659 859 673 810 632 788 717 708 710 684 769 664 893 531</string>
             </dict>
             <key>BlueKnight_entity_000_die backward_006.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{0,0}</string>
+                <string>{16.5,-56}</string>
                 <key>spriteSize</key>
-                <string>{567,520}</string>
+                <string>{629,278}</string>
                 <key>spriteSourceSize</key>
-                <string>{567,520}</string>
+                <string>{800,600}</string>
                 <key>textureRect</key>
-                <string>{{0,1040},{567,520}}</string>
+                <string>{{1274,531},{629,278}}</string>
                 <key>textureRotated</key>
                 <false/>
+                <key>triangles</key>
+                <string>14 15 16 10 13 14 14 9 10 12 10 11 6 16 17 10 12 13 14 16 9 9 7 8 9 16 7 6 7 16 1 5 6 2 3 4 2 4 5 1 2 5 1 6 17 0 1 17</string>
+                <key>vertices</key>
+                <string>515 263 523 364 713 375 731 402 696 428 548 426 384 469 287 470 247 495 230 470 186 491 116 493 102 422 143 373 175 367 169 306 262 306 381 217</string>
+                <key>verticesUV</key>
+                <string>1687 577 1695 678 1885 689 1903 716 1868 742 1720 740 1556 783 1459 784 1419 809 1402 784 1358 805 1288 807 1274 736 1315 687 1347 681 1341 620 1434 620 1553 531</string>
             </dict>
             <key>BlueKnight_entity_000_die backward_007.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{0,0}</string>
+                <string>{17,-74}</string>
                 <key>spriteSize</key>
-                <string>{567,520}</string>
+                <string>{624,236}</string>
                 <key>spriteSourceSize</key>
-                <string>{567,520}</string>
+                <string>{800,600}</string>
                 <key>textureRect</key>
-                <string>{{567,1040},{567,520}}</string>
+                <string>{{1,904},{624,236}}</string>
                 <key>textureRotated</key>
                 <false/>
+                <key>triangles</key>
+                <string>6 16 17 12 13 14 8 14 15 11 8 9 15 16 6 11 9 10 11 12 8 8 12 14 7 8 15 15 6 7 1 5 6 2 3 4 2 4 5 1 2 5 1 6 17 0 1 17</string>
+                <key>vertices</key>
+                <string>536 311 525 400 709 427 729 456 692 478 557 465 457 470 373 492 224 472 210 486 105 486 105 415 166 351 177 278 241 304 301 311 358 268 421 256</string>
+                <key>verticesUV</key>
+                <string>432 959 421 1048 605 1075 625 1104 588 1126 453 1113 353 1118 269 1140 120 1120 106 1134 1 1134 1 1063 62 999 73 926 137 952 197 959 254 916 317 904</string>
             </dict>
             <key>BlueKnight_entity_000_die backward_008.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
-                <string>{0,0}</string>
+                <string>{1,-97}</string>
                 <key>spriteSize</key>
-                <string>{567,520}</string>
+                <string>{632,268}</string>
                 <key>spriteSourceSize</key>
-                <string>{567,520}</string>
+                <string>{800,600}</string>
                 <key>textureRect</key>
-                <string>{{1134,1040},{567,520}}</string>
+                <string>{{626,904},{632,268}}</string>
                 <key>textureRotated</key>
                 <false/>
+                <key>triangles</key>
+                <string>13 0 12 13 14 16 14 15 16 17 0 13 13 16 17 17 18 0 12 0 1 7 8 9 7 9 10 6 7 10 6 10 11 4 5 6 4 6 11 3 4 11 2 3 11 1 2 11 12 1 11 0 18 19</string>
+                <key>vertices</key>
+                <string>282 326 317 329 361 297 427 287 488 316 535 357 536 441 699 480 717 512 679 531 544 496 421 499 358 513 190 469 163 482 85 461 117 403 152 367 158 331 186 263</string>
+                <key>verticesUV</key>
+                <string>823 967 858 970 902 938 968 928 1029 957 1076 998 1077 1082 1240 1121 1258 1153 1220 1172 1085 1137 962 1140 899 1154 731 1110 704 1123 626 1102 658 1044 693 1008 699 972 727 904</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -151,9 +205,9 @@
             <key>realTextureFileName</key>
             <string>Hero_Die2.png</string>
             <key>size</key>
-            <string>{1701,1560}</string>
+            <string>{1957,1173}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:4b5ec1ef19e2d27aeafb0a9857eac6a0:94bece557ca4ccc0f92db59a98f00740:fb2e1d3ad419822aee6bd8a8561e8519$</string>
+            <string>$TexturePacker:SmartUpdate:001f22feebf8694de56003e8d2524a80:8e921d5fb3f8b33cc8f53f46b337124f:8a0b5677b081a02e94dd3cccfeb0e7b8$</string>
             <key>textureFileName</key>
             <string>Hero_Die2.png</string>
         </dict>
