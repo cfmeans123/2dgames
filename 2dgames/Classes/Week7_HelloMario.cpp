@@ -1,286 +1,272 @@
 #include "Week7_HelloMario.h"
 
 
+
 Scene* HelloMario::createScene()
 {
-  auto ret = new (std::nothrow) HelloMario();
-  if (ret && ret->initWithPhysics() && ret->init())
-  {
-    ret->autorelease();
-    return ret;
-  }
-  else
-  {
-    CC_SAFE_DELETE(ret);
-    return nullptr;
-  }
+	auto ret = new (std::nothrow) HelloMario();
+	if (ret && ret->initWithPhysics() && ret->init())
+	{
+		ret->autorelease();
+		return ret;
+	}
+	else
+	{
+		CC_SAFE_DELETE(ret);
+		return nullptr;
+	}
 
-  return ret;
+	return ret;
 }
 
 bool HelloMario::init()
 {
-  if (!cocos2d::Scene::init()) 
-  {
-    return false;
-  }
-
-  
-  auto visibleSize = _director->getVisibleSize();
-  auto origin = _director->getVisibleOrigin();
-
-  /// TODO Design your own level(s)
-  auto level = TMXTiledMap::create("Mario/tmx/MarioSampleLevel.tmx");
-
-  this->addChild(level);
-
-  SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Hero/Hero_Walk/Hero_Walk.plist");
-  walkingFrames = getAnimation("BlueKnight_entity_000_walk_%03d.png", 9);
-  animationWalk = Animation::createWithSpriteFrames(walkingFrames, 0.1f);
-
-  SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Hero/Hero_Idle/Hero_Idle.plist");
-  idleFrames = getAnimation("BlueKnight_entity_000_Idle_%03d.png", 9);
-  SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Hero/Hero_Jump/Hero_Jump.plist");
-  fallingFrames = getAnimation("BlueKnight_entity_000_jump_006.png", 1);
-  jumpingFrames = getAnimation("BlueKnight_entity_000_jump_%03d.png", 9);
-
-  
-  mario = Sprite::createWithSpriteFrame(idleFrames.front());
-  addChild(mario);
-  mario->setPosition(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2);
-  mario->setScale(0.3);
-
-  animation = Animation::createWithSpriteFrames(idleFrames, 0.1f);
-  animationFall = Animation::createWithSpriteFrames(fallingFrames, 0.1f);
-  animationJump = Animation::createWithSpriteFrames(jumpingFrames, 0.1f);
-  
-  mario->runAction(RepeatForever::create(Animate::create(animation)));
-
-  controller = KeyboardControllerComponent::create(KeyboardControllerComponent::ARROWS);
-  mario->addComponent(controller);
-  controller->initInput();
+	if (!cocos2d::Scene::init())
+	{
+		return false;
+	}
 
 
-  InitPhysics(level);
+	auto visibleSize = _director->getVisibleSize();
+	auto origin = _director->getVisibleOrigin();
 
-  scheduleUpdate();
+	/// TODO Design your own level(s)
+	auto level = TMXTiledMap::create("Mario/tmx/MarioSampleLevel.tmx");
 
-  return true;
+	this->addChild(level);
+	hero = Hero::Create();
+	addChild(hero);
+	hero->setPosition(hero->origin.x + hero->visibleSize.width / 2, hero->origin.y + hero->visibleSize.height / 2);
+	hero->setScale(0.2);
+
+	//hero->runAction(RepeatForever::create(Animate::create(hero->animationIdle)));
+
+	controller = KeyboardControllerComponent::create(KeyboardControllerComponent::ARROWS);
+	hero->addComponent(controller);
+	controller->initInput();
+
+
+	InitPhysics(level);
+
+	scheduleUpdate();
+
+	return true;
 }
 
 void HelloMario::InitPhysics(TMXTiledMap* level)
 {
-  auto physicsWorld = getPhysicsWorld();
-  physicsWorld->setGravity(cocos2d::Vec2(0, -980));
+	auto physicsWorld = getPhysicsWorld();
+	physicsWorld->setGravity(cocos2d::Vec2(0, -980));
 
-  ///TODO: make code below toggleable (aka can turn on and off debug draw) 
-  marioPhysicsBody = cocos2d::PhysicsBody::createBox(cocos2d::Size(mario->getContentSize().width / 2, mario->getContentSize().height), PHYSICSSHAPE_MATERIAL_DEFAULT);
-  ///TODO: Disallow mario's rotation to be effected by physics
-  ///TODO: Set mario to be dynamic (physics is applied to it)
-  ///TODO: Set mario physics body's category bitmask
-  ///TODO: Set mario physics body's collision bitmask
-  ///TODO: Set mario physics body's contact test bitmask
-  marioPhysicsBody->setRotationEnable(false);
-  marioPhysicsBody->setDynamic(true);
-  marioPhysicsBody->setCategoryBitmask(1);
-  marioPhysicsBody->setCollisionBitmask(2);
-  marioPhysicsBody->setContactTestBitmask(2);
-  mario->setPhysicsBody(marioPhysicsBody);
-  mario->getPhysicsBody()->setLinearDamping(0.1);
-  mario->getPhysicsBody()->setVelocityLimit(1024);
-  getPhysicsWorld()->setSpeed(1.5);
+	heroPhysicsBody = cocos2d::PhysicsBody::createBox(cocos2d::Size(hero->getContentSize().width / 2, hero->getContentSize().height), PHYSICSSHAPE_MATERIAL_DEFAULT);
 
-  contacts.reserve(4);
+	heroPhysicsBody->setRotationEnable(false);
+	heroPhysicsBody->setDynamic(true);
+	heroPhysicsBody->setCategoryBitmask(1);
+	heroPhysicsBody->setCollisionBitmask(2);
+	heroPhysicsBody->setContactTestBitmask(2);
+	hero->setPhysicsBody(heroPhysicsBody);
+	hero->getPhysicsBody()->setLinearDamping(0.1);
+	hero->getPhysicsBody()->setVelocityLimit(1024);
+	//getPhysicsWorld()->setSpeed(1.5);
 
 
-  auto collisionLayer = level->getLayer("Collision");
-  for (int row = 0; row < level->getMapSize().height; ++row)
-  {
-    for (int col = 0; col < level->getMapSize().width; ++col)
-    {
-      auto tile = collisionLayer->getTileAt(cocos2d::Vec2(col, row));
-      if (tile)
-      {
-        auto physicsBody = cocos2d::PhysicsBody::createBox(tile->getContentSize(), PHYSICSSHAPE_MATERIAL_DEFAULT);
-        tile->setPhysicsBody(physicsBody);
-        physicsBody->setDynamic(false);
-        physicsBody->setCategoryBitmask(2);
-        physicsBody->setCollisionBitmask(1);
-        physicsBody->setContactTestBitmask(1);
-      }
-    }
-  }
+	contacts.reserve(4);
+	///TODO: make code below toggleable (aka can turn on and off debug draw) 
+	///TODO: Disallow mario's rotation to be effected by physics
+	///TODO: Set mario to be dynamic (physics is applied to it)
+	///TODO: Set mario physics body's category bitmask
+	///TODO: Set mario physics body's collision bitmask
+	///TODO: Set mario physics body's contact test bitmask
 
-  auto contactListener = EventListenerPhysicsContact::create();
-  contactListener->onContactBegin = [=](PhysicsContact& contact) -> bool
-  {
-    auto a = contact.getShapeA()->getBody();
-    auto b = contact.getShapeB()->getBody();
+	auto collisionLayer = level->getLayer("Collision");
+	for (int row = 0; row < level->getMapSize().height; ++row)
+	{
+		for (int col = 0; col < level->getMapSize().width; ++col)
+		{
+			auto tile = collisionLayer->getTileAt(cocos2d::Vec2(col, row));
+			if (tile)
+			{
+				auto physicsBody = cocos2d::PhysicsBody::createBox(tile->getContentSize(), PHYSICSSHAPE_MATERIAL_DEFAULT);
+				tile->setPhysicsBody(physicsBody);
+				physicsBody->setDynamic(false);
+				physicsBody->setCategoryBitmask(2);
+				physicsBody->setCollisionBitmask(1);
+				physicsBody->setContactTestBitmask(1);
+			}
+		}
+	}
 
-    auto other = marioPhysicsBody == a ? b : a;
+	auto contactListener = EventListenerPhysicsContact::create();
+	contactListener->onContactBegin = [=](PhysicsContact& contact) -> bool
+	{
+		auto a = contact.getShapeA()->getBody();
+		auto b = contact.getShapeB()->getBody();
 
-    if (marioPhysicsBody->getPosition().y > other->getPosition().y && abs(contact.getContactData()->normal.y) > 0.9f)
-    {
-      contacts.push_back(other);
-    }
+		auto other = hero->getPhysicsBody() == a ? b : a;
 
-    return true;
-  };
-  contactListener->onContactSeparate = [=](PhysicsContact& contact)
-  {
-    auto a = contact.getShapeA()->getBody();
-    auto b = contact.getShapeB()->getBody();
+		if (hero->getPhysicsBody()->getPosition().y > other->getPosition().y && abs(contact.getContactData()->normal.y) > 0.9f)
+		{
+			contacts.push_back(other);
+		}
 
-    auto separate = marioPhysicsBody == a ? b : a;
+		return true;
+	};
+	contactListener->onContactSeparate = [=](PhysicsContact& contact)
+	{
+		auto a = contact.getShapeA()->getBody();
+		auto b = contact.getShapeB()->getBody();
 
-    for (int i = 0; i < contacts.size(); ++i)
-    {
-      if (contacts[i] == separate)
-      {
-        contacts[i] = contacts[contacts.size() - 1];
-        contacts.pop_back();
-        break;
-      }
-    }
-  };
-  _eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this);
+		auto separate = hero->getPhysicsBody() == a ? b : a;
+
+		for (int i = 0; i < contacts.size(); ++i)
+		{
+			if (contacts[i] == separate)
+			{
+				contacts[i] = contacts[contacts.size() - 1];
+				contacts.pop_back();
+				break;
+			}
+		}
+	};
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this);
 }
 
 void HelloMario::update(float dt)
 {
-  auto contact = contacts.size() > 0;
+	auto contact = contacts.size() > 0;
 
- 
-  if (contact) /// mario is on the ground
-  {
-    if (controller->IsRPressed())
-    {
-        auto physicsWorld = getPhysicsWorld();
-        if (physicsWorld->getDebugDrawMask() == PhysicsWorld::DEBUGDRAW_ALL)
-        {
-            physicsWorld->setDebugDrawMask(NULL);
-        }
-        else
-        {
-            physicsWorld->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
-        }
-    }
-    if (controller->IsLeftPressed())
-    {
-        marioPhysicsBody->setVelocity(Vec2(-256, 0));
-        //marioPhysicsBody->applyForce(Vec2(-512, 0));
-        mario->setFlippedX(false);
-      /// TODO:
-      /// Move mario left with some velocity
-      /// Set Position, and Flip X scale to negative
 
-      /// Check if not in walking state + switch to walking animation
-    }
-    else if (controller->IsRightPressed())
-    {
-        marioPhysicsBody->setVelocity(Vec2(256, 0));
-        //marioPhysicsBody->applyForce(Vec2(512, 0));
-        mario->setFlippedX(true);
-      /// TODO:
-      /// Move mario right with some velocity
-      /// Set Position, and Flip X scale to positive
+	if (contact) /// mario is on the ground
+	{
+		if (controller->IsRPressed())
+		{
+			auto physicsWorld = getPhysicsWorld();
+			if (physicsWorld->getDebugDrawMask() == PhysicsWorld::DEBUGDRAW_ALL)
+			{
+				physicsWorld->setDebugDrawMask(NULL);
+			}
+			else
+			{
+				physicsWorld->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+			}
+		}
+		if (controller->IsLeftPressed())
+		{
+			hero->getPhysicsBody()->setVelocity(Vec2(-hero->mMoveSpeed, 0));
+			//marioPhysicsBody->applyForce(Vec2(-512, 0));
+			hero->setFlippedX(false);
+			/// TODO:
+			/// Move mario left with some velocity
+			/// Set Position, and Flip X scale to negative
 
-      /// check if not walking + switch to walking
-    }
-    if (animationState != Walking && mario->getPhysicsBody()->getVelocity().x != 0)
-    {
-        animationState = Walking;
-        mario->stopAllActions();
-        mario->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(walkingFrames, 0.1))));
-    }
-    if (controller->IsDownPressed())
-    {
+			/// Check if not in walking state + switch to walking animation
+		}
+		else if (controller->IsRightPressed())
+		{
+			hero->getPhysicsBody()->setVelocity(Vec2(hero->mMoveSpeed, 0));
+			//marioPhysicsBody->applyForce(Vec2(512, 0));
+			hero->setFlippedX(true);
+			/// TODO:
+			/// Move mario right with some velocity
+			/// Set Position, and Flip X scale to positive
 
-      /// TODO (optional):
-      /// Make mario crouch
-    }
-    
-    if (controller->IsUpPressed())
-    {
-        marioPhysicsBody->applyImpulse(Vec2(0, 450), Vec2::ZERO);
-      /// TODO:
-      ///Check if not in jumping state
-        /// Apply an impulse force to mario to make him jump
-        /// switch to jumping animation / sprite
-    }
+			/// check if not walking + switch to walking
+		}
+		if (animationState != Walking && hero->getPhysicsBody()->getVelocity().x != 0)
+		{
+			animationState = Walking;
+			hero->stopAllActions();
+			hero->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(hero->walkingFrames, 0.1))));
+		}
+		if (controller->IsDownPressed())
+		{
 
-    if (animationState != Idle && !controller->IsLeftPressed() && !controller->IsRightPressed() && !controller->IsDownPressed() && !controller->IsUpPressed())
-    {
-      /// TODO:
-      /// switch to idle animation
-        animationState = Idle;
-        mario->stopAllActions();
-        mario->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(idleFrames, 0.1))));
-        mario->getPhysicsBody()->setVelocity(Vec2::ZERO);
-    }
-  }
-  else
-  {
-    if (controller->IsLeftPressed())
-    {
-        //marioPhysicsBody->setVelocity(Vec2(-256, marioPhysicsBody->getVelocity().y));
-        if (marioPhysicsBody->getVelocity().x > -512)
-        {
-            marioPhysicsBody->applyForce(Vec2(-1024, marioPhysicsBody->getVelocity().y));
-        }
-        mario->setFlippedX(false);
-      /// TODO:
-      /// Move mario left with some velocity
-      /// Set Position, and Flip X scale to negative
-    }
-    else if (controller->IsRightPressed())
-    {
-        //marioPhysicsBody->setVelocity(Vec2(256, marioPhysicsBody->getVelocity().y));
-        if (marioPhysicsBody->getVelocity().x < 512)
-        {
-            marioPhysicsBody->applyForce(Vec2(1024, marioPhysicsBody->getVelocity().y));
-        }
-        mario->setFlippedX(true);
-      /// TODO:
-      /// Move mario right with some velocity
-      /// Set Position, and Flip X scale to positive
-    }
+			/// TODO (optional):
+			/// Make mario crouch
+		}
 
-    if (animationState != Falling && mario->getPhysicsBody()->getVelocity().y < 0)
-    {
-      /// TODO:
-      /// change animation to falling animation
-      animationState = Falling;
-      mario->stopAllActions();
-      mario->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(fallingFrames, 0.1 ))));
-      
-    }
-    if (animationState != Jumping && mario->getPhysicsBody()->getVelocity().y > 0)
-    {
-        /// TODO:
-        /// change animation to falling animation
-        animationState = Jumping;
-        mario->stopAllActions();
-        mario->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(jumpingFrames, 0.1))));
-    }
-    if (animationState != Idle && mario->getPhysicsBody()->getVelocity() == Vec2::ZERO)
-    {
-        /// TODO:
-        animationState = Idle;
-        mario->stopAllActions();
-        mario->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(idleFrames, 0.1))));
-        /// change animation to falling animation
-    }
-    if (animationState != Walking && mario->getPhysicsBody()->getVelocity().y == 0 && mario->getPhysicsBody()->getVelocity().x != 0)
-    {
-        /// TODO:
-        animationState = Walking;
-        mario->stopAllActions();
-        mario->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(walkingFrames, 0.1))));
-        /// change animation to falling animation
-    }
-  }
+		if (controller->IsUpPressed())
+		{
+			hero->getPhysicsBody()->applyImpulse(Vec2(0, 450), Vec2::ZERO);
+			/// TODO:
+			///Check if not in jumping state
+			  /// Apply an impulse force to mario to make him jump
+			  /// switch to jumping animation / sprite
+		}
 
-  /// TODO:
-  /// Set camera to follow mario
+		if (animationState != Idle && !controller->IsLeftPressed() && !controller->IsRightPressed() && !controller->IsDownPressed() && !controller->IsUpPressed())
+		{
+			/// TODO:
+			/// switch to idle animation
+			animationState = Idle;
+			hero->stopAllActions();
+			hero->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(hero->idleFrames, 0.1))));
+			hero->getPhysicsBody()->setVelocity(Vec2::ZERO);
+		}
+	}
+	else
+	{
+		if (controller->IsLeftPressed())
+		{
+			//marioPhysicsBody->setVelocity(Vec2(-256, marioPhysicsBody->getVelocity().y));
+			if (hero->getPhysicsBody()->getVelocity().x > -512)
+			{
+				hero->getPhysicsBody()->applyForce(Vec2(-1024, hero->getPhysicsBody()->getVelocity().y));
+			}
+			hero->setFlippedX(false);
+			/// TODO:
+			/// Move mario left with some velocity
+			/// Set Position, and Flip X scale to negative
+		}
+		else if (controller->IsRightPressed())
+		{
+			//marioPhysicsBody->setVelocity(Vec2(256, marioPhysicsBody->getVelocity().y));
+			if (hero->getPhysicsBody()->getVelocity().x < 512)
+			{
+				hero->getPhysicsBody()->applyForce(Vec2(1024, hero->getPhysicsBody()->getVelocity().y));
+			}
+			hero->setFlippedX(true);
+			/// TODO:
+			/// Move mario right with some velocity
+			/// Set Position, and Flip X scale to positive
+		}
+
+		if (animationState != Falling && hero->getPhysicsBody()->getVelocity().y < 0)
+		{
+			/// TODO:
+			/// change animation to falling animation
+			animationState = Falling;
+			hero->stopAllActions();
+			hero->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(hero->fallFrames, 0.1))));
+
+		}
+		if (animationState != Jumping && hero->getPhysicsBody()->getVelocity().y > 0)
+		{
+			/// TODO:
+			/// change animation to falling animation
+			animationState = Jumping;
+			hero->stopAllActions();
+			hero->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(hero->jumpFrames, 0.1))));
+		}
+		if (animationState != Idle && hero->getPhysicsBody()->getVelocity() == Vec2::ZERO)
+		{
+			/// TODO:
+			animationState = Idle;
+			hero->stopAllActions();
+			hero->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(hero->idleFrames, 0.1))));
+			/// change animation to falling animation
+		}
+		if (animationState != Walking && hero->getPhysicsBody()->getVelocity().y == 0 && hero->getPhysicsBody()->getVelocity().x != 0)
+		{
+			/// TODO:
+			animationState = Walking;
+			hero->stopAllActions();
+			hero->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(hero->walkingFrames, 0.1))));
+			/// change animation to falling animation
+		}
+	}
+
+	/// TODO:
+	/// Set camera to follow mario
 }

@@ -27,6 +27,7 @@ public:
       rightKeyCode = EventKeyboard::KeyCode::KEY_D;
       upKeyCode = EventKeyboard::KeyCode::KEY_W;
       downKeyCode = EventKeyboard::KeyCode::KEY_S;
+      shiftKeyCode = EventKeyboard::KeyCode::KEY_LEFT_SHIFT;
     }
     else
     {
@@ -34,6 +35,7 @@ public:
       rightKeyCode = EventKeyboard::KeyCode::KEY_RIGHT_ARROW;
       upKeyCode = EventKeyboard::KeyCode::KEY_UP_ARROW;
       downKeyCode = EventKeyboard::KeyCode::KEY_DOWN_ARROW;
+      shiftKeyCode = EventKeyboard::KeyCode::KEY_RIGHT_CTRL;
     }
     rKeyCode = EventKeyboard::KeyCode::KEY_R;
   }
@@ -69,6 +71,10 @@ public:
       {
           rkey = true;
       }
+      else if (keyCode == shiftKeyCode)
+      {
+          shiftkey = true;
+      }
     };
     keyboardListener->onKeyReleased = [=](EventKeyboard::KeyCode keyCode, Event* event)
     {
@@ -91,6 +97,10 @@ public:
       else if (keyCode == rKeyCode)
       {
           rkey = false;
+      }
+      else if (keyCode == shiftKeyCode)
+      {
+          shiftkey = false;
       }
     };
 
@@ -123,15 +133,21 @@ public:
   {
       return rkey;
   }
+  bool IsShiftPressed()
+  {
+      return shiftkey;
+  }
 private:
   EventKeyboard::KeyCode leftKeyCode;
   EventKeyboard::KeyCode rightKeyCode;
   EventKeyboard::KeyCode upKeyCode;
   EventKeyboard::KeyCode downKeyCode;
   EventKeyboard::KeyCode rKeyCode;
+  EventKeyboard::KeyCode shiftKeyCode;
   bool left = false;
   bool right = false;
   bool up = false;
   bool down = false;
   bool rkey = false;
+  bool shiftkey = false;
 };

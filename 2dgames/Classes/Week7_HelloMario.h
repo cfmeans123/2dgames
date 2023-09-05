@@ -1,9 +1,13 @@
 #pragma once
 
 #include "cocos2d.h"
+#include "Hero.h"
 #include "KeyboardControllerComponent.h"
 
+
 USING_NS_CC;
+
+class Hero;
 
 class HelloMario : public Scene
 {
@@ -13,6 +17,8 @@ public:
   virtual bool init();
 
   virtual void update(float dt);
+
+  Hero* hero = nullptr;
 
   CREATE_FUNC(HelloMario)
 private:
@@ -49,7 +55,7 @@ private:
   Animation* animationFall;
   Animation* animationJump;
   Sprite* mario;
-  PhysicsBody* marioPhysicsBody;
+  PhysicsBody* heroPhysicsBody;
   std::vector<PhysicsBody*> contacts;
   KeyboardControllerComponent* controller;
   bool contact = false;
