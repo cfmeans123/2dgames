@@ -39,12 +39,14 @@ bool HelloMario::init()
 	hero->setPosition(hero->origin.x + hero->visibleSize.width / 2, hero->origin.y + hero->visibleSize.height / 2);
 	hero->setScale(0.2);
 
-	//hero->runAction(RepeatForever::create(Animate::create(hero->animationIdle)));
-
 	controller = KeyboardControllerComponent::create(KeyboardControllerComponent::ARROWS);
 	hero->addComponent(controller);
 	controller->initInput();
+	Item newItem(GreenToken);
 
+	myInventory.addItem("GreenToken");
+	myInventory.addItem("GreenToken");
+	addChild(&myInventory);
 
 	InitPhysics(level);
 
@@ -69,15 +71,7 @@ void HelloMario::InitPhysics(TMXTiledMap* level)
 	hero->getPhysicsBody()->setLinearDamping(0.1);
 	hero->getPhysicsBody()->setVelocityLimit(1024);
 	//getPhysicsWorld()->setSpeed(1.5);
-
-
 	contacts.reserve(4);
-	///TODO: make code below toggleable (aka can turn on and off debug draw) 
-	///TODO: Disallow mario's rotation to be effected by physics
-	///TODO: Set mario to be dynamic (physics is applied to it)
-	///TODO: Set mario physics body's category bitmask
-	///TODO: Set mario physics body's collision bitmask
-	///TODO: Set mario physics body's contact test bitmask
 
 	auto collisionLayer = level->getLayer("Collision");
 	for (int row = 0; row < level->getMapSize().height; ++row)
@@ -135,9 +129,9 @@ void HelloMario::InitPhysics(TMXTiledMap* level)
 void HelloMario::update(float dt)
 {
 	auto contact = contacts.size() > 0;
+	myInventory.displayInventory();
 
-
-	if (contact) /// mario is on the ground
+	if (contact) /// hero is on the ground
 	{
 		if (controller->IsRPressed())
 		{
@@ -156,22 +150,12 @@ void HelloMario::update(float dt)
 			hero->getPhysicsBody()->setVelocity(Vec2(-hero->mMoveSpeed, 0));
 			//marioPhysicsBody->applyForce(Vec2(-512, 0));
 			hero->setFlippedX(false);
-			/// TODO:
-			/// Move mario left with some velocity
-			/// Set Position, and Flip X scale to negative
-
-			/// Check if not in walking state + switch to walking animation
 		}
 		else if (controller->IsRightPressed())
 		{
 			hero->getPhysicsBody()->setVelocity(Vec2(hero->mMoveSpeed, 0));
 			//marioPhysicsBody->applyForce(Vec2(512, 0));
 			hero->setFlippedX(true);
-			/// TODO:
-			/// Move mario right with some velocity
-			/// Set Position, and Flip X scale to positive
-
-			/// check if not walking + switch to walking
 		}
 		if (animationState != Walking && hero->getPhysicsBody()->getVelocity().x != 0)
 		{
@@ -182,23 +166,15 @@ void HelloMario::update(float dt)
 		if (controller->IsDownPressed())
 		{
 
-			/// TODO (optional):
-			/// Make mario crouch
 		}
 
 		if (controller->IsUpPressed())
 		{
 			hero->getPhysicsBody()->applyImpulse(Vec2(0, 450), Vec2::ZERO);
-			/// TODO:
-			///Check if not in jumping state
-			  /// Apply an impulse force to mario to make him jump
-			  /// switch to jumping animation / sprite
 		}
 
 		if (animationState != Idle && !controller->IsLeftPressed() && !controller->IsRightPressed() && !controller->IsDownPressed() && !controller->IsUpPressed())
 		{
-			/// TODO:
-			/// switch to idle animation
 			animationState = Idle;
 			hero->stopAllActions();
 			hero->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(hero->idleFrames, 0.1))));

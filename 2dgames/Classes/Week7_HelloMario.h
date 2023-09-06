@@ -3,6 +3,7 @@
 #include "cocos2d.h"
 #include "Hero.h"
 #include "KeyboardControllerComponent.h"
+#include "Inventory.h"
 
 
 USING_NS_CC;
@@ -56,6 +57,11 @@ private:
   Animation* animationJump;
   Sprite* mario;
   PhysicsBody* heroPhysicsBody;
+
+  Inventory myInventory;
+  //Item myItem;
+
+
   std::vector<PhysicsBody*> contacts;
   KeyboardControllerComponent* controller;
   bool contact = false;
