@@ -28,6 +28,7 @@ public:
       upKeyCode = EventKeyboard::KeyCode::KEY_W;
       downKeyCode = EventKeyboard::KeyCode::KEY_S;
       shiftKeyCode = EventKeyboard::KeyCode::KEY_LEFT_SHIFT;
+      
     }
     else
     {
@@ -38,6 +39,10 @@ public:
       shiftKeyCode = EventKeyboard::KeyCode::KEY_RIGHT_CTRL;
     }
     rKeyCode = EventKeyboard::KeyCode::KEY_R;
+    oneKeyCode = EventKeyboard::KeyCode::KEY_1;
+    twoKeyCode = EventKeyboard::KeyCode::KEY_2;
+    threeKeyCode = EventKeyboard::KeyCode::KEY_3;
+    fourKeyCode = EventKeyboard::KeyCode::KEY_4;
   }
 
   virtual bool init()
@@ -75,6 +80,26 @@ public:
       {
           shiftkey = true;
       }
+      else if (keyCode == shiftKeyCode)
+      {
+          shiftkey = true;
+      }
+      else if (keyCode == oneKeyCode)
+      {
+          one = true;
+      }
+      else if (keyCode == twoKeyCode)
+      {
+          two = true;
+      }
+      else if (keyCode == threeKeyCode)
+      {
+          three = true;
+      }
+      else if (keyCode == fourKeyCode)
+      {
+          four = true;
+      }
     };
     keyboardListener->onKeyReleased = [=](EventKeyboard::KeyCode keyCode, Event* event)
     {
@@ -101,6 +126,22 @@ public:
       else if (keyCode == shiftKeyCode)
       {
           shiftkey = false;
+      }
+      else if (keyCode == oneKeyCode)
+      {
+          one = false;
+      }
+      else if (keyCode == twoKeyCode)
+      {
+          two = false;
+      }
+      else if (keyCode == threeKeyCode)
+      {
+          three = false;
+      }
+      else if (keyCode == fourKeyCode)
+      {
+          four = false;
       }
     };
 
@@ -137,6 +178,33 @@ public:
   {
       return shiftkey;
   }
+  bool IsOnePressed()
+  {
+      return one;
+  }
+  bool IsTwoPressed()
+  {
+      return two;
+  }
+  bool IsThreePressed()
+  {
+      return three;
+  }
+  bool IsFourPressed()
+  {
+      return four;
+  }
+
+  bool left = false;
+  bool right = false;
+  bool up = false;
+  bool down = false;
+  bool rkey = false;
+  bool shiftkey = false;
+  bool one = false;
+  bool two = false;
+  bool three = false;
+  bool four = false;
 private:
   EventKeyboard::KeyCode leftKeyCode;
   EventKeyboard::KeyCode rightKeyCode;
@@ -144,10 +212,8 @@ private:
   EventKeyboard::KeyCode downKeyCode;
   EventKeyboard::KeyCode rKeyCode;
   EventKeyboard::KeyCode shiftKeyCode;
-  bool left = false;
-  bool right = false;
-  bool up = false;
-  bool down = false;
-  bool rkey = false;
-  bool shiftkey = false;
+  EventKeyboard::KeyCode oneKeyCode;
+  EventKeyboard::KeyCode twoKeyCode;
+  EventKeyboard::KeyCode threeKeyCode;
+  EventKeyboard::KeyCode fourKeyCode;
 };

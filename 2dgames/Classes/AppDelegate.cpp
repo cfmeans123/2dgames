@@ -117,7 +117,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     {
         switch (keyCode)
         {
-            case EventKeyboard::KeyCode::KEY_1:
+            case EventKeyboard::KeyCode::KEY_5:
             {
 
                 auto scene = scenes[0]();

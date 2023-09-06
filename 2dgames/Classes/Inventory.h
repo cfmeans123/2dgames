@@ -21,9 +21,10 @@ public:
     // Display the inventory on the screen.
     void displayInventory();
 
+    std::vector<Sprite*> itemDraws;
 private:
     std::vector<std::string> items;
-    int drawPadding = 25;
+    int drawPadding = 75;
 
 };
 

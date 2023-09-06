@@ -42,10 +42,12 @@ bool HelloMario::init()
 	controller = KeyboardControllerComponent::create(KeyboardControllerComponent::ARROWS);
 	hero->addComponent(controller);
 	controller->initInput();
-	Item newItem(GreenToken);
+	//Item newItem(GreenToken);
 
+	/*myInventory.addItem("GreenToken");
 	myInventory.addItem("GreenToken");
 	myInventory.addItem("GreenToken");
+	myInventory.addItem("PurpleToken");*/
 	addChild(&myInventory);
 
 	InitPhysics(level);
@@ -129,7 +131,34 @@ void HelloMario::InitPhysics(TMXTiledMap* level)
 void HelloMario::update(float dt)
 {
 	auto contact = contacts.size() > 0;
-	myInventory.displayInventory();
+	
+	
+	if (controller->IsOnePressed())
+	{
+		controller->one = false;
+		myInventory.addItem("GreenToken");
+		myInventory.displayInventory();
+	}
+	if (controller->IsTwoPressed())
+	{
+		controller->two = false;
+		myInventory.addItem("PurpleToken");
+		myInventory.displayInventory();
+	}
+	if (controller->IsThreePressed())
+	{
+		controller->three = false;
+		myInventory.removeItem("GreenToken");
+		myInventory.displayInventory();
+	}
+	if (controller->IsFourPressed())
+	{
+		controller->four = false;
+		myInventory.removeItem("PurpleToken");
+		myInventory.displayInventory();
+	}
+
+
 
 	if (contact) /// hero is on the ground
 	{
