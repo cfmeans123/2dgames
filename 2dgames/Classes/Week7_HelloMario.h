@@ -20,7 +20,7 @@ public:
   virtual void update(float dt);
 
   Hero* hero = nullptr;
-
+  Sprite* background;
   CREATE_FUNC(HelloMario)
 private:
   static Vector<SpriteFrame*> getAnimation(const char* format, int count)

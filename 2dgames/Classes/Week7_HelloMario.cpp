@@ -31,7 +31,14 @@ bool HelloMario::init()
 	auto origin = _director->getVisibleOrigin();
 
 	/// TODO Design your own level(s)
-	auto level = TMXTiledMap::create("Mario/tmx/MarioSampleLevel.tmx");
+	auto level = TMXTiledMap::create("Art_for_2dGamesFinal/ForestMap.tmx");
+	
+	background = Sprite::create("Art_for_2dGamesFinal/ForestBackground.png");
+
+	//background->initWithFile("Art_for_2dGamesFinal/ForestBackground.png");
+	addChild(background);
+	//background->
+	background->setPosition(background->getContentSize().width / 2, background->getContentSize().height / 2);
 
 	this->addChild(level);
 	hero = Hero::Create();
@@ -44,10 +51,6 @@ bool HelloMario::init()
 	controller->initInput();
 	//Item newItem(GreenToken);
 
-	/*myInventory.addItem("GreenToken");
-	myInventory.addItem("GreenToken");
-	myInventory.addItem("GreenToken");
-	myInventory.addItem("PurpleToken");*/
 	addChild(&myInventory);
 
 	InitPhysics(level);
@@ -60,15 +63,18 @@ bool HelloMario::init()
 void HelloMario::InitPhysics(TMXTiledMap* level)
 {
 	auto physicsWorld = getPhysicsWorld();
+	getPhysicsWorld()->setFixedUpdateRate(60);
 	physicsWorld->setGravity(cocos2d::Vec2(0, -980));
 
-	heroPhysicsBody = cocos2d::PhysicsBody::createBox(cocos2d::Size(hero->getContentSize().width / 2, hero->getContentSize().height), PHYSICSSHAPE_MATERIAL_DEFAULT);
+	//heroPhysicsBody = cocos2d::PhysicsBody::createBox(cocos2d::Size(hero->getContentSize().width / 2, hero->getContentSize().height), PHYSICSSHAPE_MATERIAL_DEFAULT);
+	heroPhysicsBody = cocos2d::PhysicsBody::createCircle(hero->getContentSize().width / 4, PHYSICSSHAPE_MATERIAL_DEFAULT, Vec2(0.0f, -40.0f));
 
 	heroPhysicsBody->setRotationEnable(false);
 	heroPhysicsBody->setDynamic(true);
 	heroPhysicsBody->setCategoryBitmask(1);
 	heroPhysicsBody->setCollisionBitmask(2);
 	heroPhysicsBody->setContactTestBitmask(2);
+	//heroPhysicsBody->setMass(5.0f);
 	hero->setPhysicsBody(heroPhysicsBody);
 	hero->getPhysicsBody()->setLinearDamping(0.1);
 	hero->getPhysicsBody()->setVelocityLimit(1024);
@@ -176,13 +182,23 @@ void HelloMario::update(float dt)
 		}
 		if (controller->IsLeftPressed())
 		{
-			hero->getPhysicsBody()->setVelocity(Vec2(-hero->mMoveSpeed, 0));
+			//hero->getPhysicsBody()->setVelocity(Vec2(-hero->mMoveSpeed, 0));
 			//marioPhysicsBody->applyForce(Vec2(-512, 0));
+			if (hero->getPhysicsBody()->getVelocity().x > -512)
+			{
+				hero->getPhysicsBody()->applyForce(Vec2(-1024, hero->getPhysicsBody()->getVelocity().y));
+				//hero->getPhysicsBody()->applyImpulse(Vec2(-1024, 0), Vec2::ZERO);
+			}
 			hero->setFlippedX(false);
 		}
 		else if (controller->IsRightPressed())
 		{
-			hero->getPhysicsBody()->setVelocity(Vec2(hero->mMoveSpeed, 0));
+			if (hero->getPhysicsBody()->getVelocity().x < 512)
+			{
+				hero->getPhysicsBody()->applyForce(Vec2(1024, hero->getPhysicsBody()->getVelocity().y));
+				//hero->getPhysicsBody()->applyImpulse(Vec2(1024, 0), Vec2::ZERO);
+			}
+			//hero->getPhysicsBody()->setVelocity(Vec2(hero->mMoveSpeed, 0));
 			//marioPhysicsBody->applyForce(Vec2(512, 0));
 			hero->setFlippedX(true);
 		}
@@ -207,7 +223,7 @@ void HelloMario::update(float dt)
 			animationState = Idle;
 			hero->stopAllActions();
 			hero->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(hero->idleFrames, 0.1))));
-			hero->getPhysicsBody()->setVelocity(Vec2::ZERO);
+			hero->getPhysicsBody()->setVelocity(Vec2(0.0f, hero->getPhysicsBody()->getVelocity().y));
 		}
 	}
 	else
@@ -272,6 +288,8 @@ void HelloMario::update(float dt)
 		}
 	}
 
-	/// TODO:
+	auto& position = hero->getPosition();
+	this->_defaultCamera->setPosition(position.x, _director->getVisibleSize().height/2 );
+	/// TODO
 	/// Set camera to follow mario
 }
