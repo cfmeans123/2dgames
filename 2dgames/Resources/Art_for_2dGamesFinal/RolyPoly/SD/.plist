@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>tile000.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-2.5,0}</string>
+                <key>spriteSize</key>
+                <string>{15,15}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{40,59},{15,15}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>15 17 0 17 0 2 15 2</string>
+                <key>verticesUV</key>
+                <string>55 74 40 74 40 59 55 59</string>
+            </dict>
+            <key>tile001.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-2,0.5}</string>
+                <key>spriteSize</key>
+                <string>{12,16}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{13,26},{12,16}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>14 17 2 17 2 1 14 1</string>
+                <key>verticesUV</key>
+                <string>25 42 13 42 13 26 25 26</string>
+            </dict>
+            <key>tile002.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-1,0.5}</string>
+                <key>spriteSize</key>
+                <string>{14,16}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{26,59},{14,16}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 17 2 17 2 1 16 1</string>
+                <key>verticesUV</key>
+                <string>40 75 26 75 26 59 40 59</string>
+            </dict>
+            <key>tile003.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-1,0.5}</string>
+                <key>spriteSize</key>
+                <string>{12,16}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{25,26},{12,16}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>15 17 3 17 3 1 15 1</string>
+                <key>verticesUV</key>
+                <string>37 42 25 42 25 26 37 26</string>
+            </dict>
+            <key>tile004.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{12,13}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{0,0},{12,13}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 16 4 16 4 3 16 3</string>
+                <key>verticesUV</key>
+                <string>12 13 0 13 0 0 12 0</string>
+            </dict>
+            <key>tile005.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{12,13}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{12,0},{12,13}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 16 4 16 4 3 16 3</string>
+                <key>verticesUV</key>
+                <string>24 13 12 13 12 0 24 0</string>
+            </dict>
+            <key>tile006.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{1,0}</string>
+                <key>spriteSize</key>
+                <string>{12,13}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{24,0},{12,13}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>17 16 5 16 5 3 17 3</string>
+                <key>verticesUV</key>
+                <string>36 13 24 13 24 0 36 0</string>
+            </dict>
+            <key>tile007.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{1,0}</string>
+                <key>spriteSize</key>
+                <string>{12,13}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{36,0},{12,13}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>17 16 5 16 5 3 17 3</string>
+                <key>verticesUV</key>
+                <string>48 13 36 13 36 0 48 0</string>
+            </dict>
+            <key>tile008.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{2,-0.5}</string>
+                <key>spriteSize</key>
+                <string>{13,14}</string>
+                <key>spriteSourceSize</key>
+                <string>{19,19}</string>
+                <key>textureRect</key>
+                <string>{{0,26},{13,14}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>18 17 5 17 5 3 18 3</string>
+                <key>verticesUV</key>
+                <string>13 40 0 40 0 26 13 26</string>
+            </dict>
+            <key>tile009.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-2.5,-0.5}</string>
+                <key>spriteSize</key>
+                <string>{13,16}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{0,59},{13,16}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>14 18 1 18 1 2 14 2</string>
+                <key>verticesUV</key>
+                <string>13 75 0 75 0 59 13 59</string>
+            </dict>
+            <key>tile010.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-2,-0.5}</string>
+                <key>spriteSize</key>
+                <string>{12,16}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{37,26},{12,16}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>14 18 2 18 2 2 14 2</string>
+                <key>verticesUV</key>
+                <string>49 42 37 42 37 26 49 26</string>
+            </dict>
+            <key>tile011.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-1,-1}</string>
+                <key>spriteSize</key>
+                <string>{12,17}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{48,42},{12,17}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>15 19 3 19 3 2 15 2</string>
+                <key>verticesUV</key>
+                <string>60 59 48 59 48 42 60 42</string>
+            </dict>
+            <key>tile012.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-1,-0.5}</string>
+                <key>spriteSize</key>
+                <string>{12,16}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{0,42},{12,16}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>15 18 3 18 3 2 15 2</string>
+                <key>verticesUV</key>
+                <string>12 58 0 58 0 42 12 42</string>
+            </dict>
+            <key>tile013.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,-1}</string>
+                <key>spriteSize</key>
+                <string>{12,13}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{48,0},{12,13}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 17 4 17 4 4 16 4</string>
+                <key>verticesUV</key>
+                <string>60 13 48 13 48 0 60 0</string>
+            </dict>
+            <key>tile014.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,-1}</string>
+                <key>spriteSize</key>
+                <string>{12,13}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{0,13},{12,13}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 17 4 17 4 4 16 4</string>
+                <key>verticesUV</key>
+                <string>12 26 0 26 0 13 12 13</string>
+            </dict>
+            <key>tile015.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{1,-1}</string>
+                <key>spriteSize</key>
+                <string>{12,13}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{12,13},{12,13}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>17 17 5 17 5 4 17 4</string>
+                <key>verticesUV</key>
+                <string>24 26 12 26 12 13 24 13</string>
+            </dict>
+            <key>tile018.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-2.5,-1.5}</string>
+                <key>spriteSize</key>
+                <string>{13,16}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{13,59},{13,16}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>0 3 4 2 3 0 2 0 1</string>
+                <key>vertices</key>
+                <string>14 17 12 19 1 19 1 3 14 3</string>
+                <key>verticesUV</key>
+                <string>26 73 24 75 13 75 13 59 26 59</string>
+            </dict>
+            <key>tile019.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-2,-1.5}</string>
+                <key>spriteSize</key>
+                <string>{12,16}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{12,42},{12,16}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>14 19 2 19 2 3 14 3</string>
+                <key>verticesUV</key>
+                <string>24 58 12 58 12 42 24 42</string>
+            </dict>
+            <key>tile020.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-1,-1.5}</string>
+                <key>spriteSize</key>
+                <string>{12,16}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{24,42},{12,16}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>15 19 3 19 3 3 15 3</string>
+                <key>verticesUV</key>
+                <string>36 58 24 58 24 42 36 42</string>
+            </dict>
+            <key>tile021.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-1,-1.5}</string>
+                <key>spriteSize</key>
+                <string>{12,16}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{36,42},{12,16}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>15 19 3 19 3 3 15 3</string>
+                <key>verticesUV</key>
+                <string>48 58 36 58 36 42 48 42</string>
+            </dict>
+            <key>tile022.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,-2}</string>
+                <key>spriteSize</key>
+                <string>{12,13}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{24,13},{12,13}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 18 4 18 4 5 16 5</string>
+                <key>verticesUV</key>
+                <string>36 26 24 26 24 13 36 13</string>
+            </dict>
+            <key>tile023.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,-2}</string>
+                <key>spriteSize</key>
+                <string>{12,13}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{36,13},{12,13}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>16 18 4 18 4 5 16 5</string>
+                <key>verticesUV</key>
+                <string>48 26 36 26 36 13 48 13</string>
+            </dict>
+            <key>tile024.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{1,-2}</string>
+                <key>spriteSize</key>
+                <string>{12,13}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,19}</string>
+                <key>textureRect</key>
+                <string>{{48,13},{12,13}}</string>
+                <key>textureRotated</key>
+                <false/>
+                <key>triangles</key>
+                <string>1 2 3 0 1 3</string>
+                <key>vertices</key>
+                <string>17 18 5 18 5 5 17 5</string>
+                <key>verticesUV</key>
+                <string>60 26 48 26 48 13 60 13</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>3</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>.png</string>
+            <key>size</key>
+            <string>{60,75}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:a44d53b10cc8ce4556f29af900447cd8:1b7c29e148dd3a888ee1e7013b88c091:5dfe20cf019a47cbcac665fab3ce66a3$</string>
+            <key>textureFileName</key>
+            <string>.png</string>
+        </dict>
+    </dict>
+</plist>

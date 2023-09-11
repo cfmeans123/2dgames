@@ -1,6 +1,9 @@
 #include "Inventory.h"
 
+
 using namespace cocos2d;
+
+
 
 Inventory::Inventory()
 {
@@ -59,15 +62,17 @@ void Inventory::removeItem(const std::string& itemName)
 
 
 
-void Inventory::displayInventory()
+void Inventory::displayInventory(Hero* hero)
 {
 	drawPadding = 25;
-
+	
 	for (auto &item : items)
 	{
+		
 		int displayindex = &item - &items[0];
-		itemDraws.at(displayindex)->setPosition((_director->getVisibleSize().width / 5) + drawPadding, _director->getVisibleSize().height * 0.1);
+		itemDraws.at(displayindex)->setPosition(hero->getPosition().x - (_director->getVisibleSize().width / 5) + drawPadding, _director->getVisibleSize().height * 0.1);
 		drawPadding += 75;
 		
 	}
+
 }

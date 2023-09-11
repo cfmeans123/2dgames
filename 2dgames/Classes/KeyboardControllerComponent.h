@@ -16,6 +16,8 @@ public:
     auto controller = new KeyboardControllerComponent(type);
     controller->init();
     controller->autorelease();
+
+    //auto mousecontroller = new MouseControllerComponent
     return controller;
   }
 
@@ -43,6 +45,7 @@ public:
     twoKeyCode = EventKeyboard::KeyCode::KEY_2;
     threeKeyCode = EventKeyboard::KeyCode::KEY_3;
     fourKeyCode = EventKeyboard::KeyCode::KEY_4;
+    leftClickKeyCode = EventMouse::MouseButton::BUTTON_LEFT;
   }
 
   virtual bool init()
@@ -54,6 +57,7 @@ public:
   void initInput()
   {
     auto keyboardListener = EventListenerKeyboard::create();
+    auto mouseListener = EventListenerMouse::create();
     keyboardListener->onKeyPressed = [=](EventKeyboard::KeyCode keyCode, Event* event)
     {
       if (keyCode == leftKeyCode)
@@ -145,6 +149,14 @@ public:
       }
     };
 
+  /*  mouseListener->onMouseDown = [=](EventMouse::MouseButton buttonCode, Event* event)
+    {
+        if (buttonCode == leftClickKeyCode)
+        {
+
+        }
+    };*/
+
     auto scene = this->getOwner()->getScene();
     auto dispatcher = Director::getInstance()->getEventDispatcher();
 
@@ -194,6 +206,10 @@ public:
   {
       return four;
   }
+  bool IsLeftClickPressed()
+  {
+      return four;
+  }
 
   bool left = false;
   bool right = false;
@@ -205,6 +221,7 @@ public:
   bool two = false;
   bool three = false;
   bool four = false;
+  bool leftClick = false;
 private:
   EventKeyboard::KeyCode leftKeyCode;
   EventKeyboard::KeyCode rightKeyCode;
@@ -216,4 +233,7 @@ private:
   EventKeyboard::KeyCode twoKeyCode;
   EventKeyboard::KeyCode threeKeyCode;
   EventKeyboard::KeyCode fourKeyCode;
+  EventMouse::MouseButton leftClickKeyCode;
+
+
 };

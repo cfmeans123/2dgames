@@ -4,8 +4,9 @@
 
 #include "cocos2d.h"
 #include "Item.h"
+#include "Hero.h"
 
-
+class Hero;
 
 class Inventory : public cocos2d::Node
 {
@@ -19,7 +20,7 @@ public:
     void removeItem(const std::string& itemName);
 
     // Display the inventory on the screen.
-    void displayInventory();
+    void displayInventory(Hero* hero);
 
     std::vector<Sprite*> itemDraws;
 private:

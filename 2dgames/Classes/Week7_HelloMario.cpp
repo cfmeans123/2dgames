@@ -1,5 +1,6 @@
 #include "Week7_HelloMario.h"
-
+#include <functional>
+using namespace std::placeholders;
 
 
 Scene* HelloMario::createScene()
@@ -26,7 +27,6 @@ bool HelloMario::init()
 		return false;
 	}
 
-
 	auto visibleSize = _director->getVisibleSize();
 	auto origin = _director->getVisibleOrigin();
 
@@ -34,6 +34,8 @@ bool HelloMario::init()
 	auto level = TMXTiledMap::create("Art_for_2dGamesFinal/ForestMap.tmx");
 	
 	background = Sprite::create("Art_for_2dGamesFinal/ForestBackground.png");
+	background->setScale(2);
+	background->setPositionX(200);
 
 	//background->initWithFile("Art_for_2dGamesFinal/ForestBackground.png");
 	addChild(background);
@@ -45,6 +47,20 @@ bool HelloMario::init()
 	addChild(hero);
 	hero->setPosition(hero->origin.x + hero->visibleSize.width / 2, hero->origin.y + hero->visibleSize.height / 2);
 	hero->setScale(0.2);
+	
+	
+	//attempt to create container for initPhysics functions...
+	//std::function<void(TMXTiledMap*)> funcpointer = std::bind(&Hero::initPhysics, hero, _1);
+	//const auto& monster = monsterpool->getMonster();
+
+	////phyInitList.pushBack(funcpointer);
+
+	//this->addChild(monster);
+	//if (monster->heroref == nullptr)
+	//{
+	//	monster->heroref = hero;
+	//}
+
 
 	controller = KeyboardControllerComponent::create(KeyboardControllerComponent::ARROWS);
 	hero->addComponent(controller);
@@ -64,40 +80,49 @@ void HelloMario::InitPhysics(TMXTiledMap* level)
 {
 	auto physicsWorld = getPhysicsWorld();
 	getPhysicsWorld()->setFixedUpdateRate(60);
+	hero->initPhysics(level);
+	int displace = 20;
+	for (auto& monster : monsterpool->getMonsterPool())
+	{
+		monster->setPosition(hero->getPositionX() + displace, hero->getPositionY());
+		this->addChild(monster);
+		if (monster->heroref == nullptr)
+		{
+			monster->heroref = hero;
+		}
+		displace += 55;
+		monster->initPhysics(level);
+	}
 	physicsWorld->setGravity(cocos2d::Vec2(0, -980));
 
-	//heroPhysicsBody = cocos2d::PhysicsBody::createBox(cocos2d::Size(hero->getContentSize().width / 2, hero->getContentSize().height), PHYSICSSHAPE_MATERIAL_DEFAULT);
-	heroPhysicsBody = cocos2d::PhysicsBody::createCircle(hero->getContentSize().width / 4, PHYSICSSHAPE_MATERIAL_DEFAULT, Vec2(0.0f, -40.0f));
-
-	heroPhysicsBody->setRotationEnable(false);
-	heroPhysicsBody->setDynamic(true);
-	heroPhysicsBody->setCategoryBitmask(1);
-	heroPhysicsBody->setCollisionBitmask(2);
-	heroPhysicsBody->setContactTestBitmask(2);
-	//heroPhysicsBody->setMass(5.0f);
-	hero->setPhysicsBody(heroPhysicsBody);
-	hero->getPhysicsBody()->setLinearDamping(0.1);
-	hero->getPhysicsBody()->setVelocityLimit(1024);
-	//getPhysicsWorld()->setSpeed(1.5);
 	contacts.reserve(4);
 
 	auto collisionLayer = level->getLayer("Collision");
-	for (int row = 0; row < level->getMapSize().height; ++row)
-	{
-		for (int col = 0; col < level->getMapSize().width; ++col)
-		{
-			auto tile = collisionLayer->getTileAt(cocos2d::Vec2(col, row));
-			if (tile)
-			{
-				auto physicsBody = cocos2d::PhysicsBody::createBox(tile->getContentSize(), PHYSICSSHAPE_MATERIAL_DEFAULT);
-				tile->setPhysicsBody(physicsBody);
-				physicsBody->setDynamic(false);
-				physicsBody->setCategoryBitmask(2);
-				physicsBody->setCollisionBitmask(1);
-				physicsBody->setContactTestBitmask(1);
-			}
-		}
-	}
+	
+	//mimicing composite collision volume through hard coded position values
+	auto groundPhysicsBody = cocos2d::PhysicsBody::createBox(Size( 6240, 32 ), PHYSICSSHAPE_MATERIAL_DEFAULT, Vec2(800, -50));
+	auto tile = collisionLayer->getTileAt(cocos2d::Vec2(73, 13));
+	tile->setPhysicsBody(groundPhysicsBody);
+	groundPhysicsBody->setDynamic(false);
+	groundPhysicsBody->setCategoryBitmask(2);
+	groundPhysicsBody->setCollisionBitmask(1);
+	groundPhysicsBody->setContactTestBitmask(1);
+
+	auto frontBoundPhysicsBody = cocos2d::PhysicsBody::createBox(Size(32, 512), PHYSICSSHAPE_MATERIAL_DEFAULT, Vec2(0, 200));
+	auto tile2 = collisionLayer->getTileAt(cocos2d::Vec2(0, 14));
+	tile2->setPhysicsBody(frontBoundPhysicsBody);
+	frontBoundPhysicsBody->setDynamic(false);
+	frontBoundPhysicsBody->setCategoryBitmask(2);
+	frontBoundPhysicsBody->setCollisionBitmask(1);
+	frontBoundPhysicsBody->setContactTestBitmask(1);
+	
+	auto backBoundPhysicsBody = cocos2d::PhysicsBody::createBox(Size(32, 512), PHYSICSSHAPE_MATERIAL_DEFAULT, Vec2(6240, 200));
+	auto tile3 = collisionLayer->getTileAt(cocos2d::Vec2(1, 14));
+	tile3->setPhysicsBody(backBoundPhysicsBody);
+	backBoundPhysicsBody->setDynamic(false);
+	backBoundPhysicsBody->setCategoryBitmask(2);
+	backBoundPhysicsBody->setCollisionBitmask(1);
+	backBoundPhysicsBody->setContactTestBitmask(1);
 
 	auto contactListener = EventListenerPhysicsContact::create();
 	contactListener->onContactBegin = [=](PhysicsContact& contact) -> bool
@@ -106,7 +131,7 @@ void HelloMario::InitPhysics(TMXTiledMap* level)
 		auto b = contact.getShapeB()->getBody();
 
 		auto other = hero->getPhysicsBody() == a ? b : a;
-
+		
 		if (hero->getPhysicsBody()->getPosition().y > other->getPosition().y && abs(contact.getContactData()->normal.y) > 0.9f)
 		{
 			contacts.push_back(other);
@@ -143,26 +168,28 @@ void HelloMario::update(float dt)
 	{
 		controller->one = false;
 		myInventory.addItem("GreenToken");
-		myInventory.displayInventory();
 	}
 	if (controller->IsTwoPressed())
 	{
 		controller->two = false;
 		myInventory.addItem("PurpleToken");
-		myInventory.displayInventory();
 	}
 	if (controller->IsThreePressed())
 	{
 		controller->three = false;
 		myInventory.removeItem("GreenToken");
-		myInventory.displayInventory();
 	}
 	if (controller->IsFourPressed())
 	{
-		controller->four = false;
-		myInventory.removeItem("PurpleToken");
-		myInventory.displayInventory();
+		/*controller->four = false;
+		myInventory.removeItem("PurpleToken");	*/
+		for (auto& monster : monsterpool->getMonsterPool())
+		{
+			monster->getPhysicsBody()->setDynamic(!monster->getPhysicsBody()->isDynamic());
+		}
+
 	}
+	myInventory.displayInventory(hero);
 
 
 
@@ -170,10 +197,12 @@ void HelloMario::update(float dt)
 	{
 		if (controller->IsRPressed())
 		{
+			controller->rkey = false;
 			auto physicsWorld = getPhysicsWorld();
 			if (physicsWorld->getDebugDrawMask() == PhysicsWorld::DEBUGDRAW_ALL)
 			{
 				physicsWorld->setDebugDrawMask(NULL);
+
 			}
 			else
 			{
@@ -289,6 +318,7 @@ void HelloMario::update(float dt)
 	}
 
 	auto& position = hero->getPosition();
+	if (position.x > 600 && position.x < 5700)
 	this->_defaultCamera->setPosition(position.x, _director->getVisibleSize().height/2 );
 	/// TODO
 	/// Set camera to follow mario

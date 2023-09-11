@@ -25,6 +25,8 @@ class Hero : public Sprite
 {
 public:
 	static Hero* Create();
+	void initPhysics(TMXTiledMap* level);
+
 	//Hero(Hero &h);
 
 	PhysicsBody* physicsBody;
@@ -44,7 +46,6 @@ public:
 	Animation* animationAttackOne;
 	Animation* animationAttackTwo;
 	Animation* animationHurrah;
-
 
 	Sprite* mario;
 	//PhysicsBody* heroPhysicsBody;
@@ -74,18 +75,7 @@ public:
 
 	//virtual void update(float dt);
 
-	static Vector<SpriteFrame*> getAnimation(const char* format, int count)
-	{
-		auto spritecache = SpriteFrameCache::getInstance();
-		Vector<SpriteFrame*> animFrames;
-		char str[100];
-		for (int i = 1; i <= count; i++)
-		{
-			snprintf(str, sizeof(str), format, i);
-			animFrames.pushBack(spritecache->getSpriteFrameByName(str));
-		}
-		return animFrames;
-	}
+	
 
 	
 	
