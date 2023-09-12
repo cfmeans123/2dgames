@@ -1,6 +1,8 @@
 #pragma once
 
 #include "cocos2d.h"
+#include "CollisionVolume.h"
+#include "KeyboardControllerComponent.h"
 
 
 USING_NS_CC;
@@ -9,14 +11,15 @@ USING_NS_CC;
 enum CombatState
 {
 	Attack,
-	Block,
-	Idle,
+	None,
 	Stun
 };
+
 enum MoveState
 {
-	Normal,
+	Idle,
 	Jump,
+	Walk,
 	Sprint,
 	Off
 };
@@ -30,6 +33,7 @@ public:
 	//Hero(Hero &h);
 
 	PhysicsBody* physicsBody;
+	PhysicsShapeBox* attackCollisionMask;
 	float spriteHeight;
 	float spriteWidth;
 
@@ -68,18 +72,36 @@ public:
 	MoveState mMoveState;
 	CombatState mCombatState;
 
+
 	//movement
 	float defaultMoveSpeed = 256;
 	float sprintMoveSpeed = 512;
 	float mMoveSpeed = 256;
 
-	//virtual void update(float dt);
+	//State Machine
+	void setCombatState(CombatState state);
+	void setMoveState(MoveState state);
+	void update(float dt) override;
+	// Reset the enemy to its initial state
+	void reset();
+	float stunTimer = 3.0f;
+	CollisionVolume collisionVolume;
 
-	
+	float frameSpeed = 0.1f;
+	float sprintFrameSpeed = 0.05f;
+	void toggleCollisionVolume();
+private:
+	void enterNewCombatState();
+	void enterNewMoveState();
 
-	
-	
-
+	void exitCurrentCombatState();
+	void exitCurrentMoveState();
+	void updateNoneState(float dt);
+	void updateAttackState(float dt);
+	void updateStunState(float dt);	
 };
+
+
+
 
 

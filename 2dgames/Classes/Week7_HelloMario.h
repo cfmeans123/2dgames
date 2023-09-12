@@ -19,10 +19,14 @@ public:
 
 	virtual void update(float dt);
 
-	Hero* hero = nullptr;
+	Hero* hero;
 	Sprite* background;
 	CREATE_FUNC(HelloMario)
 	MonsterPool* monsterpool = new MonsterPool(1);
+	
+	void initPauseMenu();
+	void showPauseMenu();
+	void hidePauseMenu();
 
 private:
 
@@ -52,7 +56,7 @@ private:
 
 	Inventory myInventory;
 	//Item myItem;
-
+	cocos2d::Menu* menu;
 
 	std::vector<PhysicsBody*> contacts;
 	KeyboardControllerComponent* controller;

@@ -29,7 +29,7 @@ public:
       rightKeyCode = EventKeyboard::KeyCode::KEY_D;
       upKeyCode = EventKeyboard::KeyCode::KEY_W;
       downKeyCode = EventKeyboard::KeyCode::KEY_S;
-      shiftKeyCode = EventKeyboard::KeyCode::KEY_LEFT_SHIFT;
+      
       
     }
     else
@@ -38,14 +38,16 @@ public:
       rightKeyCode = EventKeyboard::KeyCode::KEY_RIGHT_ARROW;
       upKeyCode = EventKeyboard::KeyCode::KEY_UP_ARROW;
       downKeyCode = EventKeyboard::KeyCode::KEY_DOWN_ARROW;
-      shiftKeyCode = EventKeyboard::KeyCode::KEY_RIGHT_CTRL;
     }
     rKeyCode = EventKeyboard::KeyCode::KEY_R;
     oneKeyCode = EventKeyboard::KeyCode::KEY_1;
     twoKeyCode = EventKeyboard::KeyCode::KEY_2;
     threeKeyCode = EventKeyboard::KeyCode::KEY_3;
     fourKeyCode = EventKeyboard::KeyCode::KEY_4;
+    shiftKeyCode = EventKeyboard::KeyCode::KEY_LEFT_SHIFT;
+    escapeKeyCode = EventKeyboard::KeyCode::KEY_ESCAPE;
     leftClickKeyCode = EventMouse::MouseButton::BUTTON_LEFT;
+    rightClickKeyCode = EventMouse::MouseButton::BUTTON_RIGHT;
   }
 
   virtual bool init()
@@ -104,6 +106,10 @@ public:
       {
           four = true;
       }
+      else if (keyCode == escapeKeyCode)
+      {
+          escape = true;
+      }
     };
     keyboardListener->onKeyReleased = [=](EventKeyboard::KeyCode keyCode, Event* event)
     {
@@ -147,20 +153,41 @@ public:
       {
           four = false;
       }
+      else if (keyCode == escapeKeyCode)
+      {
+          escape = false;
+      }
     };
 
-  /*  mouseListener->onMouseDown = [=](EventMouse::MouseButton buttonCode, Event* event)
+    mouseListener->onMouseDown = [=](EventMouse* buttonCode)
     {
-        if (buttonCode == leftClickKeyCode)
+        if (buttonCode->getMouseButton() == leftClickKeyCode)
         {
-
+            leftClick = true;
         }
-    };*/
+        if (buttonCode->getMouseButton() == rightClickKeyCode)
+        {
+            rightClick = true;
+        }
+    };
+
+    mouseListener->onMouseUp = [=](EventMouse* buttonCode)
+    {
+        if (buttonCode->getMouseButton() == leftClickKeyCode)
+        {
+            leftClick = false;
+        }
+        if (buttonCode->getMouseButton() == rightClickKeyCode)
+        {
+            rightClick = false;
+        }
+    };
 
     auto scene = this->getOwner()->getScene();
     auto dispatcher = Director::getInstance()->getEventDispatcher();
 
     dispatcher->addEventListenerWithSceneGraphPriority(keyboardListener, scene);
+    dispatcher->addEventListenerWithSceneGraphPriority(mouseListener, scene);
   }
 
   bool IsLeftPressed()
@@ -206,9 +233,17 @@ public:
   {
       return four;
   }
+  bool IsEscapePressed()
+  {
+      return escape;
+  }
   bool IsLeftClickPressed()
   {
-      return four;
+      return leftClick;
+  }
+  bool IsRightClickPressed()
+  {
+      return rightClick;
   }
 
   bool left = false;
@@ -222,6 +257,8 @@ public:
   bool three = false;
   bool four = false;
   bool leftClick = false;
+  bool rightClick = false;
+  bool escape = false;
 private:
   EventKeyboard::KeyCode leftKeyCode;
   EventKeyboard::KeyCode rightKeyCode;
@@ -233,7 +270,9 @@ private:
   EventKeyboard::KeyCode twoKeyCode;
   EventKeyboard::KeyCode threeKeyCode;
   EventKeyboard::KeyCode fourKeyCode;
+  EventKeyboard::KeyCode escapeKeyCode;
   EventMouse::MouseButton leftClickKeyCode;
+  EventMouse::MouseButton rightClickKeyCode;
 
 
 };

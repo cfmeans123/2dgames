@@ -7,7 +7,7 @@ bool Monster::init()
     {
         return false;
     }
-
+    setScale(2);
     // Initialize enemy sprite and other properties here
     cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Art_for_2dGamesFinal/spawn.plist");
     spawningFrames = AnimationHelper::getAnimation("spawn%01d.png", 3);
@@ -16,12 +16,14 @@ bool Monster::init()
     cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Art_for_2dGamesFinal/RightRoll.plist");
     rollingFrames = AnimationHelper::getAnimation("rightroll%01d.png", 3);
     //animationRoll = Animation::createWithSpriteFrames(rollingFrames, 0.1);
-    
+
     //cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Hero/Hero_Idle/Hero_Idle.plist");
     //rollingFrames = AnimationHelper::getAnimation("BlueKnight_entity_000_Idle_%03d.png", 10);
-    
+
     stun = Sprite::create("Art_for_2dGamesFinal/stun.png");
     search = Sprite::create("Art_for_2dGamesFinal/search.png");
+    attack = Sprite::create("Art_for_2dGamesFinal/attack.png");
+
     //stun = cocos2d::SpriteFrame::create("Art_for_2dGamesFinal/stun.png", cocos2d::Rect(0, 0, 39, 38));
     //cocos2d::SpriteFrameCache::getInstance()->addSpriteFrame(stun, "stun");
 
@@ -36,14 +38,20 @@ bool Monster::init()
     
     //stuntex->autorelease();
     //stuntex->initWithImage(stunImage);
-
+    myHealth.emptyBar->setScale(0.25);
+    myHealth.fillBar->setScale(0.25);
+    myHealth.emptyBar->setPosition(this->getPositionX() + 19, this->getPositionY() + 42);
+    myHealth.fillBar->setPosition(this->getPositionX() + 19, this->getPositionY() + 42);
     myHealth.currentHealth = health;
     myHealth.maxHealth = maxHealth;
     addChild(myHealth.emptyBar);
     addChild(myHealth.fillBar);
+
+
     // Set initial state to Idle
     setState(MonsterState::Attack);
     scheduleUpdate();
+    //this->_offsetPosition = Vec2(19.5, 19);
 
     // Schedule update method
 
@@ -69,6 +77,7 @@ void Monster::update(float dt)
     //mPhysicsBody->setVelocity(Vec2(0.0f, 0.0f));
     // Update logic for the current state
     Vec2 velocity = this->getPhysicsBody()->getVelocity();
+   
     //getPhysicsBody()->setVelocity(Vec2(0.0f, 0.0f));
     switch (currentState)
     {
@@ -99,20 +108,22 @@ void Monster::enterNewState()
     case MonsterState::Idle:
         //this->stopAllActions();
         //this->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(spawningFrames, 0.1))));
-        this->setTexture("Art_for_2dGamesFinal/stun.png");
+        this->setTexture("Art_for_2dGamesFinal/search.png");
         // Enter Idle state
         break;
     case MonsterState::Attack:
         // Enter Attack state
         //this->stopAllActions();
-        this->setTexture("Art_for_2dGamesFinal/search.png");
+        this->setTexture("Art_for_2dGamesFinal/attack.png");
         //this->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(rollingFrames, 0.1))));
         timer = 3.0f;
         break;
     case MonsterState::Stun:
         // Enter Stun state
-        timer = 1.5f;
+        timer = 3.0f;
         this->stopAllActions();
+        this->setTexture("Art_for_2dGamesFinal/stun.png");
+        mPhysicsBody->setVelocity(Vec2::ZERO);
 
         //this->setSpriteFrame(stun);
         break;
@@ -133,7 +144,7 @@ void Monster::exitCurrentState()
         // Exit Attack state
         break;
     case MonsterState::Stun:
-        // Exit Stun state
+        // Exit Stun state      
         break;
     case MonsterState::Destroy:
         // Exit Destroy state
@@ -156,10 +167,34 @@ void Monster::updateIdleState(float dt)
 void Monster::updateAttackState(float dt)
 {
     // Update logic for Attack state
+
+    if (heroref->getPositionX() > getPositionX())
+    {
+        if (isFlippedX())
+        {
+            setFlippedX(false);
+        }
+        if (mPhysicsBody->getVelocity().x < 256)
+        {
+            this->getPhysicsBody()->applyForce(Vec2(256, 0.0f));
+        }
+    }
+    else
+    {
+        if (!isFlippedX())
+        {
+            setFlippedX(true);
+        }
+        if (mPhysicsBody->getVelocity().x > -256)
+        {
+            this->getPhysicsBody()->applyForce(Vec2(-256, 0.0f));
+        }
+    }
+
     timer -= dt;
     if (timer <= 0.0f)
     {
-        setState(MonsterState::Idle);
+        setState(MonsterState::Stun);
     }
 
 }
@@ -167,6 +202,11 @@ void Monster::updateAttackState(float dt)
 void Monster::updateStunState(float dt)
 {
     // Update logic for Stun state
+    timer -= dt;
+    if (timer <= 0.0f)
+    {
+        setState(MonsterState::Idle);
+    }
 }
 
 void Monster::updateDestroyState(float dt)
@@ -186,6 +226,7 @@ void Monster::initPhysics(TMXTiledMap* level)
     mPhysicsBody->setContactTestBitmask(1);
     //heroPhysicsBody->setMass(5.0f);
     this->setPhysicsBody(mPhysicsBody);
+    mPhysicsBody->setPositionOffset(Vec2(-(attack->getContentSize().width), -(attack->getContentSize().height) + 20));
     //getPhysicsBody()->setLinearDamping(0.1);
     //getPhysicsBody()->setVelocityLimit(1);
     //mPhysicsBody->setVelocity(Vec2(0.0f, 0.0f));

@@ -36,6 +36,7 @@ public:
     cocos2d::Vector<SpriteFrame*> idleFrames;
     Sprite* search;
     Sprite* stun;
+    Sprite* attack;
     cocos2d::Texture2D* stuntex;
     cocos2d::Image* stunImage = new Image();
     Hero* heroref = nullptr;
