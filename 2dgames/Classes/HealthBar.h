@@ -16,4 +16,10 @@ public:
     }
     float maxHealth;
     float currentHealth;
+
+    void draw()
+    {
+        
+    }
 };
+

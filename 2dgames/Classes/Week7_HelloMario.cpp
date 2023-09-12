@@ -3,6 +3,8 @@
 using namespace std::placeholders;
 
 
+bool isEnemyWithinCollisionVolume(cocos2d::Node* enemy, CollisionVolume* collisionVolume);
+
 Scene* HelloMario::createScene()
 {
 	auto ret = new (std::nothrow) HelloMario();
@@ -44,7 +46,7 @@ bool HelloMario::init()
 	hero = Hero::Create();
 	addChild(hero);
 	hero->setPosition(hero->origin.x + hero->visibleSize.width / 2, hero->origin.y + hero->visibleSize.height / 2);
-	
+
 
 	//attempt to create container for initPhysics functions...
 	//std::function<void(TMXTiledMap*)> funcpointer = std::bind(&Hero::initPhysics, hero, _1);
@@ -62,6 +64,8 @@ bool HelloMario::init()
 	controller = KeyboardControllerComponent::create(KeyboardControllerComponent::WASD);
 	hero->addComponent(controller);
 	controller->initInput();
+
+
 	//Item newItem(GreenToken);
 	initPauseMenu();
 
@@ -162,7 +166,18 @@ void HelloMario::InitPhysics(TMXTiledMap* level)
 
 void HelloMario::update(float dt)
 {
-
+	if (hero->getChildByName("CollisionVolume") != NULL)
+	{
+		for (auto& monster : monsterpool->getMonsterPool())
+		{
+			//isEnemyWithinCollisionVolume(cocos2d::Node* enemy, CollisionVolume* collisionVolume)
+			if (isEnemyWithinCollisionVolume(monster, hero->collisionVolume) && hero->collisionVolume->isVisible() && monster->getCurrentState() != MonsterState::Stun)
+			{
+				monster->myHealth.currentHealth -= 20;
+				monster->setState(MonsterState::Stun);
+			}
+		}
+	}
 	if (controller->IsEscapePressed())
 	{
 		controller->escape = false;
@@ -206,9 +221,24 @@ void HelloMario::update(float dt)
 
 		if (controller->IsLeftClickPressed())
 		{
-
+			if (hero->getChildByName("CollisionVolume") != NULL)
+			{
+				if (hero->isFlippedX())
+				{
+					const auto& volume = hero->getChildByName("CollisionVolume")->getChildByName("shape");
+					auto& position = volume->getPosition();
+					volume->setPosition(400, position.y);
+					//hero->collisionVolume->setPosition(400, position.y);
+				}
+				else
+				{
+					const auto& volume = hero->getChildByName("CollisionVolume")->getChildByName("shape");
+					auto& position = volume->getPosition();
+					volume->setPosition(100, position.y);
+					//hero->collisionVolume->setPosition(100, position.y);
+				}
+			}
 		}
-
 
 		auto contact = contacts.size() > 0;
 		if (contact) /// hero is on the ground
@@ -275,7 +305,7 @@ void HelloMario::update(float dt)
 					{
 						hero->getPhysicsBody()->setVelocity(Vec2::ZERO);
 					}
-					if (hero->mMoveState != MoveState::Sprint)
+					if (hero->mMoveState != MoveState::Sprint && hero->mMoveState != MoveState::Walk)
 					{
 						hero->setMoveState(MoveState::Walk);
 					}
@@ -284,11 +314,6 @@ void HelloMario::update(float dt)
 						hero->getPhysicsBody()->applyForce(Vec2(-hero->mMoveSpeed, hero->getPhysicsBody()->getVelocity().y));
 					}
 					hero->setFlippedX(false);
-					if (hero->getChildByName("CollisionVolume") != NULL)
-					{
-						hero->getChildByName("CollisionVolume")->getChildByName("shape")->setPosition(Vec2(hero->getPositionX() - 200, hero->getPositionY()));
-					}
-
 				}
 				else if (controller->IsRightPressed())
 				{
@@ -296,7 +321,7 @@ void HelloMario::update(float dt)
 					{
 						hero->getPhysicsBody()->setVelocity(Vec2::ZERO);
 					}
-					if (hero->mMoveState != MoveState::Sprint)
+					if (hero->mMoveState != MoveState::Sprint && hero->mMoveState != MoveState::Walk)
 					{
 						hero->setMoveState(MoveState::Walk);
 					}
@@ -305,12 +330,6 @@ void HelloMario::update(float dt)
 						hero->getPhysicsBody()->applyForce(Vec2(hero->mMoveSpeed, hero->getPhysicsBody()->getVelocity().y));
 					}
 					hero->setFlippedX(true);
-					if (hero->getChildByName("CollisionVolume") != NULL)
-					{
-						hero->getChildByName("CollisionVolume")->getChildByName("shape")->setPosition(Vec2(hero->getPositionX() + 200, hero->getPositionY()));
-					}
-					//hero->collisionVolume.
-					//hero->collisionVolume.attackRange = -1 * (hero->collisionVolume.attackRange);
 				}
 
 				if (controller->IsUpPressed())
@@ -321,9 +340,8 @@ void HelloMario::update(float dt)
 				if (hero->mMoveState != MoveState::Idle && !controller->IsLeftPressed() && !controller->IsRightPressed() && !controller->IsUpPressed())
 				{
 					hero->setMoveState(MoveState::Idle);
-					//hero->getPhysicsBody()->setVelocity(Vec2(0.0f, hero->getPhysicsBody()->getVelocity().y));
 				}
-				
+
 			}
 			else
 			{
@@ -351,7 +369,7 @@ void HelloMario::initPauseMenu()
 			Director::getInstance()->replaceScene(createScene());
 		});
 
-	
+
 	/// TODO: Create Quit button
 	auto newGameButton4 = cocos2d::MenuItemLabel::create(cocos2d::Label::createWithTTF("Quit", "fonts/Marker Felt.ttf", 24), [=](cocos2d::Ref* sender)
 		{
@@ -401,11 +419,6 @@ void HelloMario::hidePauseMenu()
 bool isEnemyWithinCollisionVolume(cocos2d::Node* enemy, CollisionVolume* collisionVolume)
 {
 	if (!enemy || !collisionVolume) return false;
-
-
-	// Get the world coordinates of the collision volume
 	auto collisionVolumeWorldPos = collisionVolume->getParent()->convertToWorldSpace(collisionVolume->getPosition());
-
-	// Check if the enemy node is within the collision volume
 	return enemy->getBoundingBox().containsPoint(collisionVolumeWorldPos);
 }

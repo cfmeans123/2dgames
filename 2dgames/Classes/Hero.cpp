@@ -43,10 +43,10 @@ Hero* Hero::Create()
 	hero->reset();
 
 
-	auto collisionVolume = CollisionVolume::create();
-	collisionVolume->setName("CollisionVolume");
-	collisionVolume->setVisible(false);
-	hero->addChild(collisionVolume);
+	hero->collisionVolume = CollisionVolume::create();
+	hero->collisionVolume->setName("CollisionVolume");
+	hero->collisionVolume->setVisible(false);
+	hero->addChild(hero->collisionVolume);
 
 
 	return hero;
@@ -116,8 +116,8 @@ void Hero::enterNewCombatState()
 		setMoveState(MoveState::Off);
 		this->stopAllActions();
 		toggleCollisionVolume();
-		this->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(attack2Frames, 0.1))));
-		stunTimer = 1.0f;
+		this->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(attack2Frames, 0.08))));
+		stunTimer = 0.5f;
 		break;
 	case CombatState::Stun:
 		// Enter Stun state
@@ -195,6 +195,14 @@ void Hero::exitCurrentMoveState()
 	case MoveState::Sprint:
 		mMoveSpeed = defaultMoveSpeed;
 		frameSpeed = 0.1f;
+		if (physicsBody->getVelocity().x > defaultMoveSpeed)
+		{
+			physicsBody->setVelocity(Vec2(defaultMoveSpeed, physicsBody->getVelocity().y));
+		}
+		else if (physicsBody->getVelocity().x < -defaultMoveSpeed)
+		{
+			physicsBody->setVelocity(Vec2(-defaultMoveSpeed, physicsBody->getVelocity().y));
+		}
 		// Exit Attack state
 		break;
 	case MoveState::Idle:

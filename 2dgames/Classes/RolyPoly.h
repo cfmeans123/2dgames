@@ -46,6 +46,7 @@ public:
     HealthBar myHealth;
     void initPhysics(TMXTiledMap* level);
     PhysicsBody* mPhysicsBody;
+    MonsterState getCurrentState() { return currentState; }
 
 private:
     MonsterState currentState;
@@ -58,6 +59,7 @@ private:
     void updateAttackState(float dt);
     void updateStunState(float dt);
     void updateDestroyState(float dt);
+    void updateHealthBar();
 };
 
 class MonsterPool 

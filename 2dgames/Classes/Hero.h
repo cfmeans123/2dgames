@@ -85,7 +85,7 @@ public:
 	// Reset the enemy to its initial state
 	void reset();
 	float stunTimer = 3.0f;
-	CollisionVolume collisionVolume;
+	CollisionVolume* collisionVolume;
 
 	float frameSpeed = 0.1f;
 	float sprintFrameSpeed = 0.05f;
