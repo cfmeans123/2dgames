@@ -63,14 +63,9 @@ private:
 class MonsterPool 
 {
 public:
-    // Create an object pool with a specified capacity
     MonsterPool(int capacity);
-    // Get an enemy from the pool
     Monster* getMonster();
-
-    // Return an enemy to the pool
     void returnMonster(Monster* enemy);
-
     std::vector<Monster*> getMonsterPool() { return monsterPool; };
 
 private:

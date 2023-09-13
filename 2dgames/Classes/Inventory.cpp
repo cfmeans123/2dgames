@@ -31,7 +31,6 @@ void Inventory::addItem(const std::string& itemName)
 	{
 		sprite->initWithFile("Token/purpletoken.png");
 	}
-	//sprite->setPosition((_director->getVisibleSize().width / 5) + drawPadding, _director->getVisibleSize().height * 0.1);
 	sprite->setScale(0.3f);
 	this->addChild(sprite);
 	items.push_back(itemName);
@@ -41,8 +40,6 @@ void Inventory::addItem(const std::string& itemName)
 
 void Inventory::removeItem(const std::string& itemName)
 {
-	// Remove an item from the inventory.
-
 	auto it = std::find(items.begin(), items.end(), itemName);
 	int index = std::distance(items.begin(), it);
 	
@@ -52,7 +49,6 @@ void Inventory::removeItem(const std::string& itemName)
 		{
 			items.erase(it);
 			this->removeChild(itemDraws.at(index));
-			//delete itemDraws.at(index);
 			itemDraws.at(index) = nullptr;
 			itemDraws.erase(std::remove(itemDraws.begin(), itemDraws.end(), nullptr), itemDraws.end());
 		
@@ -68,7 +64,6 @@ void Inventory::displayInventory(Hero* hero)
 	drawPaddingY = 25;
 	for (auto &item : items)
 	{
-		
 		int displayindex = &item - &items[0];
 		if (drawPaddingX > 500)
 		{
@@ -77,7 +72,6 @@ void Inventory::displayInventory(Hero* hero)
 		}
 		itemDraws.at(displayindex)->setPosition(hero->getPosition().x - (_director->getVisibleSize().width / 5) + drawPaddingX, _director->getVisibleSize().height * 0.9 + drawPaddingY);
 		drawPaddingX += 75;
-		
 	}
 
 }

@@ -228,7 +228,7 @@ void Hero::update(float dt)
 
 void Hero::toggleCollisionVolume()
 {
-	auto collisionVolume = getChildByName("CollisionVolume"); // Assuming you named the child node
+	auto collisionVolume = getChildByName("CollisionVolume");
 	if (collisionVolume)
 	{
 		collisionVolume->setVisible(!collisionVolume->isVisible());

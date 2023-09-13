@@ -19,7 +19,6 @@ public:
 
 
 private:
-	//Texture2D mTexture;
 	ItemType mType;
 	cocos2d::Size slotSize = {10.0f, 10.0f};
 };

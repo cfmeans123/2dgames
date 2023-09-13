@@ -82,7 +82,6 @@ public:
 	void setCombatState(CombatState state);
 	void setMoveState(MoveState state);
 	void update(float dt) override;
-	// Reset the enemy to its initial state
 	void reset();
 	float stunTimer = 3.0f;
 	CollisionVolume* collisionVolume;
