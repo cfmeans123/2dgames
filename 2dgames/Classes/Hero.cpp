@@ -38,7 +38,6 @@ Hero* Hero::Create()
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Hero/Hero_Hurrah/Hero_Hurrah.plist");
 	hero->hurrahFrames = AnimationHelper::getAnimation("BlueKnight_entity_000_summon_000_%03d.png", 8);
 	hero->animationHurrah = Animation::createWithSpriteFrames(hero->hurrahFrames, 0.1f);
-	//hero->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(hero->idleFrames, 10.0f))));
 	hero->setScale(0.2);
 	hero->reset();
 
@@ -58,14 +57,12 @@ void Hero::initPhysics(TMXTiledMap* level)
 	attackCollisionMask->setCategoryBitmask(1);
 	attackCollisionMask->setCollisionBitmask(2);
 	attackCollisionMask->setContactTestBitmask(1);
-	//attackCollisionMask->
 
 	physicsBody->setRotationEnable(false);
 	physicsBody->setDynamic(true);
 	physicsBody->setCategoryBitmask(1);
 	physicsBody->setCollisionBitmask(2);
 	physicsBody->setContactTestBitmask(2);
-	//heroPhysicsBody->setMass(5.0f);
 	setPhysicsBody(physicsBody);
 	getPhysicsBody()->setLinearDamping(0.1);
 	getPhysicsBody()->setVelocityLimit(1024);
@@ -75,7 +72,7 @@ void Hero::setCombatState(CombatState state)
 {
 	if (mCombatState == state)
 	{
-		return; // No change in state
+		return;
 	}
 
 	exitCurrentCombatState();
@@ -87,9 +84,8 @@ void Hero::setMoveState(MoveState state)
 {
 	if (mMoveState == state)
 	{
-		return; // No change in state
+		return;
 	}
-
 	exitCurrentMoveState();
 	mMoveState = state;
 	enterNewMoveState();
@@ -99,7 +95,6 @@ void Hero::reset()
 {
 	setCombatState(CombatState::None);
 	setMoveState(MoveState::Idle);
-	// Reset other properties of the enemy here
 }
 
 void Hero::enterNewCombatState()
@@ -107,12 +102,8 @@ void Hero::enterNewCombatState()
 	switch (mCombatState)
 	{
 	case CombatState::None:
-		//this->stopAllActions();
-		//this->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(spawningFrames, 0.1))));
-		// Enter Idle state
 		break;
 	case CombatState::Attack:
-		// Enter Attack state
 		setMoveState(MoveState::Off);
 		this->stopAllActions();
 		toggleCollisionVolume();
@@ -120,11 +111,7 @@ void Hero::enterNewCombatState()
 		stunTimer = 0.5f;
 		break;
 	case CombatState::Stun:
-		// Enter Stun state
-
 		this->stopAllActions();
-
-		//this->setSpriteFrame(stun);
 		break;
 	}
 }
@@ -136,34 +123,21 @@ void Hero::enterNewMoveState()
 		stopAllActions();
 		physicsBody->setVelocity(Vec2(0.0f, physicsBody->getVelocity().y));
 		runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(idleFrames, 0.1))));
-		//this->runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(spawningFrames, 0.1))));
-		// Enter Idle state
-
 		break;
 	case MoveState::Jump:
-		// Enter Attack state
-		//this->stopAllActions();
 		stopAllActions();
 		getPhysicsBody()->applyImpulse(Vec2(0, 450), Vec2::ZERO);
 		runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(jumpFrames, 0.1))));
 		break;
 	case MoveState::Sprint:
-		// Enter Stun state
 		mMoveSpeed = sprintMoveSpeed;
 		frameSpeed = sprintFrameSpeed;
 		stopAllActions();
 		runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(walkingFrames, frameSpeed))));
-		//this->setSpriteFrame(stun);
 		break;
 	case MoveState::Walk:
-		// Enter Stun state
-
 		stopAllActions();
 		runAction(RepeatForever::create(Animate::create(Animation::createWithSpriteFrames(walkingFrames, frameSpeed))));
-		//mMoveSpeed = sprintMoveSpeed;
-		//this->stopAllActions();
-
-		//this->setSpriteFrame(stun);
 		break;
 	}
 }
@@ -173,15 +147,11 @@ void Hero::exitCurrentCombatState()
 	switch (mCombatState)
 	{
 	case CombatState::None:
-		// Exit Idle state
 		break;
 	case CombatState::Attack:
-		// Exit Attack state
-		//this->setScale(0.2);
 		toggleCollisionVolume();
 		break;
 	case CombatState::Stun:
-		// Exit Stun state
 		break;
 	}
 }
@@ -190,7 +160,6 @@ void Hero::exitCurrentMoveState()
 	switch (mMoveState)
 	{
 	case MoveState::Jump:
-		// Exit Idle state
 		break;
 	case MoveState::Sprint:
 		mMoveSpeed = defaultMoveSpeed;
@@ -203,13 +172,10 @@ void Hero::exitCurrentMoveState()
 		{
 			physicsBody->setVelocity(Vec2(-defaultMoveSpeed, physicsBody->getVelocity().y));
 		}
-		// Exit Attack state
 		break;
 	case MoveState::Idle:
-		// Exit Stun state
 		break;
 	case MoveState::Walk:
-		// Exit Stun state
 		break;
 	}
 }
@@ -217,12 +183,10 @@ void Hero::exitCurrentMoveState()
 void Hero::updateNoneState(float dt)
 {
 
-
 }
 
 void Hero::updateAttackState(float dt)
 {
-	// Update logic for Attack state
 	stunTimer -= dt;
 	if (stunTimer <= 0.0f)
 	{
@@ -238,7 +202,6 @@ void Hero::updateAttackState(float dt)
 
 void Hero::updateStunState(float dt)
 {
-	// Update logic for Stun state
 	stunTimer -= dt;
 	if (stunTimer <= 0.0f)
 	{

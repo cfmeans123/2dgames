@@ -227,6 +227,8 @@ void HelloMario::update(float dt)
 						{
 							//auto& index = std::distance(iter, activePool.begin());
 							controller->leftClick = false;
+							iter->myHealth.currentHealth -= 20;
+							iter->setState(MonsterState::Stun);
 							if (iter->myHealth.currentHealth <= 0)
 							{
 								//auto it = std::find(activePool.begin(), activePool.end(), &iter);
@@ -235,8 +237,6 @@ void HelloMario::update(float dt)
 								monsterpool->returnMonster(iter);
 								continue;
 							}
-							iter->myHealth.currentHealth -= 20;
-							iter->setState(MonsterState::Stun);
 						}
 					}
 				}
