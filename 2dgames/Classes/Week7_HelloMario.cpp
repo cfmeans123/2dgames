@@ -16,6 +16,7 @@ Scene* HelloMario::createScene()
 		CC_SAFE_DELETE(ret);
 		return nullptr;
 	}
+
 	return ret;
 }
 
@@ -25,28 +26,34 @@ bool HelloMario::init()
 	{
 		return false;
 	}
+
 	auto visibleSize = _director->getVisibleSize();
 	auto origin = _director->getVisibleOrigin();
 
+	/// TODO Design your own level(s)
 	auto level = TMXTiledMap::create("Art_for_2dGamesFinal/ForestMap.tmx");
-	this->addChild(level);
-
 	background = Sprite::create("Art_for_2dGamesFinal/ForestBackground.png");
 	background->setScale(2);
 	background->setPositionX(200);
-	background->setPosition(background->getContentSize().width / 2, background->getContentSize().height / 2);
-	addChild(background);
 
+	addChild(background);
+	background->setPosition(background->getContentSize().width / 2, background->getContentSize().height / 2);
+
+	this->addChild(level);
 	hero = Hero::Create();
-	hero->setPosition(hero->origin.x + hero->visibleSize.width / 2, hero->origin.y + hero->visibleSize.height / 2);
 	addChild(hero);
+	hero->setPosition(hero->origin.x + hero->visibleSize.width / 2, hero->origin.y + hero->visibleSize.height / 2);
+
 	controller = KeyboardControllerComponent::create(KeyboardControllerComponent::WASD);
 	hero->addComponent(controller);
 	controller->initInput();
 
 	initPauseMenu();
+
 	addChild(&myInventory);
+
 	InitPhysics(level);
+
 	scheduleUpdate();
 
 	return true;
@@ -55,88 +62,88 @@ bool HelloMario::init()
 void HelloMario::InitPhysics(TMXTiledMap* level)
 {
 
-	auto physicsWorld = getPhysicsWorld();
-	getPhysicsWorld()->setFixedUpdateRate(60);
-	hero->initPhysics(level);
-	int displace = 200;
-	for (auto& monster : monsterpool->getMonsterPool())
-	{
-		//const auto& myMonster = monsterpool->getMonster();
-		monsterpool->getMonster();
-		activePool.pushBack(monster);
-		monster->setPosition(hero->getPositionX() + displace, hero->getPositionY());
-		addChild(monster);
-		if (monster->heroref == nullptr)
+		auto physicsWorld = getPhysicsWorld();
+		getPhysicsWorld()->setFixedUpdateRate(60);
+		hero->initPhysics(level);
+		int displace = 200;
+		for (auto& monster : monsterpool->getMonsterPool())
 		{
-			monster->heroref = hero;
-		}
-		displace += 600;
-		monster->initPhysics(level);
-	}
-	physicsWorld->setGravity(cocos2d::Vec2(0, -980));
-
-	contacts.reserve(4);
-
-	auto collisionLayer = level->getLayer("Collision");
-
-	//mimicing composite collision volume through hard coded position values
-	auto groundPhysicsBody = cocos2d::PhysicsBody::createBox(Size(6240, 32), PHYSICSSHAPE_MATERIAL_DEFAULT, Vec2(800, -50));
-	auto tile = collisionLayer->getTileAt(cocos2d::Vec2(73, 13));
-	tile->setPhysicsBody(groundPhysicsBody);
-	groundPhysicsBody->setDynamic(false);
-	groundPhysicsBody->setCategoryBitmask(2);
-	groundPhysicsBody->setCollisionBitmask(1);
-	groundPhysicsBody->setContactTestBitmask(1);
-
-	auto frontBoundPhysicsBody = cocos2d::PhysicsBody::createBox(Size(32, 512), PHYSICSSHAPE_MATERIAL_DEFAULT, Vec2(0, 200));
-	auto tile2 = collisionLayer->getTileAt(cocos2d::Vec2(0, 14));
-	tile2->setPhysicsBody(frontBoundPhysicsBody);
-	frontBoundPhysicsBody->setDynamic(false);
-	frontBoundPhysicsBody->setCategoryBitmask(2);
-	frontBoundPhysicsBody->setCollisionBitmask(1);
-	frontBoundPhysicsBody->setContactTestBitmask(1);
-
-	auto backBoundPhysicsBody = cocos2d::PhysicsBody::createBox(Size(32, 512), PHYSICSSHAPE_MATERIAL_DEFAULT, Vec2(6240, 200));
-	auto tile3 = collisionLayer->getTileAt(cocos2d::Vec2(1, 14));
-	tile3->setPhysicsBody(backBoundPhysicsBody);
-	backBoundPhysicsBody->setDynamic(false);
-	backBoundPhysicsBody->setCategoryBitmask(2);
-	backBoundPhysicsBody->setCollisionBitmask(1);
-	backBoundPhysicsBody->setContactTestBitmask(1);
-
-	auto contactListener = EventListenerPhysicsContact::create();
-	contactListener->onContactBegin = [=](PhysicsContact& contact) -> bool
-	{
-		auto a = contact.getShapeA()->getBody();
-		auto b = contact.getShapeB()->getBody();
-
-		auto other = hero->getPhysicsBody() == a ? b : a;
-
-		if (hero->getPhysicsBody()->getPosition().y > other->getPosition().y && abs(contact.getContactData()->normal.y) > 0.9f)
-		{
-			contacts.push_back(other);
-		}
-
-		return true;
-	};
-	contactListener->onContactSeparate = [=](PhysicsContact& contact)
-	{
-		auto a = contact.getShapeA()->getBody();
-		auto b = contact.getShapeB()->getBody();
-
-		auto separate = hero->getPhysicsBody() == a ? b : a;
-
-		for (int i = 0; i < contacts.size(); ++i)
-		{
-			if (contacts[i] == separate)
+			//const auto& myMonster = monsterpool->getMonster();
+			monsterpool->getMonster();
+			activePool.pushBack(monster);
+			monster->setPosition(hero->getPositionX() + displace, hero->getPositionY());
+			addChild(monster);
+			if (monster->heroref == nullptr)
 			{
-				contacts[i] = contacts[contacts.size() - 1];
-				contacts.pop_back();
-				break;
+				monster->heroref = hero;
 			}
+			displace += 600;
+			monster->initPhysics(level);
 		}
-	};
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this);
+		physicsWorld->setGravity(cocos2d::Vec2(0, -980));
+
+		contacts.reserve(4);
+
+		auto collisionLayer = level->getLayer("Collision");
+
+		//mimicing composite collision volume through hard coded position values
+		auto groundPhysicsBody = cocos2d::PhysicsBody::createBox(Size(6240, 32), PHYSICSSHAPE_MATERIAL_DEFAULT, Vec2(800, -50));
+		auto tile = collisionLayer->getTileAt(cocos2d::Vec2(73, 13));
+		tile->setPhysicsBody(groundPhysicsBody);
+		groundPhysicsBody->setDynamic(false);
+		groundPhysicsBody->setCategoryBitmask(2);
+		groundPhysicsBody->setCollisionBitmask(1);
+		groundPhysicsBody->setContactTestBitmask(1);
+
+		auto frontBoundPhysicsBody = cocos2d::PhysicsBody::createBox(Size(32, 512), PHYSICSSHAPE_MATERIAL_DEFAULT, Vec2(0, 200));
+		auto tile2 = collisionLayer->getTileAt(cocos2d::Vec2(0, 14));
+		tile2->setPhysicsBody(frontBoundPhysicsBody);
+		frontBoundPhysicsBody->setDynamic(false);
+		frontBoundPhysicsBody->setCategoryBitmask(2);
+		frontBoundPhysicsBody->setCollisionBitmask(1);
+		frontBoundPhysicsBody->setContactTestBitmask(1);
+
+		auto backBoundPhysicsBody = cocos2d::PhysicsBody::createBox(Size(32, 512), PHYSICSSHAPE_MATERIAL_DEFAULT, Vec2(6240, 200));
+		auto tile3 = collisionLayer->getTileAt(cocos2d::Vec2(1, 14));
+		tile3->setPhysicsBody(backBoundPhysicsBody);
+		backBoundPhysicsBody->setDynamic(false);
+		backBoundPhysicsBody->setCategoryBitmask(2);
+		backBoundPhysicsBody->setCollisionBitmask(1);
+		backBoundPhysicsBody->setContactTestBitmask(1);
+
+		auto contactListener = EventListenerPhysicsContact::create();
+		contactListener->onContactBegin = [=](PhysicsContact& contact) -> bool
+		{
+			auto a = contact.getShapeA()->getBody();
+			auto b = contact.getShapeB()->getBody();
+
+			auto other = hero->getPhysicsBody() == a ? b : a;
+
+			if (hero->getPhysicsBody()->getPosition().y > other->getPosition().y && abs(contact.getContactData()->normal.y) > 0.9f)
+			{
+				contacts.push_back(other);
+			}
+
+			return true;
+		};
+		contactListener->onContactSeparate = [=](PhysicsContact& contact)
+		{
+			auto a = contact.getShapeA()->getBody();
+			auto b = contact.getShapeB()->getBody();
+
+			auto separate = hero->getPhysicsBody() == a ? b : a;
+
+			for (int i = 0; i < contacts.size(); ++i)
+			{
+				if (contacts[i] == separate)
+				{
+					contacts[i] = contacts[contacts.size() - 1];
+					contacts.pop_back();
+					break;
+				}
+			}
+		};
+		_eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this);
 }
 
 void HelloMario::update(float dt)
@@ -196,6 +203,7 @@ void HelloMario::update(float dt)
 					const auto& volume = hero->getChildByName("CollisionVolume")->getChildByName("shape");
 					auto& position = volume->getPosition();
 					volume->setPosition(400, position.y);
+
 				}
 				else
 				{
@@ -208,19 +216,19 @@ void HelloMario::update(float dt)
 					for (auto& iter : activePool)
 					{
 						if (iter->getCurrentState() != MonsterState::Destroy)
-							if (isEnemyWithinCollisionVolume(iter, hero->collisionVolume) && hero->collisionVolume->isVisible())
+						if (isEnemyWithinCollisionVolume(iter, hero->collisionVolume) && hero->collisionVolume->isVisible())
+						{
+							//auto& index = std::distance(iter, activePool.begin());
+							controller->leftClick = false;
+							iter->myHealth.currentHealth -= 20;
+							iter->setState(MonsterState::Stun);
+							if (iter->myHealth.currentHealth <= 0)
 							{
-								//auto& index = std::distance(iter, activePool.begin());
-								controller->leftClick = false;
-								iter->myHealth.currentHealth -= 20;
-								iter->setState(MonsterState::Stun);
-								if (iter->myHealth.currentHealth <= 0)
-								{
-									myInventory.addItem("PurpleToken");
-									monsterpool->returnMonster(iter);
-									continue;
-								}
+								myInventory.addItem("PurpleToken");
+								monsterpool->returnMonster(iter);
+								continue;
 							}
+						}
 					}
 				}
 			}
