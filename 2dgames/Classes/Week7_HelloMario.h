@@ -4,6 +4,7 @@
 #include "KeyboardControllerComponent.h"
 #include "Inventory.h"
 #include "RolyPoly.h"
+#include <vector>
 
 
 USING_NS_CC;
@@ -22,8 +23,8 @@ public:
 	Hero* hero;
 	Sprite* background;
 	CREATE_FUNC(HelloMario)
-	MonsterPool* monsterpool = new MonsterPool(1);
-	
+	MonsterPool* monsterpool = new MonsterPool(10);
+	Vector<Monster*> activePool;
 	void initPauseMenu();
 	void showPauseMenu();
 	void hidePauseMenu();

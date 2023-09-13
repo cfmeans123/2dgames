@@ -6,12 +6,12 @@ Item::Item(ItemType type)
 	switch (mType)
 	{
 	case PurpleToken:
-		//this->initWithFile("Token/purpletoken");
+		this->initWithFile("Token/purpletoken");
 
 		break;
 
 	case GreenToken:
-		//this->initWithFile("Token/greentoken");
+		this->initWithFile("Token/greentoken");
 		break;
 
 	case PurpleEssence:

@@ -19,26 +19,23 @@ public:
 
     virtual bool init() override;
 
-    // State machine methods
     void setState(MonsterState state);
     void update(float dt) override;
-    // Reset the enemy to its initial state
     void reset();
-    //cocos2d::SpriteFrame* search;
-    //cocos2d::SpriteFrame* stun;
-    cocos2d::Animation* animationSpawn;
+    /*cocos2d::Animation* animationSpawn;
     cocos2d::Animation* animationRoll;
     cocos2d::Animation* animationStun;
     cocos2d::Animation* animationIdle;
     cocos2d::Vector<cocos2d::SpriteFrame*> rollingFrames;
     cocos2d::Vector<cocos2d::SpriteFrame*> spawningFrames;
+    cocos2d::Texture2D* stuntex;
+    cocos2d::Image* stunImage = new Image();
     cocos2d::Vector<SpriteFrame*> stunFrames;
-    cocos2d::Vector<SpriteFrame*> idleFrames;
+    cocos2d::Vector<SpriteFrame*> idleFrames;*/
     Sprite* search;
     Sprite* stun;
     Sprite* attack;
-    cocos2d::Texture2D* stuntex;
-    cocos2d::Image* stunImage = new Image();
+    Sprite* ded;
     Hero* heroref = nullptr;
     float timer = 0.0f;
     float health = 100.0f;
@@ -47,10 +44,11 @@ public:
     void initPhysics(TMXTiledMap* level);
     PhysicsBody* mPhysicsBody;
     MonsterState getCurrentState() { return currentState; }
+    ParticleSystemQuad* particleSystem;
+
 
 private:
     MonsterState currentState;
-    // State-specific methods
     void enterNewState();
 
     void exitCurrentState();

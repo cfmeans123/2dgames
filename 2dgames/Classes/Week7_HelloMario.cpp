@@ -1,6 +1,4 @@
 #include "Week7_HelloMario.h"
-#include <functional>
-using namespace std::placeholders;
 
 
 bool isEnemyWithinCollisionVolume(cocos2d::Node* enemy, CollisionVolume* collisionVolume);
@@ -47,24 +45,12 @@ bool HelloMario::init()
 	addChild(hero);
 	hero->setPosition(hero->origin.x + hero->visibleSize.width / 2, hero->origin.y + hero->visibleSize.height / 2);
 
-
-	//attempt to create container for initPhysics functions...
-	//std::function<void(TMXTiledMap*)> funcpointer = std::bind(&Hero::initPhysics, hero, _1);
-	//const auto& monster = monsterpool->getMonster();
-
-	////phyInitList.pushBack(funcpointer);
-
-	//this->addChild(monster);
-	//if (monster->heroref == nullptr)
-	//{
-	//	monster->heroref = hero;
-	//}
-
-
 	controller = KeyboardControllerComponent::create(KeyboardControllerComponent::WASD);
 	hero->addComponent(controller);
 	controller->initInput();
 
+	
+	
 
 	//Item newItem(GreenToken);
 	initPauseMenu();
@@ -80,21 +66,23 @@ bool HelloMario::init()
 
 void HelloMario::InitPhysics(TMXTiledMap* level)
 {
-	if (!menu->isVisible())
-	{
+
 		auto physicsWorld = getPhysicsWorld();
 		getPhysicsWorld()->setFixedUpdateRate(60);
 		hero->initPhysics(level);
-		int displace = 20;
+		int displace = 200;
 		for (auto& monster : monsterpool->getMonsterPool())
 		{
+			//const auto& myMonster = monsterpool->getMonster();
+			monsterpool->getMonster();
+			activePool.pushBack(monster);
 			monster->setPosition(hero->getPositionX() + displace, hero->getPositionY());
-			this->addChild(monster);
+			addChild(monster);
 			if (monster->heroref == nullptr)
 			{
 				monster->heroref = hero;
 			}
-			displace += 55;
+			displace += 600;
 			monster->initPhysics(level);
 		}
 		physicsWorld->setGravity(cocos2d::Vec2(0, -980));
@@ -161,23 +149,11 @@ void HelloMario::InitPhysics(TMXTiledMap* level)
 			}
 		};
 		_eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this);
-	}
 }
 
 void HelloMario::update(float dt)
 {
-	if (hero->getChildByName("CollisionVolume") != NULL)
-	{
-		for (auto& monster : monsterpool->getMonsterPool())
-		{
-			//isEnemyWithinCollisionVolume(cocos2d::Node* enemy, CollisionVolume* collisionVolume)
-			if (isEnemyWithinCollisionVolume(monster, hero->collisionVolume) && hero->collisionVolume->isVisible() && monster->getCurrentState() != MonsterState::Stun)
-			{
-				monster->myHealth.currentHealth -= 20;
-				monster->setState(MonsterState::Stun);
-			}
-		}
-	}
+
 	if (controller->IsEscapePressed())
 	{
 		controller->escape = false;
@@ -209,20 +185,24 @@ void HelloMario::update(float dt)
 		}
 		if (controller->IsFourPressed())
 		{
-			/*controller->four = false;
-			myInventory.removeItem("PurpleToken");	*/
-			for (auto& monster : monsterpool->getMonsterPool())
-			{
-				monster->getPhysicsBody()->setDynamic(!monster->getPhysicsBody()->isDynamic());
-			}
 
+			if (monsterpool != nullptr && !activePool.empty())
+			{
+				for (auto& monster : activePool)
+				{
+					monster->getPhysicsBody()->setDynamic(!monster->getPhysicsBody()->isDynamic());
+				}
+			}
 		}
 		myInventory.displayInventory(hero);
 
-		if (controller->IsLeftClickPressed())
+		if (controller->IsLeftClickPressed() && hero->mCombatState != CombatState::Attack)
 		{
+			hero->setCombatState(CombatState::Attack);
+
 			if (hero->getChildByName("CollisionVolume") != NULL)
 			{
+
 				if (hero->isFlippedX())
 				{
 					const auto& volume = hero->getChildByName("CollisionVolume")->getChildByName("shape");
@@ -236,6 +216,29 @@ void HelloMario::update(float dt)
 					auto& position = volume->getPosition();
 					volume->setPosition(100, position.y);
 					//hero->collisionVolume->setPosition(100, position.y);
+				}
+				if (monsterpool != nullptr && !activePool.empty())
+				{
+					for (auto& iter : activePool)
+					{
+						//isEnemyWithinCollisionVolume(cocos2d::Node* enemy, CollisionVolume* collisionVolume)
+						if (iter->getCurrentState() != MonsterState::Destroy)
+						if (isEnemyWithinCollisionVolume(iter, hero->collisionVolume) && hero->collisionVolume->isVisible())
+						{
+							//auto& index = std::distance(iter, activePool.begin());
+							controller->leftClick = false;
+							if (iter->myHealth.currentHealth <= 0)
+							{
+								//auto it = std::find(activePool.begin(), activePool.end(), &iter);
+								//activePool.erase(it);
+								myInventory.addItem("PurpleToken");
+								monsterpool->returnMonster(iter);
+								continue;
+							}
+							iter->myHealth.currentHealth -= 20;
+							iter->setState(MonsterState::Stun);
+						}
+					}
 				}
 			}
 		}
@@ -341,17 +344,9 @@ void HelloMario::update(float dt)
 				{
 					hero->setMoveState(MoveState::Idle);
 				}
-
-			}
-			else
-			{
-
 			}
 		}
-		if (controller->IsLeftClickPressed())
-		{
-			hero->setCombatState(CombatState::Attack);
-		}
+
 		auto& position = hero->getPosition();
 		if (position.x > 600 && position.x < 5700)
 		{
@@ -419,6 +414,6 @@ void HelloMario::hidePauseMenu()
 bool isEnemyWithinCollisionVolume(cocos2d::Node* enemy, CollisionVolume* collisionVolume)
 {
 	if (!enemy || !collisionVolume) return false;
-	auto collisionVolumeWorldPos = collisionVolume->getParent()->convertToWorldSpace(collisionVolume->getPosition());
-	return enemy->getBoundingBox().containsPoint(collisionVolumeWorldPos);
+	auto rect = new Rect(collisionVolume->getParent()->convertToWorldSpace(collisionVolume->getPosition()), Size(200, 200));
+	return enemy->getBoundingBox().intersectsRect(*rect);
 }

@@ -25,7 +25,8 @@ public:
     std::vector<Sprite*> itemDraws;
 private:
     std::vector<std::string> items;
-    int drawPadding = 75;
+    int drawPaddingX = 75;
+    int drawPaddingY = 75;
 
 };
 

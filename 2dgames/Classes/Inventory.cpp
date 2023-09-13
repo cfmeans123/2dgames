@@ -64,14 +64,19 @@ void Inventory::removeItem(const std::string& itemName)
 
 void Inventory::displayInventory(Hero* hero)
 {
-	drawPadding = 25;
-	
+	drawPaddingX = 25;
+	drawPaddingY = 25;
 	for (auto &item : items)
 	{
 		
 		int displayindex = &item - &items[0];
-		itemDraws.at(displayindex)->setPosition(hero->getPosition().x - (_director->getVisibleSize().width / 5) + drawPadding, _director->getVisibleSize().height * 0.1);
-		drawPadding += 75;
+		if (drawPaddingX > 500)
+		{
+			drawPaddingX = 25;
+			drawPaddingY -= 75;
+		}
+		itemDraws.at(displayindex)->setPosition(hero->getPosition().x - (_director->getVisibleSize().width / 5) + drawPaddingX, _director->getVisibleSize().height * 0.9 + drawPaddingY);
+		drawPaddingX += 75;
 		
 	}
 

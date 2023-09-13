@@ -228,6 +228,11 @@ void Hero::updateAttackState(float dt)
 	{
 		setCombatState(CombatState::None);
 	}
+	const auto& velx = physicsBody->getVelocity().x;
+	if (velx != 0)
+	{
+		physicsBody->applyForce(Vec2((-1 * velx), 0.0f));
+	}
 
 }
 
